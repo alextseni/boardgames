@@ -1,0 +1,52 @@
+.stage{
+  margin: auto;
+  width: 100%;
+ height: 100%;
+
+}
+
+.board {
+  margin: inherit;
+ background-image: url('components/Game/assets/board.jpg');
+ background-repeat: no-repeat;
+
+}
+
+
+.marble{
+  background-image: url('components/Game/assets/marble.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width : 100px;
+  height: 100px;
+}
+
+.empty{
+
+  width : 100px;
+  height: 100px;
+}
+
+.obstacle{
+  background-image: url('components/Game/assets/stone.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width : 100px;
+  height: 100px;
+}
+
+.selected{
+  background-image: url('components/Game/assets/marble_s.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width : 100px;
+  height: 100px;
+}
+
+.show {
+   margin: 20px;
+}
+
+.undefined{
+  display:none;
+}
