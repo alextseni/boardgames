@@ -2,16 +2,13 @@
   margin: auto;
   width: 100%;
  height: 100%;
-
 }
 
 .board {
   margin: inherit;
- background-image: url('components/Game/assets/board.jpg');
+ background-image: url('components/Game/assets/board_small.jpg');
  background-repeat: no-repeat;
-
 }
-
 
 .marble{
   background-image: url('components/Game/assets/marble.png');
@@ -22,7 +19,6 @@
 }
 
 .empty{
-
   width : 100px;
   height: 100px;
 }
@@ -44,7 +40,7 @@
 }
 
 .start {
-   margin: 20px;
+   margin: 15px;
 }
 
 .end{

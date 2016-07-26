@@ -1,8 +1,11 @@
 import React from 'react'
 import classes from './Game.scss'
 
+
+let isMouseDown = false;
+
 export const Game = (props) => (
-  <div>
+  <div onMouseUp =  {()=> {isMouseDown=false; props.removePieces(); props.removeMarks();}}>
   <div>
     <h2 className={classes[props.game.phase]}>
       Turns:
@@ -18,17 +21,17 @@ export const Game = (props) => (
   <div className={classes.stage}>
     <table className={classes.board}>
      <tbody>
-       {props.game.pieces.slice(0,8).map( (p, k) => {return <tr>
-       {props.game.pieces.slice(k*8,k*8+8).map( (piece, key) => {return <td className= {classes[piece]} onClick={()=> props.markPiece(k*8+key)}></td>})}</tr>})}
+       {props.game.pieces.slice(0,6).map( (p, k) => {return <tr>
+       {props.game.pieces.slice(k*6,k*6+6).map( (piece, key) => {return <td className= {classes[piece]}
+           onMouseDown={()=> {isMouseDown = true; props.markPiece(k*6+key);}}
+           onMouseOver ={()=> { if (isMouseDown) props.markPiece(k*6+key);}}
+
+           ></td>})}</tr>})}
       </tbody>
     </table>
-    </div>
+  </div>
 
- <div>
- <button className={classes[props.game.phase]} onClick={props.removePieces}>
-    Remove!
- </button>
- </div>
+
   <div>
    <button className='start' onClick={props.initializeBoard}>
      New Game
@@ -48,6 +51,7 @@ Game.propTypes = {
   clearBoard: React.PropTypes.func.isRequired,
   markPiece: React.PropTypes.func.isRequired,
  removePieces: React.PropTypes.func.isRequired,
+ removeMarks: React.PropTypes.func.isRequired,
 }
 
 export default Game

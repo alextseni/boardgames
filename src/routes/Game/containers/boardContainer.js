@@ -3,6 +3,10 @@ import { initializeBoard } from '../modules/game'
 import { clearBoard } from '../modules/game'
 import { markPiece } from '../modules/game'
 import {removePieces} from '../modules/game'
+import {removeMarks} from '../modules/game'
+
+import {ROWS} from '../modules/game'
+import {COLUMNS} from '../modules/game'
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
@@ -19,7 +23,7 @@ const mapActionCreators = {
   initializeBoard: () => {
       let pieces = [];
       let type = ' ';
-      for (let i=0;i<64; i++){
+      for (let i=0;i<ROWS*COLUMNS; i++){
         const num = Math.random();
         if (num <=0.7) {type = 'marble';}
         else if (num <=0.9) {type = 'obstacle';}
@@ -31,6 +35,8 @@ const mapActionCreators = {
     clearBoard: () => clearBoard(),
     markPiece: (cell) => markPiece(cell),
     removePieces: () => removePieces(),
+    unmarkPiece: (cell) => unmarkPiece(cell),
+    removeMarks: () => removeMarks(),
 }
 
 const mapStateToProps = (state) => ({

@@ -1,3 +1,3 @@
-# Alex Game Center
+# Tensai's Game Center
 
-This site is an experimental personal site used for training purposes.
+This is an experimental personal site used for game development and training purposes.

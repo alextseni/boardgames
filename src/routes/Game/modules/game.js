@@ -6,6 +6,8 @@ export const END_STATE = 'END_STATE'
 export const PLAYER_STATE = 'PLAYER_STATE'
 export const BOARD_STATE = 'BOARD_STATE'
 
+export const ROWS = 6;
+export const COLUMNS = 6;
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -26,10 +28,16 @@ export function clearBoard () {
 export function markPiece (cell) {
   return {
     type: PLAYER_STATE,
-    payload: cell
+    payload: {cell: cell, tag: 'mark'}
   }
 }
 
+export function removeMarks () {
+  return {
+    type: PLAYER_STATE,
+    payload: {tag: "reset"},
+  }
+}
 export function removePieces () {
   return {
     type: BOARD_STATE,
@@ -61,21 +69,24 @@ const ACTION_HANDLERS = {
                                    turns: action.payload.turns,
                                    text: action.payload.text}},
   [PLAYER_STATE]: (state,action) => {let nstate=[];
-                                    for(let i=0;i<64;i++){
+                                    for(let i=0;i<ROWS*COLUMNS;i++){
                                       nstate[i]=state.pieces[i];
                                     }
-                                    if (nstate[action.payload]=='marble'){
-                                    nstate[action.payload] = 'selected';}
-                                    else if (nstate[action.payload]=='selected'){
-                                    nstate[action.payload] = 'marble';}
+                                    if (nstate[action.payload.cell] =='marble'){
+                                    nstate[action.payload.cell] = 'selected';}
+                                    else if (action.payload.tag == 'reset'){
+                                      for(let i=0;i<ROWS*COLUMNS;i++){
+                                        if (nstate[i] == 'selected')  nstate[i] = 'marble';
+                                      }
+                                    }
                                     return {pieces: nstate, phase: 'start', turns: state.turns , text: state.text,};},
 
 
 
   [BOARD_STATE]: (state,action) => {let nstate=[];
-                                    let temp = new Array(8);
-                                    for(let i=0; i<8; i++){
-                                      temp[i] = new Array(8);
+                                    let temp = new Array(ROWS);
+                                    for(let i=0; i<ROWS; i++){
+                                      temp[i] = new Array(COLUMNS);
                                     }
                                     let text = state.text;
                                     let turns = state.turns;
@@ -89,11 +100,11 @@ const ACTION_HANDLERS = {
                                     let keepJ = [];
                                     let correct = false;
 
-                                    for(let i=0;i<64;i++){
+                                    for(let i=0;i<ROWS*COLUMNS;i++){
                                       nstate[i]=state.pieces[i];
                                     }
-                                    for(let i=0;i<8;i++){
-                                      for(let j=0; j<8;j++){
+                                    for(let i=0;i<ROWS;i++){
+                                      for(let j=0; j<COLUMNS;j++){
 
                                          temp[i][j]=nstate[x];
                                          if (temp[i][j] == 'selected') {
@@ -132,7 +143,7 @@ const ACTION_HANDLERS = {
                                       }
                                      }
 
-                                      for(let i=0;i<64;i++){
+                                      for(let i=0;i<ROWS*COLUMNS;i++){
 
                                         if (nstate[i]=='marble'){
                                              lastPiece ++;
@@ -143,7 +154,7 @@ const ACTION_HANDLERS = {
                                     }
 
                                      if (correct) {
-                                      for(let i=0;i<64;i++){
+                                      for(let i=0;i<ROWS*COLUMNS;i++){
 
                                         if (nstate[i]=='selected'){
                                              nstate[i] = 'empty';
@@ -157,8 +168,6 @@ const ACTION_HANDLERS = {
                                       else {text = 'Player 1';}
                                   }
                                 }
-
-
                                     return {pieces: nstate, phase: 'start', turns: turns, text: text,}
                                   },
 }
