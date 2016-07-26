@@ -17,7 +17,6 @@ import Game from 'components/Game'
 
 const mapActionCreators = {
   initializeBoard: () => {
-    
       let pieces = [];
       let type = ' ';
       for (let i=0;i<64; i++){
@@ -27,14 +26,9 @@ const mapActionCreators = {
         else {type = 'empty';}
         pieces[i] = type;
       }
-      pieces[64] = 'show';
-      pieces[65] = 'show';
-      pieces[66] = 0;
-      pieces[67] = 'Player 1';
-      pieces[68] = '';
       return initializeBoard(pieces);},
 
-    clearBoard: () => clearBoard([]),
+    clearBoard: () => clearBoard(),
     markPiece: (cell) => markPiece(cell),
     removePieces: () => removePieces(),
 }

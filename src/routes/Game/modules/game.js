@@ -9,17 +9,17 @@ export const BOARD_STATE = 'BOARD_STATE'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function initializeBoard (array = []) {
+export function initializeBoard (pieces = []) {
   return {
     type: START_STATE,
-    payload: array
+    payload: {pieces: pieces, phase: 'start', turns: 0, text: 'Player 1'},
   }
 }
 
-export function clearBoard (array = []) {
+export function clearBoard () {
   return {
     type: END_STATE,
-    payload: []
+    payload: {pieces: [], phase: 'end', turns: 0, text: 'Play?'},
   }
 }
 
@@ -33,7 +33,7 @@ export function markPiece (cell) {
 export function removePieces () {
   return {
     type: BOARD_STATE,
-    payload: 'empty'
+    payload: [],
   }
 }
 /*  This is a thunk, meaning it is a function that immediately
@@ -56,17 +56,19 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [START_STATE]: (state, action) => action.payload,
-  [END_STATE]: (state, action) => action.payload,
-
+  [END_STATE]: (state, action) => {return {pieces: action.payload.pieces,
+                                   phase: action.payload.phase,
+                                   turns: action.payload.turns,
+                                   text: action.payload.text}},
   [PLAYER_STATE]: (state,action) => {let nstate=[];
-                                    for(let i=0;i<69;i++){
-                                      nstate[i]=state[i];
+                                    for(let i=0;i<64;i++){
+                                      nstate[i]=state.pieces[i];
                                     }
                                     if (nstate[action.payload]=='marble'){
                                     nstate[action.payload] = 'selected';}
                                     else if (nstate[action.payload]=='selected'){
                                     nstate[action.payload] = 'marble';}
-                                    return nstate;},
+                                    return {pieces: nstate, phase: 'start', turns: state.turns , text: state.text,};},
 
 
 
@@ -75,7 +77,8 @@ const ACTION_HANDLERS = {
                                     for(let i=0; i<8; i++){
                                       temp[i] = new Array(8);
                                     }
-
+                                    let text = state.text;
+                                    let turns = state.turns;
                                     let lastPiece=0;
                                     let x=0;
                                     let y=0;
@@ -86,8 +89,8 @@ const ACTION_HANDLERS = {
                                     let keepJ = [];
                                     let correct = false;
 
-                                    for(let i=0;i<69;i++){
-                                      nstate[i]=state[i];
+                                    for(let i=0;i<64;i++){
+                                      nstate[i]=state.pieces[i];
                                     }
                                     for(let i=0;i<8;i++){
                                       for(let j=0; j<8;j++){
@@ -129,7 +132,7 @@ const ACTION_HANDLERS = {
                                       }
                                      }
 
-                                      for(let i=0;i<67;i++){
+                                      for(let i=0;i<64;i++){
 
                                         if (nstate[i]=='marble'){
                                              lastPiece ++;
@@ -147,26 +150,24 @@ const ACTION_HANDLERS = {
                                       }
                                     }
                                     if (lastPiece==1) {
-                                      nstate[65] ='undefined';
-                                      nstate[68] = ' Wins!';
+                                       text= state.text + ' wins!';
                                      }
-                                   else   {  nstate[66] ++;
-                                      if (nstate[67] == 'Player 1') {nstate[67] = 'Player 2';}
-                                      else {nstate[67] = 'Player 1';}
+                                   else   {turns++;
+                                      if (state.text == 'Player 1') {text  = 'Player 2';}
+                                      else {text = 'Player 1';}
                                   }
                                 }
 
 
-                                    return nstate;},
-//update turns
-//check if one piece left
+                                    return {pieces: nstate, phase: 'start', turns: turns, text: text,}
+                                  },
 }
 
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = []
+const initialState = {pieces: [], phase: 'end', turns: 0, text: "Press 'New Game' to Start!"};
 export default function gameReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
