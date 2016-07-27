@@ -23,7 +23,7 @@ export const Game = (props) => (
      <tbody>
        {props.game.pieces.slice(0,6).map( (p, k) => {return <tr>
        {props.game.pieces.slice(k*6,k*6+6).map( (piece, key) => {return <td className= {classes[piece]}
-           onMouseDown={()=> {isMouseDown = true; props.markPiece(k*6+key);}}
+           onMouseDown={(ev)=> {isMouseDown = true; ev.preventDefault(); props.markPiece(k*6+key);}}
            onMouseOver ={()=> { if (isMouseDown) props.markPiece(k*6+key);}}
 
            ></td>})}</tr>})}
@@ -46,10 +46,10 @@ export const Game = (props) => (
 
 
 Game.propTypes = {
-  game: React.PropTypes.object.isRequired,
-  initializeBoard: React.PropTypes.func.isRequired,
-  clearBoard: React.PropTypes.func.isRequired,
-  markPiece: React.PropTypes.func.isRequired,
+ game: React.PropTypes.object.isRequired,
+ initializeBoard: React.PropTypes.func.isRequired,
+ clearBoard: React.PropTypes.func.isRequired,
+ markPiece: React.PropTypes.func.isRequired,
  removePieces: React.PropTypes.func.isRequired,
  removeMarks: React.PropTypes.func.isRequired,
 }

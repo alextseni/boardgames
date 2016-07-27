@@ -12,8 +12,9 @@ export const createRoutes = (store) => ({
   component: CoreLayout,
   indexRoute: Home,
   childRoutes: [
-    About,
     GameRoute(store),
+    About,
+
   ]
 })
 
