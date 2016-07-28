@@ -11,31 +11,19 @@ import {COLUMNS} from '../modules/game'
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
     wiring in the actions and state necessary to render a presentational
-    component - in this case, the counter:   */
+    component */
 
 import Game from 'components/Game'
 
 /*  Object of action creators (can also be function that returns object).
-    Keys will be passed as props to presentational components. Here we are
-    implementing our wrapper around increment; the component doesn't care   */
+    Keys will be passed as props to presentational components. */
 
 const mapActionCreators = {
-  initializeBoard: () => {
-      let pieces = [];
-      let type = ' ';
-      for (let i=0;i<ROWS*COLUMNS; i++){
-        const num = Math.random();
-        if (num <=0.7) {type = 'marble';}
-        else if (num <=0.9) {type = 'obstacle';}
-        else {type = 'empty';}
-        pieces[i] = type;
-      }
-      return initializeBoard(pieces);},
-
+    initializeBoard: () => {let random = new Array(46);
+                            return initializeBoard(random.fill(0,0,ROWS*COLUMNS).map(n => Math.random()))},
     clearBoard: () => clearBoard(),
     markPiece: (cell) => markPiece(cell),
     removePieces: () => removePieces(),
-    unmarkPiece: (cell) => unmarkPiece(cell),
     removeMarks: () => removeMarks(),
 }
 
@@ -44,15 +32,7 @@ const mapStateToProps = (state) => ({
 
 })
 
-/*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
-
-    import { createSelector } from 'reselect'
-    const counter = (state) => state.counter
-    const tripleCount = createSelector(counter, (count) => count * 3)
-    const mapStateToProps = (state) => ({
-      counter: tripleCount(state)
-    })
-
+/*  Note: mapStateToProps is where you should use `reselect` to create selectors.
     Selectors can compute derived data, allowing Redux to store the minimal possible state.
     Selectors are efficient. A selector is not recomputed unless one of its arguments change.
     Selectors are composable. They can be used as input to other selectors.

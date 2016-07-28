@@ -11,10 +11,11 @@ export const COLUMNS = 6;
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function initializeBoard (pieces = []) {
+export function initializeBoard (random = []) {
   return {
     type: START_STATE,
-    payload: {pieces: pieces, phase: 'start', turns: 0, text: 'Player 1'},
+    payload: {phase: 'start', turns: 0, text: 'Player 1'},
+    value: random,
   }
 }
 
@@ -44,42 +45,42 @@ export function removePieces () {
     payload: [],
   }
 }
-/*  This is a thunk, meaning it is a function that immediately
-    returns a function for lazy evaluation. It is incredibly useful for
-    creating async actions, especially when combined with redux-thunk!
-
-    NOTE: This is solely for demonstration purposes. In a real application,
-    you'd probably want to dispatch an action of COUNTER_DOUBLE and let the
-    reducer take care of this logic.  */
 
 export const actions = {
   initializeBoard,
   clearBoard,
   markPiece,
   removePieces,
+  removeMarks,
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [START_STATE]: (state, action) => action.payload,
-  [END_STATE]: (state, action) => {return {pieces: action.payload.pieces,
-                                   phase: action.payload.phase,
-                                   turns: action.payload.turns,
-                                   text: action.payload.text}},
+  [START_STATE]: (state, action) => {
+                                        let p = [];
+                                        let type = ' ';
+                                        for (let i=0;i<ROWS*COLUMNS; i++){
+                                          if (action.value[i] <=0.75) {type = 'marble';}
+                                          else if (action.value[i] <=0.9) {type = 'obstacle';}
+                                          else {type = 'empty';}
+                                          p[i] = type;}
+                                        return  Object.assign({}, {pieces: p}, action.payload);},
+
+  [END_STATE]: (state, action) => action.payload,
   [PLAYER_STATE]: (state,action) => {let nstate=[];
                                     for(let i=0;i<ROWS*COLUMNS;i++){
                                       nstate[i]=state.pieces[i];
                                     }
-                                    if (nstate[action.payload.cell] =='marble'){
-                                    nstate[action.payload.cell] = 'selected';}
+                                    if (state.pieces[action.payload.cell] =='marble'){
+                                       nstate[action.payload.cell] = 'selected';}
                                     else if (action.payload.tag == 'reset'){
                                       for(let i=0;i<ROWS*COLUMNS;i++){
                                         if (nstate[i] == 'selected')  nstate[i] = 'marble';
                                       }
                                     }
-                                    return {pieces: nstate, phase: 'start', turns: state.turns , text: state.text,};},
+                                    return {...state, pieces: nstate};},
 
 
 
@@ -88,6 +89,7 @@ const ACTION_HANDLERS = {
                                     for(let i=0; i<ROWS; i++){
                                       temp[i] = new Array(COLUMNS);
                                     }
+
                                     let text = state.text;
                                     let turns = state.turns;
                                     let lastPiece=0;
@@ -103,10 +105,11 @@ const ACTION_HANDLERS = {
                                     for(let i=0;i<ROWS*COLUMNS;i++){
                                       nstate[i]=state.pieces[i];
                                     }
+
                                     for(let i=0;i<ROWS;i++){
                                       for(let j=0; j<COLUMNS;j++){
 
-                                         temp[i][j]=nstate[x];
+                                         temp[i][j]=state.pieces[x];
                                          if (temp[i][j] == 'selected') {
                                            keepI[y] = i;
                                            keepJ[y] = j;
@@ -127,7 +130,6 @@ const ACTION_HANDLERS = {
                                     if (count_H ==keepI.length && count_V ==1){
                                       correct = true;
                                       for (let j=keepJ[0]; j<=keepJ[keepJ.length-1]; j++){
-                                        console.log(temp[keepI[0]][j]);
                                         if ((temp[keepI[0]][j] != 'empty') && (temp[keepI[0]][j] != 'selected')){
                                           correct = false;
                                         }
@@ -143,23 +145,13 @@ const ACTION_HANDLERS = {
                                       }
                                      }
 
-                                      for(let i=0;i<ROWS*COLUMNS;i++){
+                                    state.pieces.forEach(p=> (p=='marble') ? lastPiece++ : 0);
 
-                                        if (nstate[i]=='marble'){
-                                             lastPiece ++;
-                                      }
-                                    }
-                                    if (lastPiece==0) {
-                                      correct = false;
-                                    }
+                                    (lastPiece ==0) ? correct = false : false;
 
                                      if (correct) {
-                                      for(let i=0;i<ROWS*COLUMNS;i++){
+                                       nstate= state.pieces.map(p=> (p=='selected') ? p='empty' : p);
 
-                                        if (nstate[i]=='selected'){
-                                             nstate[i] = 'empty';
-                                      }
-                                    }
                                     if (lastPiece==1) {
                                        text= state.text + ' wins!';
                                      }
@@ -168,7 +160,7 @@ const ACTION_HANDLERS = {
                                       else {text = 'Player 1';}
                                   }
                                 }
-                                    return {pieces: nstate, phase: 'start', turns: turns, text: text,}
+                                    return {...state, pieces: nstate, turns: turns, text: text,}
                                   },
 }
 
