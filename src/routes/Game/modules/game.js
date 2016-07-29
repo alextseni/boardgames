@@ -14,7 +14,7 @@ export const COLUMNS = 6;
 export function initializeBoard (random = []) {
   return {
     type: START_STATE,
-    payload: {phase: 'start', turns: 0, text: 'Player 1'},
+    payload: {phase: 'start', text: 'Player1'},
     value: random,
   }
 }
@@ -22,7 +22,7 @@ export function initializeBoard (random = []) {
 export function clearBoard () {
   return {
     type: END_STATE,
-    payload: {pieces: [], phase: 'end', turns: 0, text: 'Play?'},
+    payload: {pieces: [ , , , , , , ].fill('empty',0,ROWS*COLUMNS), phase: 'end', allMarbles: 0, text: 'end'},
   }
 }
 
@@ -46,6 +46,7 @@ export function removePieces () {
   }
 }
 
+
 export const actions = {
   initializeBoard,
   clearBoard,
@@ -66,7 +67,7 @@ const ACTION_HANDLERS = {
                                           else if (action.value[i] <=0.9) {type = 'obstacle';}
                                           else {type = 'empty';}
                                           p[i] = type;}
-                                        return  Object.assign({}, {pieces: p}, action.payload);},
+                                        return  Object.assign({}, {pieces: p, allMarbles: p.filter((m)=> m=='marble').length },  action.payload);},
 
   [END_STATE]: (state, action) => action.payload,
   [PLAYER_STATE]: (state,action) => {let nstate=[];
@@ -156,11 +157,11 @@ const ACTION_HANDLERS = {
                                        text= state.text + ' wins!';
                                      }
                                    else   {turns++;
-                                      if (state.text == 'Player 1') {text  = 'Player 2';}
-                                      else {text = 'Player 1';}
+                                      if (state.text == 'Player1') {text  = 'Player2';}
+                                      else {text = 'Player1';}
                                   }
                                 }
-                                    return {...state, pieces: nstate, turns: turns, text: text,}
+                                    return {...state, pieces: nstate, text: text,}
                                   },
 }
 
@@ -168,7 +169,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = {pieces: [], phase: 'end', turns: 0, text: "Press 'New Game' to Start!"};
+const initialState = {pieces: [ , , , , , , ].fill('empty',0,ROWS*COLUMNS), phase: 'end', allMarbles: "0", text: "end"};
 export default function gameReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 

@@ -3,7 +3,7 @@ import classes from './About.scss'
 
 export const About = () => (
   <div className={classes.author}>
-    <p>Created by Alexandra Tseniklidou.</p>
+    <p>Created by Alexandra Tseniklidou</p>
     <p>2016</p>
   </div>
 )
