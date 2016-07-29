@@ -55,11 +55,18 @@ button:focus {outline:0;}
   background-image: url('components/Game/assets/stone.png');
 }
 
-.selected{
-  background-image: url('components/Game/assets/marble_s.png');
+ .selected#Player1{
+  background-image: url('components/Game/assets/marble_p1.png');
 }
 
-#Player1{
+.selected#Player2{
+  background-image: url('components/Game/assets/marble_p2.png');
+}
+
+.selected {
+  background-image: url('components/Game/assets/marble.png');
+}
+span#Player1{
     background-color: #E55B3C;
     display: inline-block;
     font-family: cursive;
@@ -70,7 +77,7 @@ button:focus {outline:0;}
     line-height: 45px;
 }
 
-#Player2{
+span#Player2{
     background-color: #6495ED;
     display: inline-block;
     font-family: cursive;
@@ -108,12 +115,14 @@ div.start{
   border-color: black;
   background-color: #E5E4E2;
   margin: 0px 0px 0px 80px;
+
 }
 
 #prog div {
  font-size: 24px;
  font-family: cursive;
  line-height: 60px;
+ background-color: #89C35C;
 }
 
 button.start {
