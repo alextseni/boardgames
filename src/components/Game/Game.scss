@@ -1,12 +1,14 @@
 .stage{
   margin: auto;
+  width: 600px;
+  height: 600px;
 }
 
-.board {
+.board#start {
  margin: inherit;
  background-image: url('components/Game/assets/board_small.jpg');
  background-repeat: no-repeat;
-height: 610px;
+ height: 610px;
 }
 
 button {
@@ -48,8 +50,6 @@ button:focus {outline:0;}
 .marble{
   background-image: url('components/Game/assets/marble.png');
 }
-
-
 
 .obstacle{
   background-image: url('components/Game/assets/stone.png');
@@ -97,6 +97,17 @@ span#Player2{
  height: 60px;
  text-align: center;
  line-height: 45px;
+}
+
+img.end {
+  width: 600px;
+  height: 600px;
+  display: inline-block;
+  margin: 0px;
+}
+img.start {
+  display: none;
+
 }
 
 .info{
