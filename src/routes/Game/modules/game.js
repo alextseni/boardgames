@@ -79,13 +79,9 @@ const ACTION_HANDLERS = {
   [PLAYER_STATE]: (state,action) => {
     let p = state.pieces.slice(0,ROWS*COLUMNS);
 
-    if ( action.payload.tag == 'mark' && state.pieces[action.payload.cell].type =='marble'){
-       p[action.payload.cell].type = 'selected';
-    }
+    action.payload.tag == 'mark' ? p[action.payload.cell].type = 'selected' :
+    action.payload.tag == 'reset'? p = state.pieces.map(p=> p.type == 'selected' ? {...p, type: 'marble'} : p) : false
 
-    else if (action.payload.tag == 'reset'){
-      p = state.pieces.map(p=> p.type == 'selected' ? {...p, type: 'marble'} : p);
-    }
      return {...state, pieces: p};
   },
 
