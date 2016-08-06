@@ -28,9 +28,4 @@ export const Board = ({props}) =>  (
   </div>
 )
 
-Board.propTypes = {
- game: React.PropTypes.object,
- markPiece: React.PropTypes.func,
-}
-
 export default Board

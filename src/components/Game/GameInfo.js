@@ -15,8 +15,4 @@ export const GameInfo = ({props}) =>  (
   </div>
 )
 
-GameInfo.propTypes = {
- game: React.PropTypes.object,
-}
-
 export default GameInfo

@@ -74,9 +74,7 @@ const ACTION_HANDLERS = {
       }}
     return (Object.assign({}, {pieces: p, allMarbles: p.filter((m)=> m.type=='marble').length },  action.payload))},
 
-
   [END_STATE]: (state, action) => action.payload,
-
 
   [PLAYER_STATE]: (state,action) => {
     let p = state.pieces.slice(0,ROWS*COLUMNS);
@@ -91,27 +89,21 @@ const ACTION_HANDLERS = {
      return {...state, pieces: p};
   },
 
-
-
   [BOARD_STATE]: (state,action) => {
 
     let correct = false;
-
     const countX = Object.keys(_.countBy(_.filter(state.pieces,(o)=> o.type == 'selected'),(o)=> o.x));
     const countY = Object.keys(_.countBy(_.filter(state.pieces,(o)=> o.type == 'selected'),(o)=> o.y));
 
-    const evaluate = (axis1, axis2, m,n) =>
-             {    if (axis2.length == 1){
-                   for (let i=axis1[0]; i<=axis1[axis1.length-1]; i++) {
-                      correct = !state.pieces.find(p=>p[m] == i && p[n] == axis2[0] && p.type == 'obstacle');
-                      if (!correct)  break;
-                   }
-                 }
-             }
+    const evaluate = (counter, stop, axis, m, n) =>
+    {
+             correct = !state.pieces.find(p=>p[m] == counter && p[n] == axis[0] && p.type == 'obstacle');
+             (!correct || counter==stop) ? 0 : evaluate(--counter, stop, axis, m,n);
+             return;
+    }
 
-    evaluate(countY, countX, 'y','x');
-    evaluate(countX, countY, 'x','y');
-
+   (countY.length == 1) ? evaluate(countX[countX.length-1], countX[0], countY, 'x', 'y') : false;
+   (countX.length == 1) ? evaluate(countY[countY.length-1], countY[0], countX, 'y', 'x') : false;
 
     const pieces = state.pieces.map(p=>p.type == 'selected' ? {...p, type: 'empty'} : p);
 
@@ -133,6 +125,5 @@ const ACTION_HANDLERS = {
 const initialState = {pieces: [], phase: 'end', allMarbles: "0", text: "end"};
 export default function gameReducer (state = initialState, action) {
    const handler = ACTION_HANDLERS[action.type]
-
    return handler ? handler(state, action) : state
 }

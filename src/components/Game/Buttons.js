@@ -13,10 +13,4 @@ export const Buttons = ({props}) =>  (
   </div>
 )
 
-Buttons.propTypes = {
- initializeBoard: React.PropTypes.func,
- game: React.PropTypes.object,
- clearBoard: React.PropTypes.func,
-}
-
 export default Buttons
