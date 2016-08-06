@@ -1,6 +1,8 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
+var _ = require('lodash');
+
 export const START_STATE = 'START_STATE'
 export const END_STATE = 'END_STATE'
 export const PLAYER_STATE = 'PLAYER_STATE'
@@ -11,18 +13,20 @@ export const COLUMNS = 6;
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function initializeBoard (random = []) {
+export function initializeBoard () {
+  const random = () => {let rand= new Array(ROWS*COLUMNS);
+                        return rand.fill(0,0,ROWS*COLUMNS).map(n => Math.random());}
   return {
     type: START_STATE,
     payload: {phase: 'start', text: 'Player1'},
-    value: random,
+    value: random(),
   }
 }
 
 export function clearBoard () {
   return {
     type: END_STATE,
-    payload: {pieces: [ , , , , , , ].fill('empty',0,ROWS*COLUMNS), phase: 'end', allMarbles: 0, text: 'end'},
+    payload: {pieces: [], phase: 'end', allMarbles: 0, text: 'end'},
   }
 }
 
@@ -60,118 +64,75 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [START_STATE]: (state, action) => {
-                                        let p = [];
-                                        let type = ' ';
-                                        for (let i=0;i<ROWS*COLUMNS; i++){
-                                          if (action.value[i] <=0.75) {type = 'marble';}
-                                          else if (action.value[i] <=0.9) {type = 'obstacle';}
-                                          else {type = 'empty';}
-                                          p[i] = type;}
-                                        return  Object.assign({}, {pieces: p, allMarbles: p.filter((m)=> m=='marble').length },  action.payload);},
+    let p = [];
+    for (let i=0, z=0;i<ROWS; i++){
+      for (let j=0;j<COLUMNS; j++){
+          action.value[z] <=0.75 ? p[z] = {x: i, y: j, type: 'marble'} :
+          action.value[z] <=0.9  ? p[z] = {x: i, y: j, type: 'obstacle'} :
+                                   p[z] = {x: i, y: j, type: 'empty'};
+          z++;
+      }}
+    return (Object.assign({}, {pieces: p, allMarbles: p.filter((m)=> m.type=='marble').length },  action.payload))},
+
 
   [END_STATE]: (state, action) => action.payload,
-  [PLAYER_STATE]: (state,action) => {let nstate=[];
-                                    for(let i=0;i<ROWS*COLUMNS;i++){
-                                      nstate[i]=state.pieces[i];
-                                    }
-                                    if (state.pieces[action.payload.cell] =='marble'){
-                                       nstate[action.payload.cell] = 'selected';}
-                                    else if (action.payload.tag == 'reset'){
-                                      for(let i=0;i<ROWS*COLUMNS;i++){
-                                        if (nstate[i] == 'selected')  nstate[i] = 'marble';
-                                      }
-                                    }
-                                    return {...state, pieces: nstate};},
+
+
+  [PLAYER_STATE]: (state,action) => {
+    let p = state.pieces.slice(0,ROWS*COLUMNS);
+
+    if ( action.payload.tag == 'mark' && state.pieces[action.payload.cell].type =='marble'){
+       p[action.payload.cell].type = 'selected';
+    }
+
+    else if (action.payload.tag == 'reset'){
+      p = state.pieces.map(p=> p.type == 'selected' ? {...p, type: 'marble'} : p);
+    }
+     return {...state, pieces: p};
+  },
 
 
 
-  [BOARD_STATE]: (state,action) => {let nstate=[];
-                                    let temp = new Array(ROWS);
-                                    for(let i=0; i<ROWS; i++){
-                                      temp[i] = new Array(COLUMNS);
-                                    }
+  [BOARD_STATE]: (state,action) => {
 
-                                    let text = state.text;
-                                    let turns = state.turns;
-                                    let lastPiece=0;
-                                    let x=0;
-                                    let y=0;
-                                    let first = true;
-                                    let count_V=1;
-                                    let count_H =1;
-                                    let keepI = [];
-                                    let keepJ = [];
-                                    let correct = false;
+    let correct = false;
 
-                                    for(let i=0;i<ROWS*COLUMNS;i++){
-                                      nstate[i]=state.pieces[i];
-                                    }
+    const countX = Object.keys(_.countBy(_.filter(state.pieces,(o)=> o.type == 'selected'),(o)=> o.x));
+    const countY = Object.keys(_.countBy(_.filter(state.pieces,(o)=> o.type == 'selected'),(o)=> o.y));
 
-                                    for(let i=0;i<ROWS;i++){
-                                      for(let j=0; j<COLUMNS;j++){
+    const evaluate = (axis1, axis2, m,n) =>
+             {    if (axis2.length == 1){
+                   for (let i=axis1[0]; i<=axis1[axis1.length-1]; i++) {
+                      correct = !state.pieces.find(p=>p[m] == i && p[n] == axis2[0] && p.type == 'obstacle');
+                      if (!correct)  break;
+                   }
+                 }
+             }
 
-                                         temp[i][j]=state.pieces[x];
-                                         if (temp[i][j] == 'selected') {
-                                           keepI[y] = i;
-                                           keepJ[y] = j;
-                                           y++
-                                         }
-                                         x++;
-                                    }}
-                                    for (let i=0; i<keepI.length-1; i++){
-                                       if (keepI[i] == keepI[i+1]){
-                                         count_H++;
-                                       }
-                                       if (keepJ[i] == keepJ[i+1]){
-                                         count_V++;
-                                       }
+    evaluate(countY, countX, 'y','x');
+    evaluate(countX, countY, 'x','y');
 
-                                    }
 
-                                    if (count_H ==keepI.length && count_V ==1){
-                                      correct = true;
-                                      for (let j=keepJ[0]; j<=keepJ[keepJ.length-1]; j++){
-                                        if ((temp[keepI[0]][j] != 'empty') && (temp[keepI[0]][j] != 'selected')){
-                                          correct = false;
-                                        }
-                                      }
-                                    }
+    const pieces = state.pieces.map(p=>p.type == 'selected' ? {...p, type: 'empty'} : p);
 
-                                    if (count_H ==1 && count_V ==keepJ.length ) {
-                                      correct = true;
-                                      for (let i=keepI[0]; i<=keepI[keepI.length-1]; i++){
-                                        if ((temp[i][keepJ[0]] != 'empty') && (temp[i][keepJ[0]] != 'selected')){
-                                          correct = false;
-                                        }
-                                      }
-                                     }
+    const result = [
+      {st: {...state}                                              , is: !correct || state.pieces.filter(p=> (p.type=='marble')).length == 0},
+      {st: {...state,pieces: pieces, text: state.text + ' wins!'}  , is: state.pieces.filter(p=> (p.type=='marble')).length == 1},
+      {st: {...state,pieces: pieces, text: 'Player1'}              , is: state.text == 'Player2'},
+      {st: {...state,pieces: pieces, text: 'Player2'}              , is: state.text == 'Player1'},
+    ]
 
-                                    state.pieces.forEach(p=> (p=='marble') ? lastPiece++ : 0);
-
-                                    (lastPiece ==0) ? correct = false : false;
-
-                                     if (correct) {
-                                       nstate= state.pieces.map(p=> (p=='selected') ? p='empty' : p);
-
-                                    if (lastPiece==1) {
-                                       text= state.text + ' wins!';
-                                     }
-                                   else   {turns++;
-                                      if (state.text == 'Player1') {text  = 'Player2';}
-                                      else {text = 'Player1';}
-                                  }
-                                }
-                                    return {...state, pieces: nstate, text: text,}
-                                  },
+    return result.find((r) => r.is == true).st;
+  },
 }
 
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = {pieces: [ , , , , , , ].fill('empty',0,ROWS*COLUMNS), phase: 'end', allMarbles: "0", text: "end"};
+const initialState = {pieces: [], phase: 'end', allMarbles: "0", text: "end"};
 export default function gameReducer (state = initialState, action) {
-  const handler = ACTION_HANDLERS[action.type]
+   const handler = ACTION_HANDLERS[action.type]
 
-  return handler ? handler(state, action) : state
+   return handler ? handler(state, action) : state
 }

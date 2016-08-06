@@ -5,22 +5,20 @@ import { markPiece } from '../modules/game'
 import {removePieces} from '../modules/game'
 import {removeMarks} from '../modules/game'
 
-import {ROWS} from '../modules/game'
-import {COLUMNS} from '../modules/game'
-
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
     wiring in the actions and state necessary to render a presentational
     component */
-
-import Game from 'components/Game'
+var Game = require('components/Game').game
+var Buttons = require('components/Game').buttons
+var GameInfo = require('components/Game').gameInfo
+var Board  = require('components/Game').board
 
 /*  Object of action creators (can also be function that returns object).
     Keys will be passed as props to presentational components. */
 
 const mapActionCreators = {
-    initializeBoard: () => {let random = new Array(46);
-                            return initializeBoard(random.fill(0,0,ROWS*COLUMNS).map(n => Math.random()))},
+    initializeBoard: () => initializeBoard(),
     clearBoard: () => clearBoard(),
     markPiece: (cell) => markPiece(cell),
     removePieces: () => removePieces(),
@@ -29,7 +27,6 @@ const mapActionCreators = {
 
 const mapStateToProps = (state) => ({
   game: state.game,
-
 })
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors.
@@ -38,4 +35,7 @@ const mapStateToProps = (state) => ({
     Selectors are composable. They can be used as input to other selectors.
     https://github.com/reactjs/reselect    */
 
-export default connect(mapStateToProps, mapActionCreators)(Game)
+exports.game = connect(mapStateToProps, mapActionCreators)(Game)
+exports.buttons = connect(mapStateToProps, mapActionCreators)(Buttons)
+exports.gameInfo = connect(mapStateToProps, mapActionCreators)(GameInfo)
+exports.board = connect(mapStateToProps, mapActionCreators)(Board)

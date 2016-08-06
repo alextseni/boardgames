@@ -1,0 +1,73 @@
+.stage{
+  margin: auto;
+  width: 600px;
+  height: 600px;
+}
+
+.board#start {
+ margin: inherit;
+ background-image: url('components/Game/assets/board_small.jpg');
+ background-repeat: no-repeat;
+ height: 610px;
+}
+
+.board td{
+    height: 100px;
+    width: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.marble{
+  background-image: url('components/Game/assets/marble.png');
+}
+
+.obstacle{
+  background-image: url('components/Game/assets/stone.png');
+}
+
+ .selected#Player1{
+  background-image: url('components/Game/assets/marble_p1.png');
+}
+
+.selected#Player2{
+  background-image: url('components/Game/assets/marble_p2.png');
+}
+
+.selected {
+  background-image: url('components/Game/assets/marble.png');
+}
+
+#end {
+ visibility: hidden;
+ display: inline-block;
+ font-family: cursive;
+ margin: 0px;
+ vertical-align: middle;
+ height: 60px;
+ text-align: center;
+ line-height: 45px;
+}
+
+img.end {
+  width: 600px;
+  height: 600px;
+  display: inline-block;
+  margin: 0px;
+  padding: 10px;
+  background-color: #EDE275;
+}
+img.start {
+  display: none;
+
+}
+
+div.start{
+  display: inline-block;
+  width: 40%;
+ vertical-align: middle;
+}
+
+.end{
+  display:none;
+}
