@@ -20,6 +20,7 @@
 
 .marble{
   background-image: url('components/Game/assets/marble.png');
+  cursor: pointer;
 }
 
 .obstacle{
@@ -28,10 +29,12 @@
 
  .selected#Player1{
   background-image: url('components/Game/assets/marble_p1.png');
+    cursor: pointer;
 }
 
 .selected#Player2{
   background-image: url('components/Game/assets/marble_p2.png');
+    cursor: pointer;
 }
 
 .selected {

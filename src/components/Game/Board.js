@@ -5,21 +5,19 @@ import Click from './assets/click.mp3'
 import Victory from './assets/win.mp3'
 
 let isMouseDown = false;
-const sound =  document.getElementById('clickSound');
-const sound2 =  document.getElementById('winSound');
+
+const play = (sound) => {
+  sound.pause(); sound.currentTime = 0; sound.play();
+ };
 
 export const Board = ({props}) =>  (
   <div className={classes.stage}>
-    <audio id="clickSound">
-      <source src={Click}/>
-    </audio>
-    <audio id="winSound">
-      <source src={Victory}/>
-    </audio>
+    <audio id="clickSound" src={Click}/>
+    <audio id="winSound" src={Victory}/>
     <img className={classes[props.game.phase]} alt='Game Tutorial' src={GameVideo}/>
     <table className={classes.board} id={classes[props.game.phase]} onMouseUp =  {()=> {isMouseDown=false; props.removePieces(); props.removeMarks();
                                                                                         if (props.game.pieces.filter(p=>p.type=='marble').length==1)
-                                                                                          {sound2.pause(); sound2.currentTime = 0; sound2.play();}}}>
+                                                                                          play(document.getElementById('winSound'));}}>
      <tbody>
        {props.game.pieces.slice(0,6).map((p, k) => {
          return(
@@ -28,11 +26,10 @@ export const Board = ({props}) =>  (
                 return(
                   <td className= {classes[piece.type]} id= {classes[props.game.text]}
                       onMouseDown={(ev)=> {if (piece.type=='marble') {
-                                              isMouseDown = true; ev.preventDefault();
-                                              sound.pause(); sound.currentTime = 0; sound.play();
+                                              isMouseDown = true; ev.preventDefault(); play(document.getElementById('clickSound'));
                                               props.markPiece(k*6+key);}}}
                       onMouseOver ={()=> { if (isMouseDown && piece.type=='marble') {
-                                              sound.pause(); sound.currentTime = 0; sound.play();
+                                              play(document.getElementById('clickSound'));
                                               props.markPiece(k*6+key);}}}>
                   </td>
                 )})
