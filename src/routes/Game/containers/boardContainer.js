@@ -9,7 +9,7 @@ import {removeMarks} from '../modules/game'
     nor does it import React. This component is **only** responsible for
     wiring in the actions and state necessary to render a presentational
     component */
-var Game = require('components/Game').game
+import { game as Game } from 'components/Game';
 var Buttons = require('components/Game').buttons
 var GameInfo = require('components/Game').gameInfo
 var Board  = require('components/Game').board
@@ -18,12 +18,12 @@ var Board  = require('components/Game').board
     Keys will be passed as props to presentational components. */
 
 const mapActionCreators = {
-    initializeBoard: () => initializeBoard(),
-    clearBoard: () => clearBoard(),
-    markPiece: (cell) => markPiece(cell),
-    removePieces: () => removePieces(),
-    removeMarks: () => removeMarks(),
-}
+  initializeBoard: () => initializeBoard(),
+  clearBoard: () => clearBoard(),
+  markPiece: (cell) => markPiece(cell),
+  removePieces: () => removePieces(),
+  removeMarks: () => removeMarks(),
+};
 
 const mapStateToProps = (state) => ({
   game: state.game,

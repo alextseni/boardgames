@@ -56,6 +56,17 @@ div.start{
  background-color: #89C35C;
 }
 
+h3.end {
+  vertical-align: middle;
+  font-size: 34px;
+  font-family: cursive;
+  display: block;
+  font-weight: bold;
+}
+h3.start {
+  visibility: hidden;
+}
+
 .end{
   display:none;
 }

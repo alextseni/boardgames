@@ -14,8 +14,9 @@ export const COLUMNS = 6;
 // Actions
 // ------------------------------------
 export function initializeBoard () {
-  const random = () => {let rand= new Array(ROWS*COLUMNS);
-                        return rand.fill(0,0,ROWS*COLUMNS).map(n => Math.random());}
+  const random = () => {
+    let rand= new Array(ROWS*COLUMNS);
+                return rand.fill(0,0,ROWS*COLUMNS).map(n => Math.random());}
   return {
     type: START_STATE,
     payload: {phase: 'start', text: 'Player1'},
@@ -104,7 +105,10 @@ const ACTION_HANDLERS = {
     const pieces = state.pieces.map(p=>p.type == 'selected' ? {...p, type: 'empty'} : p);
 
     const result = [
-      {st: {...state}                                              , is: !correct || state.pieces.filter(p=> (p.type=='marble')).length == 0},
+      {
+        st: {...state},
+        is: !correct || state.pieces.filter(p=> (p.type=='marble')).length === 0,
+      },
       {st: {...state,pieces: pieces, text: state.text + ' wins!'}  , is: state.pieces.filter(p=> (p.type=='marble')).length == 1},
       {st: {...state,pieces: pieces, text: 'Player1'}              , is: state.text == 'Player2'},
       {st: {...state,pieces: pieces, text: 'Player2'}              , is: state.text == 'Player1'},

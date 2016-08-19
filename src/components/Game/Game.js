@@ -1,27 +1,27 @@
-import React from 'react'
+import React from 'react';
 
-import Buttons from  './Buttons'
-import GameInfo from './GameInfo'
-import Board from './Board'
+import Buttons from './Buttons';
+import GameInfo from './GameInfo';
+import Board from './Board';
 
-import Soundtrack from './assets/Wallpaper.mp3'
+import Soundtrack from './assets/Wallpaper.mp3';
 
 export const Game = (props) => (
   <div>
-  <audio id='ost' autoplay controls loop src={Soundtrack}/>
-    <GameInfo props={props}/>
-    <Board props={props}/>
-    <Buttons props={props}/>
+    <audio id='ost' autoplay controls loop src={Soundtrack} />
+    <GameInfo props={props} />
+    <Board props={props} />
+    <Buttons props={props} />
   </div>
-)
+);
 
 Game.propTypes = {
- game: React.PropTypes.object.isRequired,
- initializeBoard: React.PropTypes.func.isRequired,
- clearBoard: React.PropTypes.func.isRequired,
- markPiece: React.PropTypes.func.isRequired,
- removePieces: React.PropTypes.func.isRequired,
- removeMarks: React.PropTypes.func.isRequired,
-}
+  game: React.PropTypes.object.isRequired,
+  initializeBoard: React.PropTypes.func.isRequired,
+  clearBoard: React.PropTypes.func.isRequired,
+  markPiece: React.PropTypes.func.isRequired,
+  removePieces: React.PropTypes.func.isRequired,
+  removeMarks: React.PropTypes.func.isRequired,
+};
 
-export default Game
+export default Game;
