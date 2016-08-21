@@ -4,23 +4,28 @@
     "standard",
     "standard-react"
   ],
-  "plugins": [
-    "babel"
+  "plugins" : [
+    "flow-vars"
   ],
   "env"     : {
-    "browser" : true
+    "browser" : true,
+    "es6": true,
   },
   "globals" : {
+    "Action"       : false,
     "__DEV__"      : false,
     "__PROD__"     : false,
     "__DEBUG__"    : false,
-    "__COVERAGE__" : false,
-    "__BASENAME__" : false
+    "__DEBUG_NEW_WINDOW__" : false,
+    "__BASENAME__" : false,
   },
   "rules": {
-    "semi" : [2, "never"],
+    "semi" : [2, "always"],
+    "space-before-function-paren": [2, { "anonymous": "always", "named": "never" }],
+    "comma-dangle": [2, "always-multiline"],
+    "space-infix-ops": 0,
     "max-len": [2, 120, 2],
-    "generator-star-spacing": 0,
-    "babel/generator-star-spacing": 1
+    "flow-vars/define-flow-type": 1,
+    "flow-vars/use-flow-type": 1,
   }
 }

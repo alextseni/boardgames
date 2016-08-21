@@ -8,7 +8,7 @@ import Soundtrack from './assets/Wallpaper.mp3';
 
 export const Game = (props) => (
   <div>
-    <audio id='ost' autoplay controls loop src={Soundtrack} />
+    <audio id='ost' autoPlay loop src={Soundtrack} />
     <GameInfo props={props} />
     <Board props={props} />
     <Buttons props={props} />
