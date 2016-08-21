@@ -8,7 +8,7 @@ import GameRoute from './Game';
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ({
-  path: '/',
+  path: '/Randix-Game/dist/',
   component: CoreLayout,
   indexRoute: Home,
   childRoutes: [

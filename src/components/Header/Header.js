@@ -11,17 +11,17 @@ export const Header = () => (
 
     <ul className="nav navbar-nav">
     <li>
-    <IndexLink to='/' activeClassName={classes.activeRoute}>
+    <IndexLink to='/Randix-Game/dist/' activeClassName={classes.activeRoute}>
       Rules
     </IndexLink>
     </li>
     <li>
-    <Link to='/game' activeClassName={classes.activeRoute}>
+    <Link to='/Randix-Game/dist/game' activeClassName={classes.activeRoute}>
       Play!
     </Link>
     </li>
     <li>
-    <Link to='/about' activeClassName={classes.activeRoute}>
+    <Link to='/Randix-Game/dist/about' activeClassName={classes.activeRoute}>
       About
     </Link>
     </li>
