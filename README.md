@@ -9,7 +9,6 @@ You can read more about the original game (now in the public domain) [here.] (ht
 - add ability to connect-play remotely with other player
 - create an "VS computer" mode. Add AI.
 - reset tutorial-gif icon when player quits game
-- autoplay soundtrack on game start
 - fix mouse getRangeAt error
 - fix key in array warning
-- more code refactoring, simplify components
+- clean code
