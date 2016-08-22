@@ -136,7 +136,7 @@ Changelog
 * Updated route definition file to have access to the redux store
 * Updated server start message so link is clickable
 * `ExtractTextPlugin` is now correctly used whenever HMR is disabled
-* `npm run deploy` now cleans out `~/dist` directory
+* `npm run deploy` now cleans out `~/docs` directory
 * Miscellaneous folder structure improvements
 * Removed unnecessary `bin` file for Karma
 * Removed unnecessary `NotFoundView`
@@ -145,7 +145,7 @@ Changelog
 
 ### Fixes
 * Fixed some development-only code not being stripped from production bundles
-* Added rimraf for `~/dist` clearing to support Windows users
+* Added rimraf for `~/docs` clearing to support Windows users
 * Fixed miscellaneous path issues for Windows users
 * Fixed source maps for Sass files
 * Updated server start debug message to display correct host
@@ -160,7 +160,7 @@ Changelog
 
 ### Features
 * Upgraded from Babel 5 to Babel 6 :tada:
-* Added script to copy static assets from ~src/assets to ~/dist during compilation
+* Added script to copy static assets from ~src/assets to ~/docs during compilation
 * Added CSS Modules (can be toggled on/off in config file)
 * Enabled source maps for CSS
 * Added `postcss-loader`

@@ -40,7 +40,7 @@ webpackConfig.entry = {
 // ------------------------------------
 webpackConfig.output = {
   filename: `[name].[${config.compiler_hash_type}].js`,
-  path: paths.dist(),
+  path: paths.docs(),
   publicPath: config.compiler_public_path
 }
 

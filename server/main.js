@@ -40,22 +40,22 @@ if (config.env === 'development') {
 
   // Serve static assets from ~/src/static since Webpack is unaware of
   // these files. This middleware doesn't need to be enabled outside
-  // of development since this directory will be copied into ~/dist
+  // of development since this directory will be copied into ~/docs
   // when the application is compiled.
   app.use(serve(paths.client('static')))
 } else {
   debug(
     'Server is being run outside of live development mode, meaning it will ' +
-    'only serve the compiled application bundle in ~/dist. Generally you ' +
+    'only serve the compiled application bundle in ~/docs. Generally you ' +
     'do not need an application server for this and can instead use a web ' +
     'server such as nginx to serve your static files. See the "deployment" ' +
     'section in the README for more information on deployment strategies.'
   )
 
-  // Serving ~/dist by default. Ideally these files should be served by
+  // Serving ~/docs by default. Ideally these files should be served by
   // the web server and not the app server, but this helps to demo the
   // server in production.
-  app.use(serve(paths.dist()))
+  app.use(serve(paths.docs()))
 }
 
 export default app
