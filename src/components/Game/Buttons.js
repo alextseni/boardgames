@@ -6,15 +6,15 @@ const play = (sound) => {
   sound.pause(); sound.currentTime = 0; sound.play();
 };
 
-export const Buttons = ({ props }) => {
+export const Buttons = ({ game, initializeBoard, clearBoard }) => {
   const NewGame = () => {
     play(document.getElementById('buttonSound'));
-    props.initializeBoard();
+    initializeBoard();
   };
 
   const Quit = () => {
     play(document.getElementById('buttonSound'));
-    props.clearBoard();
+    clearBoard();
   };
 
   return (
@@ -23,11 +23,17 @@ export const Buttons = ({ props }) => {
       <button onClick={NewGame}>
         New Game
       </button>
-      <button className={classes[props.game.phase]} onClick={Quit}>
+      <button className={classes[game.phase]} onClick={Quit}>
          Quit
       </button>
     </div>
 );
+};
+
+Buttons.propTypes = {
+  game: React.PropTypes.object.isRequired,
+  initializeBoard: React.PropTypes.func.isRequired,
+  clearBoard: React.PropTypes.func.isRequired,
 };
 
 export default Buttons;

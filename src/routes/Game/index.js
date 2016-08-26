@@ -9,10 +9,7 @@ export default (store) => ({
     require.ensure([], (require) => {
       /*  Webpack - use require callback to define
           dependencies for bundling   */
-      const Game = require('./containers/boardContainer').game;
-      const Buttons = require('./containers/boardContainer').buttons;
-      const GameInfo = require('./containers/boardContainer').gameInfo;
-      const Board = require('./containers/boardContainer').board;
+      const Game = require('./components/Game').Game;
 
       const reducer = require('./modules/game').default;
 
@@ -21,11 +18,7 @@ export default (store) => ({
 
       /*  Return getComponent   */
       cb(null, Game);
-      cb(null, Buttons);
-      cb(null, GameInfo);
-      cb(null, Board);
-
       /* Webpack named bundle   */
-    }, 'game');
+    }, 'Game');
   },
 });
