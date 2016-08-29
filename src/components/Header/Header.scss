@@ -1,5 +1,5 @@
 div{
-  font-size: 34px;
+  font-size: 24px;
 }
 
 .activeRoute {
@@ -17,8 +17,9 @@ div{
 
 .navigation ul {
   font-family: cursive;
-  padding: 20px;
-  font-size: 40px;
+  padding: 5px;
+  font-size: 30px;
+  margin-top: 5px;
 }
 
 .navigation nav {
@@ -26,6 +27,17 @@ div{
 }
 
 .navigation ul li{
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-right: 5px;
+  padding-left: 5px;
+  border-right: 1px solid #bbb;
+}
+
+.navigation ul li:last-child {
+    border-right: none;
+}
+
+.navigation ul li.soundIcon {
+    font-size: 45px;
+    float: right;
+    margin-left: 80px;
 }
