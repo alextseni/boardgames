@@ -10,7 +10,7 @@ import ComputerGame from './Computer';
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ({
-  path: '/Randix-Game',
+  path: '/Randix-Game/',
   component: CoreLayout,
   indexRoute: Home,
   childRoutes: [
