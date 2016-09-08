@@ -28063,6 +28063,11 @@ webpackJsonp([0],[
 	    _react2.default.createElement(
 	      'p',
 	      null,
+	      'Built using the Redux-React Starter Kit by David Zukowski'
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
 	      'Sountrack: "Wallpaper" by Kevin MacLeod'
 	    )
 	  );
@@ -30557,4 +30562,4 @@ webpackJsonp([0],[
 
 /***/ }
 ]);
-//# sourceMappingURL=app.9bc76e6386cb82bcccc5.js.map
+//# sourceMappingURL=app.6848ed7a2075da78ec6e.js.map

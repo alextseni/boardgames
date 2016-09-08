@@ -1,5 +1,5 @@
-import React from 'react'
-import classes from './About.scss'
+import React from 'react';
+import classes from './About.scss';
 
 export const About = () => (
   <div className={classes.author}>
@@ -8,6 +8,6 @@ export const About = () => (
     <p>Built using the Redux-React Starter Kit by David Zukowski</p>
     <p>Sountrack: "Wallpaper" by Kevin MacLeod</p>
   </div>
-)
+);
 
-export default About
+export default About;
