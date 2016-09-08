@@ -31,17 +31,17 @@ export const Header = () => (
               </IndexLink>
             </li>
             <li>
-              <Link to='/Randix-Game/game' activeClassName={classes.activeRoute}>
+              <Link to='/Randix-Game/Online' activeClassName={classes.activeRoute}>
               Online Mode
               </Link>
             </li>
             <li>
-              <Link to='/Randix-Game/game' activeClassName={classes.activeRoute}>
+              <Link to='/Randix-Game/TwoPlayer' activeClassName={classes.activeRoute}>
               2-Player Mode
               </Link>
             </li>
             <li>
-              <Link to='/Randix-Game/game' activeClassName={classes.activeRoute}>
+              <Link to='/Randix-Game/vsComp' activeClassName={classes.activeRoute}>
               Computer Mode
               </Link>
             </li>
@@ -51,7 +51,7 @@ export const Header = () => (
               </Link>
             </li>
             <li
-              className = {classes.soundIcon}
+              className ={classes.soundIcon}
               onClick={() => ostPlayPause(document.getElementById('ost'))}>
               <span id='soundButton' className='glyphicon glyphicon-volume-up' />
             </li>

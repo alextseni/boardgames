@@ -2,7 +2,9 @@
 import CoreLayout from '../layouts/CoreLayout/CoreLayout';
 import Home from './Home';
 import About from './About';
-import GameRoute from './Game';
+import TwoPlayerGame from './TwoPlayer';
+import OnlineGame from './Online';
+import ComputerGame from './Computer';
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -12,7 +14,9 @@ export const createRoutes = (store) => ({
   component: CoreLayout,
   indexRoute: Home,
   childRoutes: [
-    GameRoute(store),
+    TwoPlayerGame(store),
+    OnlineGame(store),
+    ComputerGame(store),
     About,
   ],
 });
