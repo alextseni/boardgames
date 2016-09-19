@@ -9,10 +9,17 @@ import _debug from 'debug'
 import config from '../config'
 import webpackDevMiddleware from './middleware/webpack-dev'
 import webpackHMRMiddleware from './middleware/webpack-hmr'
-
+const route = require('koa-route');
 const debug = _debug('app:server')
 const paths = config.utils_paths
 const app = new Koa()
+
+
+app.use(route.get('/Randix-Game/S', function*(ctx) {
+  ctx.body = "haha";
+   console.log(ctx);
+}));
+
 
 // Enable koa-proxy if it has been enabled in the config.
 if (config.proxy && config.proxy.enabled) {
@@ -24,7 +31,8 @@ if (config.proxy && config.proxy.enabled) {
 // rendering, you'll want to remove this middleware.
 app.use(convert(historyApiFallback({
   verbose: false
-})))
+})));
+
 
 // ------------------------------------
 // Apply Webpack HMR Middleware
@@ -43,6 +51,7 @@ if (config.env === 'development') {
   // of development since this directory will be copied into ~/docs
   // when the application is compiled.
   app.use(serve(paths.client('static')))
+
 } else {
   debug(
     'Server is being run outside of live development mode, meaning it will ' +

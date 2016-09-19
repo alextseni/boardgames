@@ -1,0 +1,41 @@
+.login{
+  font-size: 18px;
+}
+.logButton a {
+  float: right;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+.logButton button {
+  float: right;
+  margin-bottom: 5px;
+  display: none;
+}
+
+.loginForm{
+  text-align: left;
+  padding: 20px;
+}
+
+.logButton a#in{
+  display: none;
+}
+
+.logButton button#in {
+  display: inline-block;
+}
+
+#alertmsg p{
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px;
+
+}
+
+#alertmsg:empty {
+  display: none;
+}
+
+div#in {
+  display: none;
+}

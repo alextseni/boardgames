@@ -1,4 +1,4 @@
-import { injectReducer } from '../../store/reducers';
+import { injectReducer, makeRootReducer } from '../../store/reducers';
 
 export default (store) => ({
   path: '/Randix-Game/Online',
@@ -10,12 +10,11 @@ export default (store) => ({
       /*  Webpack - use require callback to define
           dependencies for bundling   */
       const Game = require('./components/Game').Game;
-
-      const reducer = require('./modules/game').default;
-
-      /*  Add the reducer to the store on key 'counter'  */
-      injectReducer(store, { key: 'game', reducer });
-
+      const reducer1 = require('./modules/game').default;
+      const reducer2 = require('./modules/auth').default;
+      /*  Add the reducer to the store on key 'game'  */
+      injectReducer(store, { key: 'game', reducer: reducer1});
+      injectReducer(store, { key:'auth', reducer: reducer2 });
       /*  Return getComponent   */
       cb(null, Game);
       /* Webpack named bundle   */

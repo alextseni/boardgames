@@ -4,6 +4,7 @@ import GameVideo from './assets/playthrough.gif';
 import Click from './assets/click.mp3';
 import Victory from './assets/win.mp3';
 
+
 function disableScrolling() {
   var x = window.scrollX;
   var y = window.scrollY;
@@ -74,7 +75,6 @@ export const Board = ({ game, removeMarks, removePieces, markPiece }) => {
                   onMouseOver={() =>onDrag(piece, row, cell)}
                   onTouchMove={() =>onDrag(piece, row, cell)}>
                 </td>
-
           ))}
             </tr>
       ))}
