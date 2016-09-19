@@ -1,4 +1,4 @@
-button {
+.gameButtons button {
   background: #6a8fa8;
   background-image: -webkit-linear-gradient(top, #6a8fa8, #4d9ed1);
   background-image: -moz-linear-gradient(top, #6a8fa8, #4d9ed1);
@@ -19,18 +19,18 @@ button {
   height: 50%;
   width: 25%;
 }
-button:hover {
+.gameButtons button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     cursor: pointer;
 }
-button:active {
+.gameButtons button:active {
   background: #487d9c;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
   cursor: pointer;
 }
 
-button:focus {outline:0;}
+.gameButtons button:focus {outline:0;}
 
 div.start{
   display: inline-block;
@@ -39,7 +39,7 @@ div.start{
 }
 
 
-button.start {
+.gameButtons button.start {
   display: inline-block;
   font-family: cursive;
 }

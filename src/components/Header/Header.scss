@@ -1,43 +1,7 @@
-div{
-  font-size: 24px;
-}
-
-.activeRoute {
-  background-color:#D1D0CE;
-  color: white;
-}
-
 .title{
   text-decoration: line-through;
   font-family: serif;
   font-style: oblique;
   font-size: 80px;
-  display: inline-block;
-}
-
-.navigation ul {
-  font-family: cursive;
-  padding: 5px;
-  font-size: 30px;
-  margin-top: 5px;
-}
-
-.navigation nav {
-  background-color: #E5E4E2;
-}
-
-.navigation ul li{
-  padding-right: 5px;
-  padding-left: 5px;
-  border-right: 1px solid #bbb;
-}
-
-.navigation ul li:last-child {
-    border-right: none;
-}
-
-.navigation ul li.soundIcon {
-    font-size: 45px;
-    float: right;
-    margin-left: 80px;
+  display: block;
 }
