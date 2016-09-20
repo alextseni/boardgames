@@ -9,12 +9,14 @@ export default (store) => ({
     require.ensure([], (require) => {
       /*  Webpack - use require callback to define
           dependencies for bundling   */
-      const Game = require('./components/Game').Game;
-      const reducer1 = require('./modules/game').default;
-      const reducer2 = require('./modules/auth').default;
+      const Game = require('./containers/gameContainer').Game;
+      const gameReducer = require('routes/Game/modules/game').default;
+      const authReducer = require('./modules/auth').default;
+      const viewReducer = require('modules/view').default;
       /*  Add the reducer to the store on key 'game'  */
-      injectReducer(store, { key: 'game', reducer: reducer1});
-      injectReducer(store, { key:'auth', reducer: reducer2 });
+      injectReducer(store, { key: 'game', reducer: gameReducer});
+      injectReducer(store, { key:'auth', reducer: authReducer });
+      injectReducer(store, { key:'view', reducer: viewReducer });
       /*  Return getComponent   */
       cb(null, Game);
       /* Webpack named bundle   */

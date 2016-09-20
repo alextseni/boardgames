@@ -6,18 +6,19 @@ import TwoPlayerGame from './TwoPlayer';
 import OnlineGame from './Online';
 import ComputerGame from './Computer';
 
+
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ({
   path: '/Randix-Game/',
   component: CoreLayout,
-  indexRoute: Home,
+  indexRoute: Home(store),
   childRoutes: [
     TwoPlayerGame(store),
     OnlineGame(store),
     ComputerGame(store),
-    About,
+    About(store),
   ],
 });
 

@@ -1,14 +1,28 @@
 import React from 'react';
-import { Board } from '../containers/boardContainer';
-import { GameInfo } from '../containers/infoContainer';
-import { Buttons } from '../containers/buttonsContainer';
-import { Members }  from '../containers/membersContainer.js';
-import { LogIn } from '../containers/authContainer';
+import { Board } from 'routes/Game/containers/boardContainer';
+import { GameInfo } from 'routes/Game/containers/infoContainer';
+import { Buttons } from 'routes/Game/containers/buttonsContainer';
+import { Members, Members_old }  from '../containers/membersContainer';
+import { LogIn,LogIn_old } from '../containers/authContainer';
+import Toggle from 'material-ui/Toggle'
 
-export const Game = () => (
+export const Game = ({view,changeTheme}) => (
   <div>
-    <LogIn/>
-    <Members/>
+  <Toggle
+     label="Switch View"
+     onToggle={changeTheme}
+     toggled={view.toggled}
+  />
+   {view.theme =='material' ?
+    [
+      <LogIn/>,
+      <Members/>
+    ] :
+    [
+      <LogIn_old/>,
+      <Members_old/>
+  ]}
+
   </div>
 );
 

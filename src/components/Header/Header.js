@@ -10,74 +10,74 @@ import Computer from 'material-ui/svg-icons/Hardware/computer'
 import Online from 'material-ui/svg-icons/Social/public'
 import Rules from 'material-ui/svg-icons/AV/library-books'
 import About from 'material-ui/svg-icons/Editor/mode-edit'
-import {AppBar, Tabs, Tab, FontIcon, MenuItem} from 'material-ui'
+import {AppBar, Tabs, Tab, FontIcon, MenuItem, Toggle} from 'material-ui'
 
 let isMuted = false;
-let soundIcon = VolumeOn;
+let theme = '/Randix-Game/b/';
 
 const ostPlayPause = (sound) => {
   if (isMuted) {
     sound.play();
-    soundIcon = VolumeOn
   } else {
     sound.pause();
-    soundIcon = VolumeOff
   }
   isMuted = !isMuted;
 };
-const tabsStyle = {
-    backgroundColor: '#ECEFF1',
-    border: "none",
-};
 
-const buttonStyle = {
-    backgroundColor: 'transparent',
-    border: "none",
-
+const styles = {
+   tab: {
+     backgroundColor: '#E0E0E0',
+     border: "none",
+   }
 };
 
 export const Header = () => (
   <div>
     <h1 className={classes.title}>Randix!</h1>
     <audio id='ost' autoPlay loop src={Soundtrack} />
-    <Tabs style={buttonStyle} value={window.location.pathname}>
+    <Tabs tabItemContainerStyle={styles.tab} value={window.location.pathname}>
       <Tab
       value='/Randix-Game/'
-
+      style={styles.tab}
       icon={<Rules/>}
       label="Rules"
-      containerElement={<IndexLink to="/Randix-Game/" />}
+      containerElement={<IndexLink style={styles.tab} to="/Randix-Game/" />}
       />
       <Tab
       value='/Randix-Game/Online'
-      style={buttonStyle}
+      style={styles.tab}
       icon={<Online/>}
       label="Online Mode"
-      containerElement={<Link to="/Randix-Game/Online" />}
+      containerElement={<Link style={styles.tab} to="/Randix-Game/Online" />}
       />
       <Tab
       value='/Randix-Game/TwoPlayer'
-      style={buttonStyle}
+      style={styles.tab}
       icon={<TwoPlayer/>}
       label="2-Player Mode"
-      containerElement={<Link to="/Randix-Game/TwoPlayer" />}
-      />
+      linkButton
+      containerElement={<Link to="/Randix-Game/TwoPlayer" />}>
+      </Tab>
       <Tab
       value='/Randix-Game/vsComp'
-      style={buttonStyle}
+      style={styles.tab}
       icon={<Computer/>}
       label="Computer Mode"
-      containerElement={<Link to="/Randix-Game/vsComp" />}
+      linkButton
+      containerElement={<Link style={styles.tab} to="/Randix-Game/vsComp" />}
       />
       <Tab
+      containerElement={<Link  style={styles.tab} to="/Randix-Game/about" />}
       value='/Randix-Game/about'
-      style={buttonStyle}
+      style={styles.tab}
       icon={<About/>}
       label="About"
-      containerElement={<Link to="/Randix-Game/about" />}
       />
-      <MenuItem
-      icon={<VolumeOn />}
+      <Tab
+      style={styles.tab}
+      value='sound'
+      icon={<VolumeOn/>}
+      label="Sound On/Off"
       />
    </Tabs>
   </div>

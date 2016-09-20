@@ -1,10 +1,16 @@
 import React from 'react';
-import { Board } from '../containers/boardContainer';
-import { GameInfo } from '../containers/infoContainer';
-import { Buttons } from '../containers/buttonsContainer';
+import { Board } from 'routes/Game/containers/boardContainer';
+import { GameInfo } from 'routes/Game/containers/infoContainer';
+import { Buttons } from 'routes/Game/containers/buttonsContainer';
+import {Toggle} from 'material-ui';
 
-export const Game = () => (
+export const Game = ({view,changeTheme}) => (
   <div>
+  <Toggle
+     label="Switch View"
+     onToggle={changeTheme}
+     toggled={view.toggled}
+  />
     <p>Under development</p>
   </div>
 );

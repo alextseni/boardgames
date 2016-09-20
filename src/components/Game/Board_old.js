@@ -1,10 +1,9 @@
 import React from 'react';
 import classes from './Board.scss';
-import GameVideo from './assets/mat_playthrough.gif';
+import GameVideo from './assets/playthrough.gif';
 import Click from './assets/click.mp3';
 import Victory from './assets/win.mp3';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import Paper from 'material-ui/Paper'
+
 
 function disableScrolling() {
   var x = window.scrollX;
@@ -24,7 +23,7 @@ function enableScrolling() {
 
 let isMouseDown = false;
 
-export const Board = ({ game, removeMarks, removePieces, markPiece }) => {
+export const Board_old = ({ game, removeMarks, removePieces, markPiece }) => {
   const play = (sound) => {
     sound.pause(); sound.currentTime = 0; sound.play();
   };
@@ -59,73 +58,37 @@ export const Board = ({ game, removeMarks, removePieces, markPiece }) => {
       markPiece(k * 6 + key);
     }
   };
-  const styles = {
-    board : {
-      margin: 'inherit',
-      height:100,
-
-    },
-    tile: {
-      border: 1,
-      borderColor: 'white',
-      borderStyle: 'solid',
-      backgroundColor: '#424242',
-
-    },
-    marble: {
-      backgroundColor: '#EEEEEE',
-      height: 50,
-      width: 50,
-      textAlign: 'center',
-      cursor: 'pointer',
-    },
-    obstacle: {
-      backgroundColor: '#A1887F',
-      height: 50,
-      width: 50,
-      textAlign: 'center',
-    },
-    selected: {
-      backgroundColor: '#9CCC65',
-      height: 50,
-      width: 50,
-      verticalAlign: 'top',
-    }
-
-  }
 
   return (
     <div className={classes.stage}>
       <audio id="clickSound" src={Click} />
       <audio id="winSound" src={Victory} />
       <img className={classes[game.phase]} alt='Game Tutorial' src={GameVideo} />
-      <Paper zDepth={5}>
-      <Table>
-          <TableBody displayRowCheckbox={false} >
+      <table className={classes.board} id={classes[game.phase]} onMouseUp={() => clearSelection()} onTouchEnd = {() => clearSelection()} >
+        <tbody>
           {game.pieces.slice(0, 6).map((p, row) => (
-            <TableRow selectable={false} style={styles.board} onMouseUp={() => clearSelection()}>
+            <tr>
               {game.pieces.slice(row * 6, row * 6 + 6).map((piece, cell) => (
-                <TableRowColumn style={styles.tile} id={classes[game.text]}
+                <td className={classes[piece.type]} id={classes[game.text]}
                   onMouseDown={(ev) => onLeftClick(ev, piece, row, cell)}
+                  onTouchStart={(ev) => onLeftClick(ev, piece, row, cell)}
                   onMouseOver={() =>onDrag(piece, row, cell)}
-            >
-                <Paper zDepth={5} circle={true} style={styles[piece.type]}/>
-                </TableRowColumn>
+                  onTouchMove={() =>onDrag(piece, row, cell)}>
+                </td>
           ))}
-            </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-        </Paper>
+            </tr>
+      ))}
+        </tbody>
+      </table>
     </div>
       );
 };
 
-Board.propTypes = {
+Board_old.propTypes = {
   game: React.PropTypes.object.isRequired,
   markPiece: React.PropTypes.func.isRequired,
   removePieces: React.PropTypes.func.isRequired,
   removeMarks: React.PropTypes.func.isRequired,
 };
 
-export default Board;
+export default Board_old;
