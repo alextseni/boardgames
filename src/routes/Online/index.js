@@ -14,7 +14,7 @@ export default (store) => ({
       const authReducer = require('./modules/auth').default;
       const viewReducer = require('modules/view').default;
       /*  Add the reducer to the store on key 'game'  */
-      injectReducer(store, { key: 'game', reducer: gameReducer});
+      injectReducer(store, { key:'game', reducer: gameReducer});
       injectReducer(store, { key:'auth', reducer: authReducer });
       injectReducer(store, { key:'view', reducer: viewReducer });
       /*  Return getComponent   */

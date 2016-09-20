@@ -13,6 +13,7 @@ export const Game = ({view,changeTheme}) => (
      onToggle={changeTheme}
      toggled={view.toggled}
   />
+  <p>Online mode is under development. Material theme is in progress. No database exists and there is no way to play with others yet. You can sign up temporarily until you refresh the page.</p>
    {view.theme =='material' ?
     [
       <LogIn/>,
