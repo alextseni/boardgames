@@ -13,9 +13,9 @@ import { Board_old as DBoard_old } from 'components/Game';
     Keys will be passed as props to presentational components. */
 
 const mapActionCreators = {
-  markPiece: (cell) => markPiece(cell),
-  removePieces: () => removePieces(),
-  removeMarks: () => removeMarks(),
+  markPiece,
+  removePieces,
+  removeMarks,
 };
 
 const mapStateToProps = (state) => ({

@@ -14,8 +14,8 @@ import { Buttons_old as DButtons_old } from 'components/Game';
     Keys will be passed as props to presentational components. */
 
 const mapActionCreators = {
-  initializeBoard: () => initializeBoard(),
-  clearBoard: () => clearBoard(),
+  initializeBoard,
+  clearBoard,
 };
 
 const mapStateToProps = (state) => ({

@@ -4,23 +4,7 @@ import StoneImage from './assets/stone.png'
 import GameImage from './assets/game.jpg'
 import classes from './Rules.scss'
 import Paper from 'material-ui/Paper'
-
-const styles = {
-  marble: {
-    backgroundColor: '#EEEEEE',
-    height: 50,
-    width: 50,
-    textAlign: 'center',
-    display: 'inline-block',
-  },
-  obstacle: {
-    backgroundColor: '#A1887F',
-    height: 50,
-    width: 50,
-    textAlign: 'center',
-    display: 'inline-block',
-  },
-}
+import {styles} from './Styles';
 
 export const HomeView = () => (
   <div>
@@ -33,7 +17,7 @@ export const HomeView = () => (
     The goal is to force the other player to remove the last piece. On your turn you may remove
     as many sequentially <span><Paper zDepth={5} circle={true} style={styles.marble}/></span> as you like either horizontally or vertically.
     You must remove at least one piece on your turn and as many as you want from that row or column (but not both)
-    unless you encounter a <span><Paper zDepth={5} circle={true} style={styles.obstacle}/></span> that blocks your path.</p>
+    unless you encounter a <span><Paper zDepth={5} circle={false} style={styles.obstacle}/></span> that blocks your path.</p>
     <p className= {classes.rules}>Click and drag your mouse to select the pieces you want to remove.</p>
     <p className= {classes.rules}>Randix is a variation of the popular computational game TacTix played in a NxN board. In this variation however,
     pieces are placed randomly on the board. There are also obstacles blocking the path preventing players from cutting a whole row or column.

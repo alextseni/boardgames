@@ -11,7 +11,7 @@ import { About as DAbout } from '../components/About';
     Keys will be passed as props to presentational components. */
 
 const mapActionCreators = {
-  changeTheme: () => changeTheme(),
+  changeTheme,
 };
 
 const mapStateToProps = (state) => ({

@@ -8,6 +8,7 @@ span#Player1{
     text-align: center;
     line-height: 45px;
     font-size: 30px;
+    margin-bottom: 20px;
 }
 
 span#Player2{
@@ -20,6 +21,7 @@ span#Player2{
     text-align: center;
     line-height: 45px;
     font-size: 30px;
+    margin-bottom: 20px;
 }
 
 #end {
@@ -28,27 +30,26 @@ span#Player2{
  font-family: cursive;
  margin: 0px;
  vertical-align: middle;
- height: 60px;
  text-align: center;
  line-height: 45px;
 }
 
-.info{
-  margin: 40px;
-}
 
 div.start{
   display: inline-block;
-  width: 40%;
+
  vertical-align: middle;
 }
 
 #prog {
-  height: 60px;
-  border: 5px;
   border-color: black;
   background-color: #E5E4E2;
-  margin: 0px 0px 0px 80px;
+  margin: 0px 0px 20px 80px;
+  height: 60px;
+  border: 5px;
+  width: 400px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 #prog div {

@@ -1,12 +1,13 @@
 import React from 'react';
-import classes from './Buttons.scss';
-import Button from './assets/button.mp3';
+import Button from '../assets/button.mp3';
+import RaisedButton from 'material-ui/RaisedButton'
+import {styles} from './Styles.js'
 
 const play = (sound) => {
   sound.pause(); sound.currentTime = 0; sound.play();
 };
 
-export const Buttons_old = ({ game, initializeBoard, clearBoard }) => {
+export const Buttons = ({ game, initializeBoard, clearBoard }) => {
   const NewGame = () => {
     play(document.getElementById('buttonSound'));
     initializeBoard();
@@ -18,22 +19,26 @@ export const Buttons_old = ({ game, initializeBoard, clearBoard }) => {
   };
 
   return (
-    <div className={classes.boots}>
+    <div >
       <audio id="buttonSound" src={Button} />
-      <button onClick={NewGame}>
-        New Game
-      </button>
-      <button className={classes[game.phase]} onClick={Quit}>
-         Quit
-      </button>
+      <RaisedButton
+      label="New Game"
+      style={styles.start}
+      onClick={NewGame}
+      />
+      <RaisedButton
+      label="Quit"
+      style={styles[game.phase]}
+      onClick={Quit}
+      />
     </div>
 );
 };
 
-Buttons_old.propTypes = {
+Buttons.propTypes = {
   game: React.PropTypes.object.isRequired,
   initializeBoard: React.PropTypes.func.isRequired,
   clearBoard: React.PropTypes.func.isRequired,
 };
 
-export default Buttons_old;
+export default Buttons;

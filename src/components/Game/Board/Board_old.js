@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './Board.scss';
-import GameVideo from './assets/playthrough.gif';
-import Click from './assets/click.mp3';
-import Victory from './assets/win.mp3';
+import GameVideo from '../assets/playthrough.gif';
+import Click from '../assets/click.mp3';
+import Victory from '../assets/win.mp3';
 
 
 function disableScrolling() {

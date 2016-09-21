@@ -1,10 +1,11 @@
 import React from 'react';
 import classes from './Board.scss';
-import GameVideo from './assets/mat_playthrough.gif';
-import Click from './assets/click.mp3';
-import Victory from './assets/win.mp3';
+import GameVideo from '../assets/mat_playthrough.gif';
+import Click from '../assets/click.mp3';
+import Victory from '../assets/win.mp3';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import Paper from 'material-ui/Paper'
+import {styles} from './Styles';
 
 function disableScrolling() {
   var x = window.scrollX;
@@ -59,40 +60,6 @@ export const Board = ({ game, removeMarks, removePieces, markPiece }) => {
       markPiece(k * 6 + key);
     }
   };
-  const styles = {
-    board : {
-      margin: 'inherit',
-      height:100,
-
-    },
-    tile: {
-      border: 1,
-      borderColor: 'white',
-      borderStyle: 'solid',
-      backgroundColor: '#424242',
-
-    },
-    marble: {
-      backgroundColor: '#EEEEEE',
-      height: 50,
-      width: 50,
-      textAlign: 'center',
-      cursor: 'pointer',
-    },
-    obstacle: {
-      backgroundColor: '#A1887F',
-      height: 50,
-      width: 50,
-      textAlign: 'center',
-    },
-    selected: {
-      backgroundColor: '#9CCC65',
-      height: 50,
-      width: 50,
-      verticalAlign: 'top',
-    }
-
-  }
 
   return (
     <div className={classes.stage}>
@@ -100,23 +67,28 @@ export const Board = ({ game, removeMarks, removePieces, markPiece }) => {
       <audio id="winSound" src={Victory} />
       <img className={classes[game.phase]} alt='Game Tutorial' src={GameVideo} />
       <Paper zDepth={5}>
-      <Table>
+        <Table>
           <TableBody displayRowCheckbox={false} >
-          {game.pieces.slice(0, 6).map((p, row) => (
-            <TableRow selectable={false} style={styles.board} onMouseUp={() => clearSelection()}>
-              {game.pieces.slice(row * 6, row * 6 + 6).map((piece, cell) => (
-                <TableRowColumn style={styles.tile} id={classes[game.text]}
-                  onMouseDown={(ev) => onLeftClick(ev, piece, row, cell)}
-                  onMouseOver={() =>onDrag(piece, row, cell)}
-            >
-                <Paper zDepth={5} circle={true} style={styles[piece.type]}/>
-                </TableRowColumn>
-          ))}
-            </TableRow>
-              ))}
+            {game.pieces.slice(0, 6).map((p, row) => (
+              <TableRow
+              selectable={false}
+              style={styles.board}
+              onMouseUp={() => clearSelection()}>
+                  {game.pieces.slice(row * 6, row * 6 + 6).map((piece, cell) => (
+                    <TableRowColumn style={styles.tile} id={classes[game.text]}
+                    onMouseDown={(ev) => onLeftClick(ev, piece, row, cell)}
+                    onMouseOver={() =>onDrag(piece, row, cell)}>
+                      <Paper
+                      zDepth={5} circle={piece.type=='obstacle'? false: true}
+                      style={piece.type=='selected' ? styles[piece.type][game.text.substring(0, 7)] : styles[piece.type]}
+                      />
+                    </TableRowColumn>
+                  ))}
+              </TableRow>
+                ))}
           </TableBody>
         </Table>
-        </Paper>
+      </Paper>
     </div>
       );
 };

@@ -11,7 +11,7 @@ import { HomeView as DHomeView } from '../components/HomeView';
     Keys will be passed as props to presentational components. */
 
 const mapActionCreators = {
-  changeTheme: () => changeTheme(),
+  changeTheme,
 };
 
 const mapStateToProps = (state) => ({

@@ -4,14 +4,14 @@ import { newGame, leaveGame } from '../modules/auth';
     nor does it import React. This component is **only** responsible for
     wiring in the actions and state necessary to render a presentational
     component */
-import { Members as UMembers } from 'components/Online/Members.js';
-import { Members_old as UMembers_old } from 'components/Online/Members_old.js';
+import { Members as UMembers } from 'components/Online';
+import { Members_old as UMembers_old } from 'components/Online';
 
 /*  Object of action creators (can also be function that returns object).
     Keys will be passed as props to presentational components. */
 const mapActionCreators = {
-  newGame: (pwd) => newGame(pwd),
-  leaveGame: () => leaveGame(),
+  newGame,
+  leaveGame,
     };
 
 const mapStateToProps = (state) => ({

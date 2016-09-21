@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapActionCreators = {
-  changeTheme: () => changeTheme(),
+  changeTheme,
 };
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors.
