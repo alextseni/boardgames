@@ -2,6 +2,7 @@ import React from 'react';
 import { IndexLink, Link } from 'react-router';
 import classes from './Navigation.scss';
 import Soundtrack from 'components/Game/assets/Wallpaper.mp3';
+import {styles} from './Styles';
 
 import VolumeOn from 'material-ui/svg-icons/AV/volume-up'
 import VolumeOff from 'material-ui/svg-icons/AV/volume-off'
@@ -12,38 +13,25 @@ import Rules from 'material-ui/svg-icons/AV/library-books'
 import About from 'material-ui/svg-icons/Editor/mode-edit'
 import {AppBar, Tabs, Tab, FontIcon, MenuItem, Toggle} from 'material-ui'
 
-let isMuted = false;
-let ic = <VolumeOn/>
-let text = 'Sound On/Off'
 
-const styles = {
-   tab: {
-     backgroundColor: '#E0E0E0',
-     border: 0,
-     boxSizing: 'none',
-   }
+let isMuted = false;
+
+const ostPlayPause = (sound) => {
+  if (isMuted) {
+    sound.play();
+  } else {
+    sound.pause();
+  }
+  isMuted = !isMuted;
 };
 
 
 export const Navigation = () => {
 
-  const ostPlayPause = (sound) => {
-    if (isMuted) {
-      sound.play();
-      ic=<VolumeOn/>;
-      text = 'Sound On';
-    } else {
-      sound.pause();
-      ic=<VolumeOff/>;
-      text = 'Sound Off';
-    }
-    isMuted = !isMuted;
-  };
-
   return (
   <div>
     <h1 className={classes.title}>Randix!</h1>
-    <audio id='ost' autoPlay loop src={Soundtrack} />
+    <audio id='ost' loop src={Soundtrack} />
     <Tabs tabItemContainerStyle={styles.tab} value={window.location.pathname}>
       <Tab
       value='/Randix-Game/'
@@ -83,8 +71,8 @@ export const Navigation = () => {
       <Tab
       style={styles.tab}
       value='sound'
-      icon={ic}
-      label={text}
+      icon={<VolumeOn/>}
+      label="Sound On/Off"
       onClick = {() => ostPlayPause(document.getElementById('ost'))}
       />}
    </Tabs>

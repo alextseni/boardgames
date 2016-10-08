@@ -26,7 +26,7 @@ export const Settings = ({ game, changeDifficulty, changeBoard, initializeBoard 
       >
         <MenuItem style = {styles.menuItem} onClick={()=> {changeDifficulty('easy'); initializeBoard(game.options.size);}} value={'easy'} primaryText="Easy" />
         <MenuItem style = {styles.menuItem} onClick={()=> {changeDifficulty('normal'); initializeBoard(game.options.size);}} value={'normal'} primaryText="Normal" />
-
+        <MenuItem style = {styles.menuItem} onClick={()=> {changeDifficulty('hard'); initializeBoard(game.options.size);}} value={'hard'} primaryText="Hard" />
       </DropDownMenu>] : <span/> }
 
     </div>
