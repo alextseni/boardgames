@@ -10,7 +10,7 @@ const play = (sound) => {
 export const Buttons = ({ game, initializeBoard, clearBoard }) => {
   const NewGame = () => {
     play(document.getElementById('buttonSound'));
-    initializeBoard();
+    initializeBoard(game.options.size);
   };
 
   const Quit = () => {

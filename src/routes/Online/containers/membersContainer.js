@@ -5,7 +5,7 @@ import { newGame, leaveGame } from '../modules/auth';
     wiring in the actions and state necessary to render a presentational
     component */
 import { Members as UMembers } from 'components/Online';
-import { Members_old as UMembers_old } from 'components/Online';
+import { MembersOld as UMembersOld } from 'components/Online';
 
 /*  Object of action creators (can also be function that returns object).
     Keys will be passed as props to presentational components. */
@@ -24,4 +24,4 @@ const mapStateToProps = (state) => ({
     Selectors are composable. They can be used as input to other selectors.
     https://github.com/reactjs/reselect    */
 export const Members = connect(mapStateToProps, mapActionCreators)(UMembers);
-export const Members_old = connect(mapStateToProps, mapActionCreators)(UMembers_old);
+export const MembersOld = connect(mapStateToProps, mapActionCreators)(UMembersOld);

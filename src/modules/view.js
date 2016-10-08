@@ -16,9 +16,17 @@ export function changeTheme() {
 
 const ACTION_HANDLERS = {
 [ALTER_STATE]: (state, action) => {
-  if (state.theme == 'material')
-    return ({theme:'bootstrap', toggled: false})
-  else return ({ theme: 'material', toggled: true })
+  if (state.theme == 'material') {
+    return ({
+      theme:'bootstrap',
+      toggled: false
+    })
+  } else {
+    return ({
+      theme: 'material',
+      toggled: true
+    })
+  }
 },
 };
 

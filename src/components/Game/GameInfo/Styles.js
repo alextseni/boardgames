@@ -12,7 +12,7 @@ export const styles = {
   },
   Player2: {
     height: 40,
-    width: 80,
+    width: 100,
     marginRight: 20,
     display:'inline-block',
     fontFamily: 'cursive',
@@ -24,7 +24,7 @@ export const styles = {
   },
   Player1: {
     height: 40,
-    width: 80,
+    width: 100,
     marginRight: 20,
     display:'inline-block',
     fontFamily: 'cursive',

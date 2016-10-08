@@ -1,11 +1,10 @@
-import { ROWS, COLUMNS } from '../modules/game.js';
 
 var _ = require('lodash');
 
-export const createBoard = (randomValues) => {
+export const createBoard = (randomValues, size) => {
   let pieces = [];
-  for (let i = 0, z = 0; i < ROWS; i++) {
-    for (let j = 0; j < COLUMNS; j++) {
+  for (let i = 0, z = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
       randomValues[z] <= 0.75 ? pieces[z] = { x: i, y: j, type: 'marble' }
       : randomValues[z] <= 0.9 ? pieces[z] = { x: i, y: j, type: 'obstacle' }
       : pieces[z] = { x: i, y: j, type: 'empty' };
@@ -18,16 +17,20 @@ export const createBoard = (randomValues) => {
 };
 
 export const updateSelectionState = (pieces, payload) => {
-  let p = pieces.slice(0, ROWS * COLUMNS);
+  let p = pieces.slice();
 
   if (payload.tag === 'mark') {
-    p[payload.cell].type = 'selected';
+      p = p.map((p,key) => (key == payload.cell) ? { ...p, type: 'selected' } : p);
   }
 
   if (payload.tag === 'reset') {
-    p = pieces.map((p) => p.type === 'selected' ? { ...p, type: 'marble' } : p);
+    p = p.map((p) => p.type === 'selected' ? { ...p, type: 'marble' } : p);
   }
-
+  if (payload.tag === 'comp') {
+    for (let i=0; i<payload.aiMove.length; i++) {
+      p =  p.map((p) => (p.x == payload.aiMove[i][0] && p.y == payload.aiMove[i][1] && p.type == 'marble') ? {...p,type: 'selected'} : p);
+  }
+  }
   return p;
 };
 
@@ -36,7 +39,7 @@ const isHorizontal = (pieces, groupH, groupV) => {
   .filter(
     (p) => (p.x == groupH[0] && groupV[0] <= p.y && p.y < groupV[groupV.length - 1])
   ).find(
-    p => (p.type === 'obstacle' || p.type === 'marble')
+    (p) => (p.type === 'obstacle' || p.type === 'marble')
   ));
 };
 
@@ -45,7 +48,7 @@ const isVertical = (pieces, groupH, groupV) => {
   .filter(
     (p) => (p.y == groupV[0] && groupH[0] <= p.x && p.x < groupH[groupH.length - 1])
   ).find(
-    p => (p.type === 'obstacle' || p.type === 'marble')
+    (p) => (p.type === 'obstacle' || p.type === 'marble')
   ));
 };
 

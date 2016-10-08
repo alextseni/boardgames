@@ -5,8 +5,7 @@ import { changeTheme } from 'modules/view';
     nor does it import React. This component is **only** responsible for
     wiring in the actions and state necessary to render a presentational
     component */
-import { About as DAbout } from '../components/About';
-
+import { View as DView } from 'components/Header';
 /*  Object of action creators (can also be function that returns object).
     Keys will be passed as props to presentational components. */
 
@@ -23,4 +22,4 @@ const mapStateToProps = (state) => ({
     Selectors are efficient. A selector is not recomputed unless one of its arguments change.
     Selectors are composable. They can be used as input to other selectors.
     https://github.com/reactjs/reselect    */
-export const About = connect(mapStateToProps, mapActionCreators)(DAbout);
+export const View = connect(mapStateToProps, mapActionCreators)(DView);

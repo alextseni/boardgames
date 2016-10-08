@@ -8,7 +8,7 @@ import { initializeBoard,
     wiring in the actions and state necessary to render a presentational
     component */
 import { Buttons as DButtons } from 'components/Game';
-import { Buttons_old as DButtons_old } from 'components/Game';
+import { ButtonsOld as DButtonsOld } from 'components/Game';
 
 /*  Object of action creators (can also be function that returns object).
     Keys will be passed as props to presentational components. */
@@ -29,4 +29,4 @@ const mapStateToProps = (state) => ({
     https://github.com/reactjs/reselect    */
 
 export const Buttons = connect(mapStateToProps, mapActionCreators)(DButtons);
-export const Buttons_old = connect(mapStateToProps, mapActionCreators)(DButtons_old);
+export const ButtonsOld = connect(mapStateToProps, mapActionCreators)(DButtonsOld);

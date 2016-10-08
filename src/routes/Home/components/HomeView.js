@@ -1,20 +1,19 @@
 import React from 'react'
-import { Rules, Rules_old } from 'components/Home';
+import { Rules, RulesOld } from 'components/Home';
 import {Toggle} from 'material-ui'
 
+const layout = {
+  material: () => ([
+    <Rules />,
+  ]),
+  bootstrap:  () => ([
+    <RulesOld />,
+  ]),
+};
 
-
-export const HomeView = ({changeTheme,view}) => (
+export const HomeView = ({view}) => (
   <div>
-  <Toggle
-     label="Switch View"
-     onToggle={changeTheme}
-     toggled={view.toggled}
-  />
-   {view.theme =='material' ?
-    <Rules/> :
-    <Rules_old />
-   }
+    {layout[view.theme]()}
   </div>
 )
 

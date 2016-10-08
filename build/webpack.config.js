@@ -252,8 +252,8 @@ webpackConfig.module.loaders.push(
   { test: /\.eot(\?.*)?$/,   loader: 'file?prefix=fonts/&name=[path][name].[ext]' },
   { test: /\.svg(\?.*)?$/,   loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
   { test: /\.(png|jpg)$/,    loader: 'url?limit=8192' },
-  { test: /\.(gif|svg)$/, loader: 'file?hash=sha512&digest=hex&name=[hash].[ext]'},
-  { test: /\.mp3$/, loader: 'file'},
+  { test: /\.(gif|svg)$/,    loader: 'file?hash=sha512&digest=hex&name=[hash].[ext]'},
+  { test: /\.mp3$/,          loader: 'file'},
 )
 /* eslint-enable */
 

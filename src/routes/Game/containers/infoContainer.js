@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { GameInfo as DGameInfo } from 'components/Game';
-import { GameInfo_old as DGameInfo_old } from 'components/Game';
+import { GameInfoOld as DGameInfoOld } from 'components/Game';
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
     wiring in the actions and state necessary to render a presentational
@@ -19,4 +19,4 @@ const mapStateToProps = (state) => ({
     https://github.com/reactjs/reselect    */
 
 export const GameInfo = connect(mapStateToProps, null)(DGameInfo);
-export const GameInfo_old = connect(mapStateToProps, null)(DGameInfo_old);
+export const GameInfoOld = connect(mapStateToProps, null)(DGameInfoOld);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { IndexLink, Link } from 'react-router';
-import classes from './Header.scss';
+import classes from './Navigation.scss';
 import Soundtrack from 'components/Game/assets/Wallpaper.mp3';
 
 import VolumeOn from 'material-ui/svg-icons/AV/volume-up'
@@ -13,7 +13,6 @@ import About from 'material-ui/svg-icons/Editor/mode-edit'
 import {AppBar, Tabs, Tab, FontIcon, MenuItem, Toggle} from 'material-ui'
 
 let isMuted = false;
-let theme = '/Randix-Game/b/';
 
 const ostPlayPause = (sound) => {
   if (isMuted) {
@@ -27,14 +26,18 @@ const ostPlayPause = (sound) => {
 const styles = {
    tab: {
      backgroundColor: '#E0E0E0',
-     border: "none",
+     border: 0,
+     boxSizing: 'none',
    }
 };
 
-export const Header = () => (
+
+export const Navigation = () => {
+
+  return (
   <div>
     <h1 className={classes.title}>Randix!</h1>
-    <audio id='ost' autoPlay loop src={Soundtrack} />
+    <audio id='ost' loop src={Soundtrack} />
     <Tabs tabItemContainerStyle={styles.tab} value={window.location.pathname}>
       <Tab
       value='/Randix-Game/'
@@ -54,16 +57,14 @@ export const Header = () => (
       value='/Randix-Game/TwoPlayer'
       style={styles.tab}
       icon={<TwoPlayer/>}
-      label="2-Player Mode"
-      linkButton
-      containerElement={<Link to="/Randix-Game/TwoPlayer" />}>
+      label="VS Player"
+      containerElement={<Link style={styles.tab} to="/Randix-Game/TwoPlayer" />}>
       </Tab>
       <Tab
       value='/Randix-Game/vsComp'
       style={styles.tab}
       icon={<Computer/>}
-      label="Computer Mode"
-      linkButton
+      label="VS Computer"
       containerElement={<Link style={styles.tab} to="/Randix-Game/vsComp" />}
       />
       <Tab
@@ -73,14 +74,22 @@ export const Header = () => (
       icon={<About/>}
       label="About"
       />
-      <Tab
+      {!isMuted ? <Tab
       style={styles.tab}
       value='sound'
       icon={<VolumeOn/>}
-      label="Sound On/Off"
-      />
+      label='Sound On'
+      onClick = {() => ostPlayPause(document.getElementById('ost'))}
+      /> :
+      <Tab
+      style={styles.tab}
+      value='sound'
+      icon={<VolumeOff/>}
+      label="Sound Off"
+      onClick = {() => ostPlayPause(document.getElementById('ost'))}
+      />}
    </Tabs>
   </div>
 );
-
-export default Header;
+}
+export default Navigation;

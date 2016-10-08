@@ -1,9 +1,13 @@
 import React from 'react';
+import x3dom from 'x3dom';
+import classes3D from './Board3D.scss';
 import classes from './Board.scss';
-import GameVideo from '../assets/playthrough.gif';
+import GameVideo from '../assets/mat_playthrough.gif';
 import Click from '../assets/click.mp3';
 import Victory from '../assets/win.mp3';
-
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import Paper from 'material-ui/Paper'
+import {styles, styles3D} from './Styles.js'
 
 function disableScrolling() {
   var x = window.scrollX;
@@ -23,7 +27,7 @@ function enableScrolling() {
 
 let isMouseDown = false;
 
-export const Board_old = ({ game, removeMarks, removePieces, markPiece }) => {
+export const Board3D = ({ game, removeMarks, removePieces, markPiece }) => {
   const play = (sound) => {
     sound.pause(); sound.currentTime = 0; sound.play();
   };
@@ -60,35 +64,23 @@ export const Board_old = ({ game, removeMarks, removePieces, markPiece }) => {
   };
 
   return (
+
     <div className={classes.stage}>
       <audio id="clickSound" src={Click} />
       <audio id="winSound" src={Victory} />
       <img className={classes[game.phase]} alt='Game Tutorial' src={GameVideo} />
-      <table className={classes.board} id={classes[game.phase]} onMouseUp={() => clearSelection()} onTouchEnd = {() => clearSelection()} >
-        <tbody>
-          {game.pieces.slice(0, 6).map((p, row) => (
-            <tr>
-              {game.pieces.slice(row * 6, row * 6 + 6).map((piece, cell) => (
-                <td className={classes[piece.type]} id={classes[game.text]}
-                  onMouseDown={(ev) => onLeftClick(ev, piece, row, cell)}
-                  onTouchStart={(ev) => onLeftClick(ev, piece, row, cell)}
-                  onMouseOver={() =>onDrag(piece, row, cell)}
-                  onTouchMove={() =>onDrag(piece, row, cell)}>
-                </td>
-          ))}
-            </tr>
-      ))}
-        </tbody>
-      </table>
+      <div id={classes[game.phase]} >
+         <canvas id={classes.renderCanvas}></canvas>
+      </div>
     </div>
       );
 };
 
-Board_old.propTypes = {
+Board3D.propTypes = {
   game: React.PropTypes.object.isRequired,
   markPiece: React.PropTypes.func.isRequired,
   removePieces: React.PropTypes.func.isRequired,
   removeMarks: React.PropTypes.func.isRequired,
 };
 
-export default Board_old;
+export default Board3D;

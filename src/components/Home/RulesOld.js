@@ -4,7 +4,7 @@ import StoneImage from './assets/stone.png'
 import GameImage from './assets/game.jpg'
 import classes from './Rules.scss'
 
-export const HomeView = () => (
+export const RulesOld = () => (
   <div>
     <h2>Rules of Randix.</h2>
     <img
@@ -23,4 +23,4 @@ export const HomeView = () => (
   </div>
 )
 
-export default HomeView
+export default RulesOld

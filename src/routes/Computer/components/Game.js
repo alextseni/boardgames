@@ -1,18 +1,32 @@
 import React from 'react';
-import { Board } from 'routes/Game/containers/boardContainer';
-import { GameInfo } from 'routes/Game/containers/infoContainer';
-import { Buttons } from 'routes/Game/containers/buttonsContainer';
+import { Board, BoardOld, Board3D } from 'routes/Game/containers/boardContainer';
+import { GameInfo, GameInfoOld } from 'routes/Game/containers/infoContainer';
+import { Buttons, ButtonsOld } from 'routes/Game/containers/buttonsContainer';
+import { Settings } from 'routes/Game/containers/settingsContainer';
 import {Toggle} from 'material-ui';
 
-export const Game = ({view,changeTheme}) => (
-  <div>
-  <Toggle
-     label="Switch View"
-     onToggle={changeTheme}
-     toggled={view.toggled}
-  />
-    <p>Under development</p>
-  </div>
-);
+const layout = {
+  material: () => ([
+    <Settings/>,
+    <GameInfo />,
+    <Board />,
+    <Buttons />,
+  ]),
+  bootstrap:  () => ([
+    <Settings/>,
+    <GameInfoOld />,
+    <BoardOld />,
+    <ButtonsOld />,
+  ]),
+};
+
+export const Game = ({view}) => {
+
+  return (
+    <div>
+      {layout[view.theme]()}
+    </div>
+  );
+}
 
 export default Game;

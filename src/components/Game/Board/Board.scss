@@ -1,14 +1,10 @@
 .stage{
   margin: auto;
-  width: 600px;
-  height: 600px;
 }
 
 .board#start {
  margin: inherit;
- background-image: url('components/Game/assets/board_small.jpg');
  background-repeat: no-repeat;
- height: 610px;
 }
 
 .board td{
@@ -49,6 +45,10 @@
   background-image: url('components/Game/assets/marble.png');
     background-repeat: no-repeat;
 }
+.empty {
+ background-image: url('components/Game/assets/tile.png');
+ background-repeat: no-repeat;
+}
 
 #end {
  visibility: hidden;
@@ -72,12 +72,6 @@ img.end {
 img.start {
   display: none;
 
-}
-
-div.start{
-  display: inline-block;
-  width: 40%;
- vertical-align: middle;
 }
 
 .end{

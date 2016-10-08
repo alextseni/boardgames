@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Members.scss';
 
-export const Members_old = ({ auth, newGame, leaveGame }) => {
+export const MembersOld = ({ auth, newGame, leaveGame }) => {
   const checkAuth = () => {
     if (auth.user.flag !="in") {
     document.getElementsByClassName("access")[0].click();
@@ -17,8 +17,8 @@ return (
 
 <div className="tab-content">
   <div id="home" className="tab-pane fade in active">
-  <div className="container">
-    <div className="row">
+    <div className="container">
+      <div className="row">
         <div className="panel panel-default">
           <div className="panel-heading">
             <h4>
@@ -28,64 +28,94 @@ return (
           <table className="table" id={classes.tableFixed}>
             <thead className="well">
               <tr>
-                  <th className="col-xs-2">Name</th><th className="col-xs-6">Level</th><th className="col-xs-4">Connect</th>
+                <th className="col-xs-2">Name</th><th className="col-xs-6">Level</th><th className="col-xs-4">
+                  Connect
+                </th>
               </tr>
             </thead>
             <tbody id="active">
               <tr>
-                <td className="col-xs-2">ask2</td>
-                <td className="col-xs-6"><span className="badge">5</span></td>
-                <td className="col-xs-4">
-                     <input type="text" className="form-control" id="code" placeholder="Code"/>
-                     <button type="button" className="btn btn-success btn-xs join" onClick={checkAuth}>GO!</button>
+                <td className="col-xs-2">
+                  ask2
                 </td>
-              </tr>
-              <tr>
-                <td className="col-xs-2">tensai</td>
-                <td className="col-xs-6"><span className="badge">1</span></td>
+                <td className="col-xs-6">
+                  <span className="badge">
+                    5
+                  </span>
+                </td>
                 <td className="col-xs-4">
                   <input type="text" className="form-control" id="code" placeholder="Code"/>
-                  <button type="button" className="btn btn-success btn-xs">GO!</button>
+                  <button type="button" className="btn btn-success btn-xs join" onClick={checkAuth}>
+                    GO!
+                  </button>
                 </td>
               </tr>
               <tr>
-                <td className="col-xs-2">Celestial</td>
-                <td className="col-xs-6"><span className="badge">4</span></td>
-                <td className="col-xs-4">
-                  <button type="button" className="btn btn-success btn-xs">GO!</button>
+                <td className="col-xs-2">
+                  tensai
                 </td>
-              </tr>
-              <tr>
-                <td className="col-xs-2">madMan</td>
-                <td className="col-xs-6"><span className="badge">30</span></td>
-                <td className="col-xs-4">
-                  <button type="button" className="btn btn-success btn-xs">GO!</button>
+                <td className="col-xs-6">
+                  <span className="badge">
+                    10
+                  </span>
                 </td>
-              </tr>
-              <tr>
-                <td className="col-xs-2">superGirl_24</td>
-                <td className="col-xs-6"><span className="badge">7</span></td>
-                <td className="col-xs-4">
-                  <button type="button" className="btn btn-success btn-xs">GO!</button>
-                </td>
-              </tr>
-              <tr>
-                <td className="col-xs-2">troll99</td>
-                <td className="col-xs-6"><span className="badge">99</span></td>
                 <td className="col-xs-4">
                   <input type="text" className="form-control" id="code" placeholder="Code"/>
-                  <button type="button" className="btn btn-success btn-xs">GO!</button>
+                  <button type="button" className="btn btn-success btn-xs join" onClick={checkAuth}>
+                    GO!
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td className="col-xs-2">
+                  troll99
+                </td>
+                <td className="col-xs-6">
+                  <span className="badge">
+                    99
+                  </span>
+                </td>
+                <td className="col-xs-4">
+                  <input type="text" className="form-control" id="code" placeholder="Code"/>
+                  <button type="button" className="btn btn-success btn-xs join" onClick={checkAuth}>
+                    GO!
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td className="col-xs-2">
+                  super_girl
+                </td>
+                <td className="col-xs-6">
+                  <span className="badge">
+                    8
+                  </span>
+                </td>
+                <td className="col-xs-4">
+                  <input type="text" className="form-control" id="code" placeholder="Code"/>
+                  <button type="button" className="btn btn-success btn-xs join" onClick={checkAuth}>
+                    GO!
+                  </button>
                 </td>
               </tr>
               {auth.activeGames.map((g,key) => (
-              <tr>
-                <td className="col-xs-2">{g.user.name}</td>
-                <td className="col-xs-6"><span className="badge">{g.user.rank}</span></td>
-                <td className="col-xs-4">
-                   <input type="text" className="form-control" id={classes[g.isProtected]} placeholder="Code"/>
-                   <button type="button" className="btn btn-success btn-xs" onClick={checkAuth}>GO!</button>
-                </td>
-              </tr>))}
+                <tr>
+                  <td className="col-xs-2">
+                    {g.user.name}
+                  </td>
+                  <td className="col-xs-6">
+                    <span className="badge">
+                      {g.user.rank}
+                    </span>
+                  </td>
+                  <td className="col-xs-4">
+                    <input type="text" className="form-control" id={classes[g.isProtected]} placeholder="Code"/>
+                    <button type="button" className="btn btn-success btn-xs" onClick={checkAuth}>
+                      GO!
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -142,4 +172,4 @@ return (
 
 )};
 
-export default Members_old;
+export default MembersOld;

@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './LogIn.scss';
 
-export const LogIn = ({auth,logIn,logOut,signUp,cleanForm}) => {
+export const LogInOld = ({auth,logIn,logOut,signUp,cleanForm}) => {
 
     const SignIn = () => {
        logIn({
@@ -117,4 +117,4 @@ export const LogIn = ({auth,logIn,logOut,signUp,cleanForm}) => {
   </div>
 
 )};
-export default LogIn;
+export default LogInOld;

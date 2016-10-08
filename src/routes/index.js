@@ -18,7 +18,7 @@ export const createRoutes = (store) => ({
     TwoPlayerGame(store),
     OnlineGame(store),
     ComputerGame(store),
-    About(store),
+    About,
   ],
 });
 

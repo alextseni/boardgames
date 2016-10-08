@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './GameInfo.scss';
 
-export const GameInfo_old = ({ game }) => {
+export const GameInfoOld = ({ game }) => {
   const bar = Math.round((100 - (((game.pieces.filter((p) => p.type === 'marble' ||
               p.type === 'selected').length - 1)) / (game.allMarbles - 1)) * 100));
   return (
@@ -18,8 +18,8 @@ export const GameInfo_old = ({ game }) => {
  );
 };
 
-GameInfo_old.propTypes = {
+GameInfoOld.propTypes = {
   game: React.PropTypes.object.isRequired,
 };
 
-export default GameInfo_old;
+export default GameInfoOld;
