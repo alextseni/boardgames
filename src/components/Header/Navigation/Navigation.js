@@ -13,15 +13,8 @@ import About from 'material-ui/svg-icons/Editor/mode-edit'
 import {AppBar, Tabs, Tab, FontIcon, MenuItem, Toggle} from 'material-ui'
 
 let isMuted = false;
-
-const ostPlayPause = (sound) => {
-  if (isMuted) {
-    sound.play();
-  } else {
-    sound.pause();
-  }
-  isMuted = !isMuted;
-};
+let ic = <VolumeOn/>
+let text = 'Sound On/Off'
 
 const styles = {
    tab: {
@@ -34,10 +27,23 @@ const styles = {
 
 export const Navigation = () => {
 
+  const ostPlayPause = (sound) => {
+    if (isMuted) {
+      sound.play();
+      ic=<VolumeOn/>;
+      text = 'Sound On';
+    } else {
+      sound.pause();
+      ic=<VolumeOff/>;
+      text = 'Sound Off';
+    }
+    isMuted = !isMuted;
+  };
+
   return (
   <div>
     <h1 className={classes.title}>Randix!</h1>
-    <audio id='ost' loop src={Soundtrack} />
+    <audio id='ost' autoPlay loop src={Soundtrack} />
     <Tabs tabItemContainerStyle={styles.tab} value={window.location.pathname}>
       <Tab
       value='/Randix-Game/'
@@ -74,18 +80,11 @@ export const Navigation = () => {
       icon={<About/>}
       label="About"
       />
-      {!isMuted ? <Tab
-      style={styles.tab}
-      value='sound'
-      icon={<VolumeOn/>}
-      label='Sound On'
-      onClick = {() => ostPlayPause(document.getElementById('ost'))}
-      /> :
       <Tab
       style={styles.tab}
       value='sound'
-      icon={<VolumeOff/>}
-      label="Sound Off"
+      icon={ic}
+      label={text}
       onClick = {() => ostPlayPause(document.getElementById('ost'))}
       />}
    </Tabs>
