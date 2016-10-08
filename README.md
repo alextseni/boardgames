@@ -15,8 +15,10 @@ Try out Randix [**here.**] (https://atseniklidou.github.io/Randix-Game/)
 ## To-Do List
 - add ability to connect-play remotely with other player (using node.js)
 - make it appropriate for mobiles (enable touch)
+- make hard difficulty mode for AI play faster
 - create a 3D version of the game and allow toggle of views
 - fix 404 Not Found when player hits refresh
+- fix update problem for sound on/off button
 - reset tutorial-gif icon when player quits game
 - update tutorials and improve resolution
 - further clean/refactor code
