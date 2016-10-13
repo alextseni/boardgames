@@ -30,7 +30,7 @@ export const playAI = (brd, size, difficulty) => {
     const aiMove = generateDecision(dummyBoard);
     return aiMove;
   } else if (difficulty === 'hard') {
-    depth = 7;
+    depth = 6;
     const aiMove = generateDecision(dummyBoard);
     return aiMove;
   }
@@ -43,7 +43,7 @@ export const playAI = (brd, size, difficulty) => {
 function generateDecision(board) {
   let startAI = new Date().getTime();
 
-  if (_.flattenDeep(board).filter(p => p === 'marble').length > 18) {
+  if (_.flattenDeep(board).filter(p => p === 'marble').length > 15) {
     let initialMoves = calcMoves(board);
     return [initialMoves[0], null];
   }

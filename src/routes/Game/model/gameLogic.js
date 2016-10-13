@@ -81,16 +81,16 @@ export const evaluateSelection = (state) => {
       is: playerWon,
     },
     {
-      st: { ...state, pieces: pieces, phase: 'player2Move', text: 'Player2' },
-      is: state.phase === 'player1Move',
+      st: { ...state, pieces: pieces, phase: 'Player2Move', text: 'Player2' },
+      is: state.phase === 'Player1Move',
     },
     {
-      st: { ...state, pieces: pieces, phase: 'player1Move', text: 'Player1' },
-      is: state.phase === 'player2End',
+      st: { ...state, pieces: pieces, phase: 'Player1Move', text: 'Player1' },
+      is: state.phase === 'Player2End',
     },
     {
-      st: { ...state, pieces: pieces, phase: 'player1Move', text: 'Player1' },
-      is: state.phase === 'player2Move',
+      st: { ...state, pieces: pieces, phase: 'Player1Move', text: 'Player1' },
+      is: state.phase === 'Player2Move',
     },
   ];
 

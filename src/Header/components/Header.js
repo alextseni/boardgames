@@ -7,6 +7,6 @@ export const Header = () => (
     <Navigation />
     <View />
   </div>
-  );
+);
 
 export default Header;

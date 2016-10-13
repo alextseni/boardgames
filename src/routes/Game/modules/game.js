@@ -15,15 +15,20 @@ export const COMP_STATE = 'COMP_STATE';
 // Actions
 // ------------------------------------
 export function initializeBoard(size) {
-  const random = () => {
+  const randomizeBoard = () => {
     let rand = new Array(size * size);
     return rand.fill(0, 0, size * size).map(n => Math.random());
   };
 
+  const setFirstToPlay = () => {
+    const players = ['Player1', 'Player2'];
+    return players[Math.floor(Math.random() * players.length)];
+  };
+
   return {
     type: START_STATE,
-    payload: {},
-    value: random(),
+    payload: setFirstToPlay(),
+    value: randomizeBoard(),
   };
 };
 
@@ -81,8 +86,8 @@ const ACTION_HANDLERS = {
       ...state,
       pieces: boardContent.pieces,
       allMarbles: boardContent.initialMarbles,
-      phase: 'player1Move',
-      text: 'Player1',
+      phase: action.payload + 'Move',
+      text: action.payload,
     });
   },
 
@@ -105,7 +110,7 @@ const ACTION_HANDLERS = {
 
   [COMP_STATE]: (state, action) => ({
     ...state,
-    phase: 'player2End',
+    phase: 'Player2End',
     pieces: updateSelectionState(state.pieces, action.payload),
   }),
 
