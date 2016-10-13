@@ -1,4 +1,3 @@
-
 var _ = require('lodash');
 
 export const createBoard = (randomValues, size) => {
@@ -20,17 +19,15 @@ export const updateSelectionState = (pieces, payload) => {
   let p = pieces.slice();
 
   if (payload.tag === 'mark') {
-      p = p.map((p,key) => (key == payload.cell) ? { ...p, type: 'selected' } : p);
+    p = p.map((p, key) => (key == payload.cell) ? { ...p, type: 'selected' } : p);
   }
 
-  if (payload.tag === 'reset') {
-    p = p.map((p) => p.type === 'selected' ? { ...p, type: 'marble' } : p);
-  }
-  if (payload.tag === 'comp') {
+  if (payload.tag === 'comp' && payload.aiMove) {
     for (let i=0; i<payload.aiMove.length; i++) {
-      p =  p.map((p) => (p.x == payload.aiMove[i][0] && p.y == payload.aiMove[i][1] && p.type == 'marble') ? {...p,type: 'selected'} : p);
-  }
-  }
+      p =  p.map((p) => (p.x == payload.aiMove[i][0] && p.y == payload.aiMove[i][1] && p.type == 'marble') ? {...p, type: 'selected'} : p);
+    };
+  };
+
   return p;
 };
 
@@ -76,7 +73,7 @@ export const evaluateSelection = (state) => {
 
   const result = [
     {
-      st: { ...state },
+      st: { ...state, pieces: state.pieces.map((p) => p.type === 'selected' ? { ...p, type: 'marble' } : p) },
       is: !validSelection || gameEnded,
     },
     {
@@ -84,12 +81,16 @@ export const evaluateSelection = (state) => {
       is: playerWon,
     },
     {
-      st: { ...state, pieces: pieces, text: 'Player1' },
-      is: state.text === 'Player2',
+      st: { ...state, pieces: pieces, phase: 'player2Move', text: 'Player2' },
+      is: state.phase === 'player1Move',
     },
     {
-      st: { ...state, pieces: pieces, text: 'Player2' },
-      is: state.text === 'Player1',
+      st: { ...state, pieces: pieces, phase: 'player1Move', text: 'Player1' },
+      is: state.phase === 'player2End',
+    },
+    {
+      st: { ...state, pieces: pieces, phase: 'player1Move', text: 'Player1' },
+      is: state.phase === 'player2Move',
     },
   ];
 

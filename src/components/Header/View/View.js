@@ -1,15 +1,15 @@
 import React from 'react';
 import classes from './View.scss';
-import {Toggle} from 'material-ui';
+import { Toggle } from 'material-ui';
 import styles from './Styles';
 
-export const View = ({view, changeTheme}) => (
+export const View = ({ view, changeTheme }) => (
   <div>
     <Toggle
-       style= {styles.toggleB}
-       label="Switch View"
-       onToggle={changeTheme}
-       toggled={view.toggled}
+      style={styles.toggleB}
+      label="Switch View"
+      onToggle={changeTheme}
+      toggled={view.toggled}
     />
   </div>
 );

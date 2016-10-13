@@ -2,7 +2,7 @@
   margin: auto;
 }
 
-.board#start {
+.board {
  margin: inherit;
  background-repeat: no-repeat;
 }
@@ -69,9 +69,9 @@ img.end {
   padding: 10px;
   background-color: #EDE275;
 }
-img.start {
-  display: none;
 
+img {
+  display: none;
 }
 
 .end{

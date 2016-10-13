@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../assets/button.mp3';
-import RaisedButton from 'material-ui/RaisedButton'
-import {styles} from './Styles.js'
+import RaisedButton from 'material-ui/RaisedButton';
+import { styles } from './Styles.js';
 
 const play = (sound) => {
   sound.pause(); sound.currentTime = 0; sound.play();
@@ -22,14 +22,14 @@ export const Buttons = ({ game, initializeBoard, clearBoard }) => {
     <div >
       <audio id="buttonSound" src={Button} />
       <RaisedButton
-      label="New Game"
-      style={styles.start}
-      onClick={NewGame}
+        label="New Game"
+        style={styles.start}
+        onClick={NewGame}
       />
       <RaisedButton
-      label="Quit"
-      style={styles[game.phase]}
-      onClick={Quit}
+        label="Quit"
+        style={game.phase == 'end' ? styles.end : styles.start}
+        onClick={Quit}
       />
     </div>
 );

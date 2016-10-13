@@ -21,9 +21,8 @@ function enableScrolling() {
 };
 
 let isMouseDown = false;
-let compPlayed = false;
 
-export const BoardOld = ({ game, removeMarks, removePieces, markPiece, playComp }) => {
+export const BoardOld = ({ game, removePieces, markPiece }) => {
   const play = (sound) => {
     sound.pause(); sound.currentTime = 0; sound.play();
   };
@@ -31,46 +30,37 @@ export const BoardOld = ({ game, removeMarks, removePieces, markPiece, playComp 
   const clearSelection = () => {
     isMouseDown = false;
     removePieces();
-    removeMarks();
-    compPlayed = false;
     if ((game.text).substring(8, 13) === 'wins!') {
       play(document.getElementById('winSound'));
     }
   };
 
   const onLeftClick = (ev, p, k, key) => {
-    if (window.location.pathname=='/Randix-Game/TwoPlayer' || (game.text).substring(0, 7) === 'Player1') {
-    if (p.type === 'marble') {
-      isMouseDown = true;
-      ev.preventDefault();
-      play(document.getElementById('clickSound'));
-      markPiece(k * game.options.size + key);
+    if (window.location.pathname === '/Randix-Game/TwoPlayer' || (game.text).substring(0, 7) === 'Player1') {
+      if (p.type === 'marble') {
+        isMouseDown = true;
+        ev.preventDefault();
+        play(document.getElementById('clickSound'));
+        markPiece(k * game.options.size + key);
+      }
     }
-  }
   };
 
   const onDrag = (p, k, key) => {
-    if (window.location.pathname=='/Randix-Game/TwoPlayer' || (game.text).substring(0, 7) === 'Player1') {
-    if (isMouseDown && p.type === 'marble') {
-      play(document.getElementById('clickSound'));
-      markPiece(k * game.options.size + key);
+    if (window.location.pathname === '/Randix-Game/TwoPlayer' || (game.text).substring(0, 7) === 'Player1') {
+      if (isMouseDown && p.type === 'marble') {
+        play(document.getElementById('clickSound'));
+        markPiece(k * game.options.size + key);
+      }
     }
-  }
   };
-
-  if ((game.text).substring(0, 7) === 'Player2' && window.location.pathname=='/Randix-Game/vsComp' && !compPlayed) {
-    compPlayed = true;
-    playComp();
-    setTimeout(removePieces, 1000);
-  }
-
 
   return (
     <div className={classes.stage}>
       <audio id="clickSound" src={Click} />
       <audio id="winSound" src={Victory} />
       <img className={classes[game.phase]} alt='Game Tutorial' src={GameVideo} />
-      <table className={classes.board} id={classes[game.phase]}
+      <table className={classes.board}
         onMouseUp={() => clearSelection()}
         onTouchEnd = {() => clearSelection()} >
         <tbody>
@@ -96,8 +86,6 @@ BoardOld.propTypes = {
   game: React.PropTypes.object.isRequired,
   markPiece: React.PropTypes.func.isRequired,
   removePieces: React.PropTypes.func.isRequired,
-  removeMarks: React.PropTypes.func.isRequired,
-  playComp: React.PropTypes.func.isRequired,
 };
 
 export default BoardOld;

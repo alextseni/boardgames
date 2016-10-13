@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import { markPiece,
          removePieces,
-         removeMarks,
-         playComp } from '../modules/game';
+       } from '../modules/game';
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
@@ -11,14 +10,13 @@ import { markPiece,
 import { Board as DBoard } from 'components/Game';
 import { BoardOld as DBoardOld } from 'components/Game';
 import { Board3D as DBoard3D } from 'components/Game';
+
 /*  Object of action creators (can also be function that returns object).
     Keys will be passed as props to presentational components. */
 
 const mapActionCreators = {
   markPiece,
   removePieces,
-  removeMarks,
-  playComp,
 };
 
 const mapStateToProps = (state) => ({
