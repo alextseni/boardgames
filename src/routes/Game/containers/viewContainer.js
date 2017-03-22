@@ -5,7 +5,7 @@ import { changeTheme } from 'modules/view';
     nor does it import React. This component is **only** responsible for
     wiring in the actions and state necessary to render a presentational
     component */
-import { View as DView } from 'components/Header';
+import { View as DView } from 'components/Game';
 /*  Object of action creators (can also be function that returns object).
     Keys will be passed as props to presentational components. */
 

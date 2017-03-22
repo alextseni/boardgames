@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './GameInfo.scss';
 import { Chip, LinearProgress } from 'material-ui';
 import { styles } from './Styles.js';
+import $ from 'jquery';
 
 export const GameInfo = ({ game }) => {
   const bar = Math.round((100 - (((game.pieces.filter((p) => p.type === 'marble' ||

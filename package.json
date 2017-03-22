@@ -77,6 +77,7 @@
   "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
   "license": "MIT",
   "dependencies": {
+    "akkad": "^1.4.0",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.3.17",
     "babel-loader": "^6.2.0",
@@ -120,6 +121,7 @@
     "react-router": "^2.2.0",
     "react-router-redux": "^4.0.0",
     "react-tap-event-plugin": "^1.0.0",
+    "react-three": "^0.9.4",
     "redux": "^3.0.0",
     "redux-thunk": "^2.0.0",
     "rimraf": "^2.5.1",

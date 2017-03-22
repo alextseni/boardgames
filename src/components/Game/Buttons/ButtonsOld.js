@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Buttons.scss';
 import Button from '../assets/button.mp3';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const play = (sound) => {
   sound.pause(); sound.currentTime = 0; sound.play();

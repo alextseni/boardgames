@@ -1,9 +1,10 @@
 import React from 'react';
-import { Board, BoardOld, Board3D } from 'routes/Game/containers/boardContainer';
+import { Board, BoardOld } from 'routes/Game/containers/boardContainer';
 import { GameInfo, GameInfoOld } from 'routes/Game/containers/infoContainer';
 import { Buttons, ButtonsOld } from 'routes/Game/containers/buttonsContainer';
 import { Settings } from 'routes/Game/containers/settingsContainer';
-import {Toggle} from 'material-ui';
+import { View } from 'routes/Game/containers/viewContainer';
+//import {Toggle} from 'material-ui';
 
 const layout = {
   material: () => ([
@@ -21,6 +22,7 @@ const layout = {
 };
 export const Game = ({view}) => (
   <div>
+    <View />
     {layout[view.theme]()}
   </div>
 );

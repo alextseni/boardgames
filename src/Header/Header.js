@@ -1,6 +1,6 @@
 import React from 'react';
 import { IndexLink, Link } from 'react-router';
-import classes from './Navigation.scss';
+import classes from './Header.scss';
 import Soundtrack from 'components/Game/assets/Wallpaper.mp3';
 import { styles } from './Styles';
 import VolumeOn from 'material-ui/svg-icons/AV/volume-up';
@@ -11,6 +11,8 @@ import Online from 'material-ui/svg-icons/Social/public';
 import Rules from 'material-ui/svg-icons/AV/library-books';
 import About from 'material-ui/svg-icons/Editor/mode-edit';
 import { Tabs, Tab } from 'material-ui';
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 let isMuted = false;
 
@@ -24,7 +26,7 @@ const ostPlayPause = (sound) => {
   isMuted = !isMuted;
 };
 
-export const Navigation = () => {
+export const Header = () => {
 
   return (
     <div>
@@ -78,4 +80,4 @@ export const Navigation = () => {
 );
 };
 
-export default Navigation;
+export default Header;

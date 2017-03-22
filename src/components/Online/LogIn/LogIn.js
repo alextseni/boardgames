@@ -1,5 +1,9 @@
 import React from 'react';
 import classes from './LogIn.scss';
+import 'bootstrap/dist/css/bootstrap.css';
+import $ from "jquery";
+window.jQuery = window.$ = $;
+require('bootstrap');
 
 export const LogIn = ({auth,logIn,logOut,signUp,cleanForm}) => {
 
@@ -8,7 +12,6 @@ export const LogIn = ({auth,logIn,logOut,signUp,cleanForm}) => {
          name: document.getElementById('name1').value,
          pwd: document.getElementById('pwd1').value
        });
-
     };
 
     const SignUp = () => {

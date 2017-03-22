@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Game as DGame } from '../components/Game';
-import { changeTheme } from 'modules/view';
+//import { changeTheme } from 'modules/view';
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
@@ -10,7 +10,7 @@ import { changeTheme } from 'modules/view';
     Keys will be passed as props to presentational components. */
 
 const mapStateToProps = (state) => ({
-  view: state.view,
+//  view: state.view,
 });
 
 const mapActionCreators = {

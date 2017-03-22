@@ -1,10 +1,9 @@
 import React from 'react'
-import MarbleImage from './assets/marble.png'
-import StoneImage from './assets/stone.png'
 import GameImage from './assets/game.jpg'
 import classes from './Rules.scss'
 import Paper from 'material-ui/Paper'
 import {styles} from './Styles';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export const Rules = () => (
   <div>

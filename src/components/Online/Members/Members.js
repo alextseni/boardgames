@@ -1,5 +1,9 @@
 import React from 'react';
 import classes from './Members.scss';
+import 'bootstrap/dist/css/bootstrap.css';
+import $ from "jquery";
+window.jQuery = window.$ = $;
+require('bootstrap');
 
 export const Members = ({ auth, newGame, leaveGame }) => {
   const checkAuth = () => {

@@ -12,11 +12,11 @@ export default (store) => ({
       const Game = require('./containers/gameContainer').Game;
       const gameReducer = require('routes/Game/modules/game').default;
       const authReducer = require('./modules/auth').default;
-      const viewReducer = require('modules/view').default;
+  //    const viewReducer = require('modules/view').default;
       /*  Add the reducer to the store on key 'game'  */
       injectReducer(store, { key:'game', reducer: gameReducer});
       injectReducer(store, { key:'auth', reducer: authReducer });
-      injectReducer(store, { key:'view', reducer: viewReducer });
+  //    injectReducer(store, { key:'view', reducer: viewReducer });
       /*  Return getComponent   */
       cb(null, Game);
       /* Webpack named bundle   */

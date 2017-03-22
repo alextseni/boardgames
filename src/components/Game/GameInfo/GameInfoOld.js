@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './GameInfo.scss';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export const GameInfoOld = ({ game }) => {
   const bar = Math.round((100 - (((game.pieces.filter((p) => p.type === 'marble' ||
