@@ -8,9 +8,9 @@ Technologies used so far: React, Redux, Bootstrap, Material-UI
 
 AI built for VS Computer mode makes use of the minimax algorithm (enchanced with Alpha-Beta pruning).
 
-You can read more about the original game (now in the public domain) [**here.**] (https://en.wikipedia.org/wiki/TacTix)
+You can read more about the original game (now in the public domain) [**here.**](https://en.wikipedia.org/wiki/TacTix)
 
-Try out Randix [**here.**] (https://atseniklidou.github.io/Randix-Game/)
+Try out Randix [**here.**](https://atseniklidou.github.io/Randix-Game/)
 
 ## To-Do List
 - add ability to connect-play remotely with other player (using node.js)
