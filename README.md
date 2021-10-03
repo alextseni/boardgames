@@ -4,7 +4,7 @@ This is an experimental site used for game development and training purposes.
 
 The game created for this site is Randix, a variation of the computational game TacTix played in a NxN board.
 
-Technologies used so far: React, Redux, Bootstrap, Material-UI
+Built with: Typescript, React, Redux
 
 AI built for VS Computer mode makes use of the minimax algorithm (enchanced with Alpha-Beta pruning).
 
