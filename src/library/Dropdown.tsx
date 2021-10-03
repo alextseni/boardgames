@@ -1,6 +1,6 @@
 import React from 'react'
 type Option = {
-    value: number | string, label: string
+    value: string, label: string
 }
 
 interface DropdownProps {
@@ -13,8 +13,8 @@ interface DropdownProps {
 export const Dropdown = ({label, key, options, onChange}: DropdownProps) => (
     <>
     <label htmlFor={key}>{label}</label>
-    <select name={key} id={key}>
-        {options.map((option: Option) => <option onClick={() => onChange(option.value)} value={option.value}>{option.label}</option>)}
+    <select name={key} id={key} onChange={(e) => onChange(e.target.value)}>
+        {options.map((option: Option) => <option  value={option.value}>{option.label}</option>)}
     </select>
     </>
 )

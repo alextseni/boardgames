@@ -1,6 +1,7 @@
 // Minimax (+Alpha-Beta) Implementation
 
 import { BoardSize, Difficulty, PieceType } from './enum'
+import { Piece } from './types'
 
 let _ = require('lodash')
 
@@ -8,7 +9,8 @@ const maxScore = 100000
 let previousStatesMoves = []
 let firstMove = true
 
-export const playAI = (brd, size: BoardSize, difficulty: Difficulty) => {
+export const playAI = (brd, boardSize: BoardSize, difficulty: Difficulty) => {
+  const size = parseInt(boardSize)
   const board = JSON.parse(JSON.stringify(brd))
   let k = 0
   previousStatesMoves = []
@@ -32,10 +34,13 @@ export const playAI = (brd, size: BoardSize, difficulty: Difficulty) => {
   return
 }
 
-function generateDecision(board, depth: number) {
+function generateDecision(board: PieceType[][], depth: number) {
   let startAI = new Date().getTime()
 
-  if (_.flattenDeep(board).filter((p) => p === PieceType.piece).length > 15) {
+  if (
+    _.flattenDeep(board).filter((p: PieceType) => p === PieceType.piece)
+      .length > 15
+  ) {
     const initialMoves = calcMoves(board)
     return [initialMoves[0], null]
   }
@@ -48,7 +53,12 @@ function generateDecision(board, depth: number) {
   return aiMove
 }
 
-function maximizePlay(board, depth, alpha, beta) {
+function maximizePlay(
+  board: PieceType[][],
+  depth: number,
+  alpha?: any,
+  beta?: any
+) {
   const score = -calcScore(board)
 
   // Break
@@ -102,7 +112,12 @@ function maximizePlay(board, depth, alpha, beta) {
   return max
 }
 
-function minimizePlay(board, depth, alpha, beta) {
+function minimizePlay(
+  board: PieceType[][],
+  depth: number,
+  alpha?: number,
+  beta?: number
+) {
   let score = calcScore(board)
   if (isFinished(depth, score)) return [null, score]
   // get array of moves
@@ -145,14 +160,14 @@ function minimizePlay(board, depth, alpha, beta) {
   return min
 }
 
-function isFinished(depth, score) {
+function isFinished(depth: number, score: number) {
   if (depth === 0 || score === maxScore || score === -maxScore) {
     return true
   }
   return false
 }
 
-function calcMoves(board) {
+function calcMoves(board: PieceType[][]) {
   let allMoves = []
   let horizontalMoves = [] // array of arrays of horizontal moves
   let verticalMoves = [] // array of arrays of vertical moves
@@ -204,10 +219,11 @@ function calcMoves(board) {
   return allMoves
 }
 
-function calcScore(board) {
+function calcScore(board: PieceType[][]) {
   // Determine score
   let lastPiece =
-    _.flattenDeep(board).filter((p) => p === PieceType.piece).length === 1
+    _.flattenDeep(board).filter((p: PieceType) => p === PieceType.piece)
+      .length === 1
   if (lastPiece) {
     return maxScore
   } else {
@@ -216,7 +232,7 @@ function calcScore(board) {
 }
 
 // create board after move
-function copyBoard(board, move) {
+function copyBoard(board: Piece[], move) {
   let newBoard = JSON.parse(JSON.stringify(board))
   for (let i = 0; i < move.length; i++) {
     newBoard[move[i][0]][move[i][1]] = PieceType.empty
@@ -225,7 +241,7 @@ function copyBoard(board, move) {
   return newBoard
 }
 
-function getAllCombos(array, board) {
+function getAllCombos(array, board: PieceType[][]) {
   let combos = []
   for (let i = 0; i < array.length; i++) {
     for (let k = array[i].length; k > 0; k--) {

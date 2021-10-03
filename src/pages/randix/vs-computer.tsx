@@ -7,7 +7,7 @@ import { Settings } from '../../components/Settings/Settings';
 
 const Computer = () => (
   <Layout>
-  <Settings hasSizeSetting />
+  <Settings  hasDifficultySetting hasSizeSetting />
   <GameInfo />
   <Board />
   <Buttons />

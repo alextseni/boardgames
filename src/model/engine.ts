@@ -1,12 +1,13 @@
+import { BOARD_STATE, COMP_STATE } from '../state/types/game'
 import { playAI } from './ai'
 import { GamePhase } from './enum'
 
-export const botTurn = (store) => {
+export const botTurn = (store: any) => {
   const game = store.getState().game
   if (game) {
     if (
       game.phase === GamePhase.player2Turn &&
-      window.location.pathname === '/Randix-Game/vsComp'
+      window.location.pathname.includes('vs-computer')
     ) {
       const aiMove = playAI(
         game.pieces,
@@ -15,10 +16,10 @@ export const botTurn = (store) => {
       )
       console.log('score: ' + aiMove?.[1])
       store.dispatch({
-        type: 'PLAYER_STATE',
-        payload: { tag: 'comp', aiMove: aiMove?.[0] },
+        type: COMP_STATE,
+        payload: { aiMove: aiMove?.[0] },
       })
-      setTimeout(() => store.dispatch({ type: 'BOARD_STATE' }), 1000)
+      setTimeout(() => store.dispatch({ type: BOARD_STATE }), 1000)
     }
   }
 }

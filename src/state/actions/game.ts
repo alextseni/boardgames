@@ -8,7 +8,8 @@ import {
   START_STATE,
 } from '../types/game'
 
-export function initializeBoard(size: number) {
+export function initializeBoard(boardSize: string) {
+  const size = parseInt(boardSize)
   const randomBoard = new Array(size * size)
     .fill(0, 0, size * size)
     .map((n) => Math.random())
@@ -36,7 +37,7 @@ export function clearBoard() {
 export function markPiece(cell) {
   return {
     type: PLAYER_STATE,
-    payload: { cell, tag: 'mark' },
+    payload: { cell },
   }
 }
 

@@ -7,7 +7,7 @@ import { Settings } from '../../components/Settings/Settings';
 
 const TwoPlayer = () => (
   <Layout>
-  <Settings hasDifficultySetting hasSizeSetting />
+  <Settings hasSizeSetting />
   <GameInfo />
   <Board handleBothPlayers />
   <Buttons />

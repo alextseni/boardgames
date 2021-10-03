@@ -11,22 +11,6 @@ interface BoardProps {
   handleBothPlayers?: boolean
 }
 
-const disableScrolling = () => {
-  var x = window.scrollX;
-  var y = window.scrollY;
-  window.onscroll = function () { window.scrollTo(x, y); };
-  document.ontouchmove = function (e) {
-    e.preventDefault();
-  };
-}
-
-const enableScrolling = () => {
-  window.onscroll = function () {};
-  document.ontouchmove = function (e) {
-    return true;
-  };
-};
-
 const play = (sound: any) => {
   sound.pause(); sound.currentTime = 0; sound.play();
 };
@@ -35,7 +19,7 @@ let isMouseDown = false;
 
 export const Board = ({ handleBothPlayers }: BoardProps) => {
   const gamePhase = useSelector((state) => state.game.phase)
-  const boardSize = useSelector((state) => state.game.options.size)
+  const boardSize = parseInt(useSelector((state) => state.game.options.size))
   const boardPieces = useSelector((state) => state.game.pieces)
   const dispatch = useDispatch();
 
@@ -50,7 +34,7 @@ export const Board = ({ handleBothPlayers }: BoardProps) => {
 
   const onLeftClick = (ev, p, k, key) => {
     if (handleBothPlayers || gamePhase === GamePhase.player1Turn) {
-      if (p.type === 'marble') {
+      if (p.type === PieceType.piece) {
         isMouseDown = true;
         ev.preventDefault();
         play(document.getElementById('clickSound'));
@@ -61,7 +45,7 @@ export const Board = ({ handleBothPlayers }: BoardProps) => {
 
   const onDrag = (p, k, key) => {
     if (handleBothPlayers || gamePhase === GamePhase.player1Turn) {
-      if (isMouseDown && p.type === 'marble') {
+      if (isMouseDown && p.type === PieceType.piece) {
         play(document.getElementById('clickSound'));
         dispatch(markPiece(k * boardSize + key));
       }

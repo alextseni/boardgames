@@ -22,13 +22,13 @@ export const createBoard = (randomValues, size) => {
 export const updateSelectionState = (pieces, payload) => {
   let p = pieces.slice()
 
-  if (payload.tag === 'mark') {
+  if (payload.cell !== undefined) {
     p = p.map((p, key) =>
       key == payload.cell ? { ...p, type: PieceType.selected } : p
     )
   }
 
-  if (payload.tag === 'comp' && payload.aiMove) {
+  if (payload.aiMove) {
     for (let i = 0; i < payload.aiMove.length; i++) {
       p = p.map((p) =>
         p.x == payload.aiMove[i][0] &&
@@ -108,8 +108,14 @@ export const evaluateSelection = (state) => {
       is: !validSelection || gameEnded,
     },
     {
-      st: { ...state, pieces: pieces },
-      is: playerWon,
+      st: { ...state, pieces, phase: GamePhase.player2Wins },
+
+      is: playerWon && state.phase === GamePhase.player2Turn,
+    },
+    {
+      st: { ...state, pieces, phase: GamePhase.player1Wins },
+
+      is: playerWon && state.phase === GamePhase.player1Turn,
     },
     {
       st: {
@@ -125,7 +131,9 @@ export const evaluateSelection = (state) => {
         pieces: pieces,
         phase: GamePhase.player1Turn,
       },
-      is: state.phase === 'Player2End' || state.phase === GamePhase.player2Turn,
+      is:
+        state.phase === GamePhase.computerTurn ||
+        state.phase === GamePhase.player2Turn,
     },
     {
       st: {

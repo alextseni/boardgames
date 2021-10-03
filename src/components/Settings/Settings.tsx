@@ -25,7 +25,7 @@ export const Settings = ({
       label={'Board size'}
       key={'board-size'}
         options={sizeOptions}
-        onChange={(value: number) => {
+        onChange={(value: string) => {
           dispatch(changeBoard(value))
           dispatch(initializeBoard(value))
         }}
