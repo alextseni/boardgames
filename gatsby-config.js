@@ -1,9 +1,9 @@
 module.exports = {
-  pathPrefix: '/Gatsby-Starter-Pack',
+  pathPrefix: '',
   siteMetadata: {
-    title: `Gatsby-Starter-Pack`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@JimLynchCodes`,
+    title: `Board Games`,
+    description: `Board games - Randix`,
+    author: `@atseniklidou`,
   },
   plugins: [
     `gatsby-plugin-sass`,
@@ -20,7 +20,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-pack`,
+        name: `boardgames`,
         short_name: `starter`,
         start_url: `/`,
         background_color: `#663399`,
