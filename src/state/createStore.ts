@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux'
 
 import { GameState } from './reducers/game'
 import { botTurn } from '../model/engine'
+import '../styles/core.scss'
 
 export interface State {
   game: GameState

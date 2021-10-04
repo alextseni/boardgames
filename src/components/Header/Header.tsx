@@ -1,35 +1,35 @@
 import React, {useState} from 'react';
 import { Link } from 'gatsby';
-// import Soundtrack from '../../assets/Wallpaper.mp3';
 import  './Header.scss';
-import { useEffect } from 'react';
+import { TiVolumeMute, TiVolumeUp } from 'react-icons/ti'
+import Soundtrack from '../../assets/Wallpaper.mp3'
 
 export const Header = () => {
-  const [isMuted, mute] = useState(false);
+  const [isMuted, mute] = useState(true);
 
-  useEffect(() => {
-    const sound: any = document.getElementById('ost')
-    if (!sound) {
-      return;
-    }
-    if (isMuted) {
-      sound.pause();
-    } else {
-      sound.play();
-    }
-  }, [isMuted])
-
+  const path = document.location.pathname;
   return (
     <div className={'top'}>
       <div className={'header'}>
       <h1 className={'title'}>Randix!</h1>
-      <span onClick = {() => mute(!isMuted)}>Sound</span>
+      <span className={'sound'} onClick = {() => {
+        mute(!isMuted);
+        const sound: any = document.getElementById('ost');
+        isMuted ? sound.play() : sound.pause()
+        }}>
+          {isMuted ?  <TiVolumeMute size={32} /> : <TiVolumeUp size={32} />}</span>
       </div>
-      <audio id='ost' loop src={'Soundtrack'} />
+      <audio id='ost' loop src={Soundtrack} />
       <div className={'nav'}>
-      <Link className={'tab'} to='/randix/'>Rules</Link>
-      <Link className={'tab'} to='/randix/vs-player'>vs Player</Link>
-      <Link className={'tab'} to='/randix/vs-computer'>vs Cp</Link>
+        {[{link: '/randix', label: 'Home'},
+        {link: '/randix/vs-player', label: 'vs Player'},
+        {link: '/randix/vs-computer', label: 'vs Cp'} ].map(route => 
+        <Link
+        key={route.link}
+          className={`tab ${path === route.link || path === route.link + '/' ? 'active' : 'disabled'}`}
+          to={route.link}>{route.label}
+        </Link>
+        )}
       </div>
    </div>
 );
