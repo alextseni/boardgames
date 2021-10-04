@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: '',
+  pathPrefix: '/boardgames',
   siteMetadata: {
     title: `Board Games`,
     description: `Board games - Randix`,
