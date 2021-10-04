@@ -5,10 +5,16 @@ interface ButtonProps {
     label: string;
     id?: string;
     onClick: () => void;
+    className?: string;
 }
 
-export const Button = ({label, id, onClick}: ButtonProps) => (
-    <button className={'button'} onClick={onClick}>
+export const Button = ({label, id, onClick, className}: ButtonProps) => (
+    <div className={`button ${className}`} onClick={onClick}>
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
     {label}
- </button>
+ </div>
 )

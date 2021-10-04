@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearBoard, initializeBoard } from '../../state/actions/game';
 import { GamePhase } from '../../model/enum';
 import { Button } from '../../library/Button';
+import './Buttons.scss'
 
 const play = (sound: any) => {
   sound.pause(); sound.currentTime = 0; sound.play();
@@ -27,8 +28,8 @@ export const Buttons = () => {
   return (
     <div>
       <audio id="buttonSound" src={ButtonSound} />
-      <Button label={'New game'} onClick={newGame} />
-      {gamePhase !== GamePhase.gameEnd && <Button label={'Quit'} onClick={guitGame} />}
+      {gamePhase !== GamePhase.gameEnd && <Button className={'button-quit'} label={'Quit'} onClick={guitGame} />}
+      <Button  label={'New game'} onClick={newGame} />
     </div>
 );
 };

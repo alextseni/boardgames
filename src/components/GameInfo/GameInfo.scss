@@ -1,13 +1,14 @@
-.info {
-  display: inline-block;
+.gameInfo {
+  position: absolute;
+  right: 0;
+}
+
+.playerInfo {
   font-family: cursive;
-  margin: 0px;
-  vertical-align: middle;
-  height: 60px;
   text-align: center;
-  line-height: 45px;
-  font-size: 30px;
-  margin-bottom: 20px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  padding: 8px;
 }
 .p1 {
     background-color: #E55B3C;

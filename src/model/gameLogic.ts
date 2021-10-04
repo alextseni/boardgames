@@ -15,7 +15,7 @@ export const createBoard = (randomValues, size) => {
     }
   }
 
-  const initialMarbles = pieces.filter((p) => p.type === PieceType.piece).length
+  const initialMarbles = pieces.filter(p => p.type === PieceType.piece).length
   return { pieces: pieces, initialMarbles: initialMarbles }
 }
 
@@ -30,7 +30,7 @@ export const updateSelectionState = (pieces, payload) => {
 
   if (payload.aiMove) {
     for (let i = 0; i < payload.aiMove.length; i++) {
-      p = p.map((p) =>
+      p = p.map(p =>
         p.x == payload.aiMove[i][0] &&
         p.y == payload.aiMove[i][1] &&
         p.type == PieceType.piece
@@ -48,12 +48,12 @@ const isHorizontal = (pieces, groupH, groupV) => {
     groupH.length === 1 &&
     !pieces
       .filter(
-        (p) =>
+        p =>
           p.x == groupH[0] &&
           groupV[0] <= p.y &&
           p.y < groupV[groupV.length - 1]
       )
-      .find((p) => p.type === PieceType.obstacle || p.type === PieceType.piece)
+      .find(p => p.type === PieceType.obstacle || p.type === PieceType.piece)
   )
 }
 
@@ -62,46 +62,49 @@ const isVertical = (pieces, groupH, groupV) => {
     groupV.length === 1 &&
     !pieces
       .filter(
-        (p) =>
+        p =>
           p.y == groupV[0] &&
           groupH[0] <= p.x &&
           p.x < groupH[groupH.length - 1]
       )
-      .find((p) => p.type === PieceType.obstacle || p.type === PieceType.piece)
+      .find(p => p.type === PieceType.obstacle || p.type === PieceType.piece)
   )
 }
 
-export const evaluateSelection = (state) => {
+export const evaluateSelection = state => {
   const groupHorizontal = Object.keys(
     _.countBy(
-      _.filter(state.pieces, (o) => o.type === PieceType.selected),
-      (o) => o.x
+      _.filter(state.pieces, o => o.type === PieceType.selected),
+      o => o.x
     )
   )
 
   const groupVertical = Object.keys(
     _.countBy(
-      _.filter(state.pieces, (o) => o.type === PieceType.selected),
-      (o) => o.y
+      _.filter(state.pieces, o => o.type === PieceType.selected),
+      o => o.y
     )
   )
 
-  const pieces = state.pieces.map((p) =>
+  const pieces = state.pieces.map(p =>
     p.type === PieceType.selected ? { ...p, type: PieceType.empty } : p
   )
   const gameEnded =
-    state.pieces.filter((p) => p.type === PieceType.piece).length === 0
+    state.pieces.filter(p => p.type === PieceType.piece).length === 0
   const validSelection =
     isHorizontal(state.pieces, groupHorizontal, groupVertical) ||
     isVertical(state.pieces, groupHorizontal, groupVertical)
   const playerWon =
-    state.pieces.filter((p) => p.type === PieceType.piece).length === 1
+    state.pieces.filter(p => p.type === PieceType.piece).length === 1
 
+  const player2Plays =
+    state.phase === GamePhase.player2Turn ||
+    state.phase === GamePhase.computerTurn
   const result = [
     {
       st: {
         ...state,
-        pieces: state.pieces.map((p) =>
+        pieces: state.pieces.map(p =>
           p.type === PieceType.selected ? { ...p, type: PieceType.piece } : p
         ),
       },
@@ -110,7 +113,7 @@ export const evaluateSelection = (state) => {
     {
       st: { ...state, pieces, phase: GamePhase.player2Wins },
 
-      is: playerWon && state.phase === GamePhase.player2Turn,
+      is: playerWon && player2Plays,
     },
     {
       st: { ...state, pieces, phase: GamePhase.player1Wins },
@@ -131,9 +134,7 @@ export const evaluateSelection = (state) => {
         pieces: pieces,
         phase: GamePhase.player1Turn,
       },
-      is:
-        state.phase === GamePhase.computerTurn ||
-        state.phase === GamePhase.player2Turn,
+      is: player2Plays,
     },
     {
       st: {
@@ -143,5 +144,5 @@ export const evaluateSelection = (state) => {
     },
   ]
 
-  return result.find((r) => r.is === true)!.st
+  return result.find(r => r.is === true)!.st
 }

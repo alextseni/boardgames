@@ -20,19 +20,18 @@ export const Settings = ({
 
   const difficultyOptions = [{value: Difficulty.easy, label: 'Easy'}, {value: Difficulty.normal, label: 'Normal'}, {value: Difficulty.hard, label: 'Hard'}]
   const sizeOptions = [{value: BoardSize.small, label: '4x4'}, {value: BoardSize.medium, label: '5x5'}, {value: BoardSize.big, label: '6x6'}]
-  if (gamePhase === GamePhase.gameEnd) {
-    return null;
-  }
+
   return (
     <div className={'settings'}>
       {Boolean(hasSizeSetting) && <Dropdown
       label={'Board size'}
+      className={'customDropdown'}
       id={'board-size'}
         options={sizeOptions}
         selectedOption={sizeOptions.find(o => o.value === boardSize)!}
         onChange={(value: string) => {
           dispatch(changeBoard(value))
-          dispatch(initializeBoard(value))
+          gamePhase !== GamePhase.gameEnd && dispatch(initializeBoard(value))
         }}
       />}
       {Boolean(hasDifficultySetting) && 
@@ -43,7 +42,7 @@ export const Settings = ({
         options={difficultyOptions}
         onChange={(value: string) => {
           dispatch(changeDifficulty(value))
-          dispatch(initializeBoard(boardSize))
+          gamePhase !== GamePhase.gameEnd && dispatch(initializeBoard(boardSize))
         }}
       />
 }

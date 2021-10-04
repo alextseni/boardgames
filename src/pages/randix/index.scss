@@ -17,3 +17,10 @@ img {
 a {
   color: rgb(53, 53, 53);
 }
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}

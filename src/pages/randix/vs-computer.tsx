@@ -4,13 +4,16 @@ import { Buttons } from '../../components/Buttons/Buttons';
 import { GameInfo } from '../../components/GameInfo/GameInfo';
 import {Layout} from '../../components/Layout/Layout';
 import { Settings } from '../../components/Settings/Settings';
+import './index.scss'
 
 const Computer = () => (
   <Layout>
+    <div className={'wrapper'}>
   <Settings  hasDifficultySetting hasSizeSetting />
-  <GameInfo />
-  <Board />
   <Buttons />
+  </div>
+  <GameInfo vsComp/>
+  <Board />
   </Layout>
 );
 

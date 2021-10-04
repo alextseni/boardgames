@@ -12,9 +12,10 @@ interface DropdownProps {
     id: string;
     onChange: (value: Option['value']) => void
     selectedOption: Option;
+    className?: string;
 }
 
-export const Dropdown = ({label, id, options, onChange, selectedOption}: DropdownProps) => {
+export const Dropdown = ({label, id, options, onChange, selectedOption, className = ''}: DropdownProps) => {
     const [isOpen, setOpen] = useState(false);
 
     const dropdownId = `dropdown-${id}`;
@@ -32,7 +33,7 @@ export const Dropdown = ({label, id, options, onChange, selectedOption}: Dropdow
 
     return (
     <>
-          <div className={`dropdown-container ${isOpen ? 'dropdown-open' : ''}`} id={dropdownId}>
+          <div className={`dropdown-container ${isOpen ? 'dropdown-open' : ''} ${className}`} id={dropdownId}>
             <div className="dropdown-toggle" onClick={() => setOpen(!isOpen)}>
               <div>{label}</div><div>{selectedOption.label}</div>
             </div>
