@@ -1,8 +1,10 @@
+import { GameState } from '../state/reducers/game'
 import { GamePhase, PieceType } from './enum'
+import { Piece } from './types'
 
 var _ = require('lodash')
 
-export const createBoard = (randomValues, size) => {
+export const createBoard = (randomValues: number[], size: number) => {
   let pieces = []
   for (let i = 0, z = 0; i < size; i++) {
     for (let j = 0; j < size; j++) {
@@ -19,20 +21,23 @@ export const createBoard = (randomValues, size) => {
   return { pieces: pieces, initialMarbles: initialMarbles }
 }
 
-export const updateSelectionState = (pieces, payload) => {
+export const updateSelectionState = (
+  pieces: Piece[],
+  payload: { cell?: number; aiMove?: any }
+) => {
   let p = pieces.slice()
 
   if (payload.cell !== undefined) {
-    p = p.map((p, key) =>
+    p = p.map((p, key: number) =>
       key == payload.cell ? { ...p, type: PieceType.selected } : p
     )
   }
 
   if (payload.aiMove) {
     for (let i = 0; i < payload.aiMove.length; i++) {
-      p = p.map(p =>
-        p.x == payload.aiMove[i][0] &&
-        p.y == payload.aiMove[i][1] &&
+      p = p.map((p: Piece) =>
+        p.x == payload.aiMove![i][0] &&
+        p.y == payload.aiMove![i][1] &&
         p.type == PieceType.piece
           ? { ...p, type: PieceType.selected }
           : p
@@ -43,46 +48,46 @@ export const updateSelectionState = (pieces, payload) => {
   return p
 }
 
-const isHorizontal = (pieces, groupH, groupV) => {
+const isHorizontal = (pieces: Piece[], groupH: string[], groupV: string[]) => {
   return (
     groupH.length === 1 &&
     !pieces
       .filter(
         p =>
-          p.x == groupH[0] &&
-          groupV[0] <= p.y &&
-          p.y < groupV[groupV.length - 1]
+          p.x.toString() === groupH[0] &&
+          groupV[0] <= p.y.toString() &&
+          p.y.toString() < groupV[groupV.length - 1]
       )
       .find(p => p.type === PieceType.obstacle || p.type === PieceType.piece)
   )
 }
 
-const isVertical = (pieces, groupH, groupV) => {
+const isVertical = (pieces: Piece[], groupH: string[], groupV: string[]) => {
   return (
     groupV.length === 1 &&
     !pieces
       .filter(
         p =>
-          p.y == groupV[0] &&
-          groupH[0] <= p.x &&
-          p.x < groupH[groupH.length - 1]
+          p.y.toString() === groupV[0] &&
+          groupH[0] <= p.x.toString() &&
+          p.x.toString() < groupH[groupH.length - 1]
       )
       .find(p => p.type === PieceType.obstacle || p.type === PieceType.piece)
   )
 }
 
-export const evaluateSelection = state => {
+export const evaluateSelection = (state: GameState) => {
   const groupHorizontal = Object.keys(
     _.countBy(
-      _.filter(state.pieces, o => o.type === PieceType.selected),
-      o => o.x
+      _.filter(state.pieces, (o: Piece) => o.type === PieceType.selected),
+      (o: Piece) => o.x
     )
   )
 
   const groupVertical = Object.keys(
     _.countBy(
-      _.filter(state.pieces, o => o.type === PieceType.selected),
-      o => o.y
+      _.filter(state.pieces, (o: Piece) => o.type === PieceType.selected),
+      (o: Piece) => o.y
     )
   )
 

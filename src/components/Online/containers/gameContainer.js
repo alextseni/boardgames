@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
-import { Game as DGame } from '../components/Game';
+import { connect } from 'react-redux'
+import { Game as DGame } from '../components/Game'
 //import { changeTheme } from 'modules/view';
 
 /*  This is a container component. Notice it does not contain any JSX,
@@ -9,12 +9,11 @@ import { Game as DGame } from '../components/Game';
 /*  Object of action creators (can also be function that returns object).
     Keys will be passed as props to presentational components. */
 
-const mapStateToProps = (state) => ({
-//  view: state.view,
-});
+const mapStateToProps = state => ({
+  //  view: state.view,
+})
 
-const mapActionCreators = {
-};
+const mapActionCreators = {}
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors.
     Selectors can compute derived data, allowing Redux to store the minimal possible state.
@@ -22,4 +21,4 @@ const mapActionCreators = {
     Selectors are composable. They can be used as input to other selectors.
     https://github.com/reactjs/reselect    */
 
-export const Game = connect(mapStateToProps, mapActionCreators)(DGame);
+export const Game = connect(mapStateToProps, mapActionCreators)(DGame)

@@ -5,9 +5,9 @@ changeThemre: any;
 }
 export const View = ({ view, changeTheme }: ViewProps) => (
 
-<label className="switch">
-  <input type="checkbox" />
-  <span className="slider round" />
+<label className='switch'>
+  <input type='checkbox' />
+  <span className='slider round' />
 </label>
 
 );

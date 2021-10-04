@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Dropdown } from '../../library/Dropdown'
 import { BoardSize, Difficulty, GamePhase } from '../../model/enum'
 import { changeBoard, changeDifficulty, initializeBoard } from '../../state/actions/game'
+import { State } from '../../state/createStore'
 import './Settings.scss'
 
 interface SettingsProps {
@@ -11,11 +12,11 @@ interface SettingsProps {
 }
 export const Settings = ({
   hasDifficultySetting,
-  hasSizeSetting
+  hasSizeSetting,
 }: SettingsProps) => {
-  const boardSize = useSelector((state) => state.game.options.size)
-  const boardMode = useSelector((state) => state.game.options.difficulty)
-  const gamePhase = useSelector((state) => state.game.phase)
+  const boardSize = useSelector((state: State) => state.game.options.size)
+  const boardMode = useSelector((state: State) => state.game.options.difficulty)
+  const gamePhase = useSelector((state: State)  => state.game.phase)
   const dispatch = useDispatch();
 
   const difficultyOptions = [{value: Difficulty.easy, label: 'Easy'}, {value: Difficulty.normal, label: 'Normal'}, {value: Difficulty.hard, label: 'Hard'}]
@@ -30,18 +31,18 @@ export const Settings = ({
         options={sizeOptions}
         selectedOption={sizeOptions.find(o => o.value === boardSize)!}
         onChange={(value: string) => {
-          dispatch(changeBoard(value))
+          dispatch(changeBoard(value as BoardSize))
           gamePhase !== GamePhase.gameEnd && dispatch(initializeBoard(value))
         }}
       />}
-      {Boolean(hasDifficultySetting) && 
+      {Boolean(hasDifficultySetting) &&
       <Dropdown
       label={'Difficulty'}
       id={'difficulty'}
       selectedOption={difficultyOptions.find(o => o.value === boardMode)!}
         options={difficultyOptions}
         onChange={(value: string) => {
-          dispatch(changeDifficulty(value))
+          dispatch(changeDifficulty(value as Difficulty))
           gamePhase !== GamePhase.gameEnd && dispatch(initializeBoard(boardSize))
         }}
       />

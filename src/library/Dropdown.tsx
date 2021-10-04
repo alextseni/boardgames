@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import './Dropdown.scss'
 
 type Option = {
-    value: string, label: string
+    value: string, label: string,
 }
 
 interface DropdownProps {
@@ -34,10 +34,10 @@ export const Dropdown = ({label, id, options, onChange, selectedOption, classNam
     return (
     <>
           <div className={`dropdown-container ${isOpen ? 'dropdown-open' : ''} ${className}`} id={dropdownId}>
-            <div className="dropdown-toggle" onClick={() => setOpen(!isOpen)}>
+            <div className='dropdown-toggle' onClick={() => setOpen(!isOpen)}>
               <div>{label}</div><div>{selectedOption.label}</div>
             </div>
-            <div className={`dropdown-menu`} onBlur={() => setOpen(false)}>
+            <div className={'dropdown-menu'} onBlur={() => setOpen(false)}>
               <ul className={'dropdown-menu-content'}>
               {options.map((option: Option) => <li key={option.value} onClick={() => {
                   onChange(option.value)

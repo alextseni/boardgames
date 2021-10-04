@@ -12,7 +12,7 @@ export function initializeBoard(boardSize: string) {
   const size = parseInt(boardSize)
   const randomBoard = new Array(size * size)
     .fill(0, 0, size * size)
-    .map((n) => Math.random())
+    .map(n => Math.random())
   const boardContent = createBoard(randomBoard, size)
 
   const players = [GamePhase.player1Turn, GamePhase.player2Turn]
@@ -34,7 +34,7 @@ export function clearBoard() {
   }
 }
 
-export function markPiece(cell) {
+export function markPiece(cell: number) {
   return {
     type: PLAYER_STATE,
     payload: { cell },

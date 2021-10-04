@@ -11,6 +11,3 @@ AI built for VS Computer mode makes use of the minimax algorithm (enchanced with
 You can read more about the original game (now in the public domain) [**here.**](https://en.wikipedia.org/wiki/TacTix)
 
 Try out Randix [**here.**](https://atseniklidou.github.io/Randix-Game/)
-
-
-

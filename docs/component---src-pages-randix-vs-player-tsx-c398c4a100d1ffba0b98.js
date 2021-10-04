@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{DReS:function(e,a,t){"use strict";t.r(a);var n=t("q1tI"),l=t.n(n),r=t("jj42"),c=t("XdKK"),s=t("dWbV"),u=t("4XLq"),d=t("+dU1");t("m0Bk");a.default=function(){return l.a.createElement(u.a,null,l.a.createElement("div",{className:"wrapper"},l.a.createElement(d.a,{hasSizeSetting:!0}),l.a.createElement(c.a,null)),l.a.createElement(s.a,null),l.a.createElement(r.a,{handleBothPlayers:!0}))}}}]);
+//# sourceMappingURL=component---src-pages-randix-vs-player-tsx-c398c4a100d1ffba0b98.js.map

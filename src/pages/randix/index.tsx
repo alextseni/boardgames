@@ -15,10 +15,10 @@ const HomePage = () => (
     <h2>History</h2>
     <p>Randix is a variation of the popular computational game TacTix played in a NxN board. In this variation however,
     pieces are placed randomly on the board. There are also obstacles blocking the path preventing players from cutting a whole row or column.
-    You can read more about the original game <a href='https://en.wikipedia.org/wiki/TacTix' target="_blank"><strong> here</strong></a>.</p>
+    You can read more about the original game <a href='https://en.wikipedia.org/wiki/TacTix' target='_blank'><strong> here</strong></a>.</p>
     <div className={'divider'} />
     <h2>About</h2>
-    <p>Created by Alexandra Tseniklidou | 2016</p>
+    <p>Created by Alexandra Tseniklidou | 2016, rewritten on 2021</p>
     <p>Built with: Gatsby, Typescript, React, Redux</p>
     <p>Sountrack: "Wallpaper" by Kevin MacLeod</p>
   </Layout>

@@ -7,7 +7,7 @@ import Soundtrack from '../../assets/Wallpaper.mp3'
 export const Header = () => {
   const [isMuted, mute] = useState(true);
 
-  const path = document.location.pathname;
+  const path = typeof window !== 'undefined' ? window.location.pathname : ''
   return (
     <div className={'top'}>
       <div className={'header'}>
@@ -23,12 +23,12 @@ export const Header = () => {
       <div className={'nav'}>
         {[{link: '/randix', label: 'Home'},
         {link: '/randix/vs-player', label: 'vs Player'},
-        {link: '/randix/vs-computer', label: 'vs Cp'} ].map(route => 
+        {link: '/randix/vs-computer', label: 'vs Cp'} ].map(route =>
         <Link
         key={route.link}
           className={`tab ${path === route.link || path === route.link + '/' ? 'active' : 'disabled'}`}
           to={route.link}>{route.label}
-        </Link>
+        </Link>,
         )}
       </div>
    </div>
