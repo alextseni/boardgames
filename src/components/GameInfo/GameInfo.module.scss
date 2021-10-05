@@ -1,0 +1,19 @@
+.gameInfo {
+  position: absolute;
+  right: 0;
+}
+
+.playerInfo {
+  font-family: cursive;
+  text-align: center;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  padding: 8px;
+}
+.p1 {
+    background-color: #E55B3C;
+}
+
+.p2 {
+    background-color: #6495ED;
+}
