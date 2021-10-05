@@ -1,4 +1,4 @@
-import { Games } from './enum'
+import { Games } from './enum';
 
 export const config = {
   [Games.randix]: {
@@ -9,4 +9,4 @@ export const config = {
       { route: '/randix/vs-computer/', label: 'vs Cp' },
     ],
   },
-}
+};

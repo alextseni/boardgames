@@ -1,6 +1,6 @@
 {
   "defaultSeverity": "error",
-  "extends": ["tslint:recommended"],
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
   "jsRules": {},
   "linterOptions": {
     "exclude": ["**/*.d.ts", "src/migration/*"]
@@ -22,19 +22,31 @@
     "no-var-requires": false,
     "object-literal-sort-keys": false,
     "one-variable-per-declaration": false,
-    "ordered-imports": false,
+    "ordered-imports": true,
     "object-literal-key-quotes": [true, "as-needed"],
     "quotemark": [true, "single", "avoid-escape", "avoid-template"],
+    "no-duplicate-imports": [true, { "allow-namespace-imports": true }],
     "trailing-comma": [
       true,
       {
-        "multiline": "always",
+        "multiline": {
+          "objects": "always",
+          "functions": "never",
+          "typeLiterals": "ignore"
+        },
         "singleline": "never"
       }
     ],
+    "semicolon": [true, "always"],
+    "no-magic-numbers": true,
+    "only-arrow-functions": true,
+    "no-console": [true, "log"],
+    "arrow-return-shorthand": [true, "multiline"],
+    "no-var-keyword": true,
+    "triple-equals": true,
+    "prefer-const": true,
     "typedef": [
       true,
-      "array-destructuring",
       "call-signature",
       "member-variable-declaration",
       "parameter",

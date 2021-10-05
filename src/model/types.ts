@@ -1,7 +1,7 @@
-import { PieceType } from './enum'
+import { PieceType } from './enum';
 
 export type Piece = {
-  x: number
-  y: number
-  type: PieceType
-}
+  x: number;
+  y: number;
+  type: PieceType;
+};

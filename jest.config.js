@@ -18,4 +18,4 @@ module.exports = {
   coverageDirectory: 'coverage',
   preset: 'ts-jest',
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
-}
+};
