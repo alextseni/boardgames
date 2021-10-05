@@ -26,8 +26,6 @@ export const Buttons = () => {
     dispatch(clearBoard());
   };
 
-  console.log('styless', styles)
-
   return (
     <div>
       <audio id='buttonSound' src={ButtonSound} />
