@@ -1,3 +1,6 @@
+export enum Games {
+  randix = 'randix',
+}
 export enum GamePhase {
   player1Turn = 'pl1_turn',
   player2Turn = 'pl2_turn',
@@ -9,7 +12,7 @@ export enum GamePhase {
   player1Wins = 'pl1_wins',
 
   gameEnd = 'game_end',
-  gamestart = 'game_start',
+  gameStart = 'game_start',
 }
 
 export enum PieceType {

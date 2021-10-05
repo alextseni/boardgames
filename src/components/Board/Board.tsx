@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './Board.scss';
+import styles from './Board.module.scss';
 import GameVideo from '../../assets/playthrough.gif';
 import Click from '../../assets/click.mp3';
 import Victory from '../../assets/win.mp3';
@@ -50,26 +50,26 @@ export const Board = ({ handleBothPlayers }: BoardProps) => {
   };
 
   const css = (type: PieceType): string => ({
-    [PieceType.obstacle]: 'obstacle',
-    [PieceType.empty]: 'empty',
-    [PieceType.piece]: 'piece',
-    [PieceType.selected]: gamePhase === GamePhase.player1Turn ? 'selectedPlayer1' : 'selectedPlayer2',
+    [PieceType.obstacle]: styles.obstacle,
+    [PieceType.empty]: styles.empty,
+    [PieceType.piece]: styles.piece,
+    [PieceType.selected]: gamePhase === GamePhase.player1Turn ? styles.selectedPlayer1 : styles.selectedPlayer2,
   })[type]
 
   return (
-    <div className={'stage'}>
+    <div className={styles.stage}>
       <audio id='clickSound' src={Click} />
       <audio id='winSound' src={Victory} />
       {gamePhase === GamePhase.gameEnd ?
-      <img className={'tutorial'} alt='Game Tutorial' src={GameVideo} />
-      : <table className={'board'}
+      <img className={styles.tutorial} alt='Game Tutorial' src={GameVideo} />
+      : <table className={styles.board}
         onMouseUp={() => clearSelection()}
         onTouchEnd = {() => clearSelection()} >
         <tbody>
           {boardPieces.slice(0, boardSize).map((p, row) => (
             <tr>
               {boardPieces.slice(row * boardSize, row * boardSize + boardSize).map((piece, cell) => (
-                <td className={`block ${css(piece.type)}`} key={cell} id={piece.type + cell}
+                <td className={`${styles.block} ${css(piece.type)}`} key={cell} id={piece.type + cell}
                   onMouseDown={ev => onLeftClick(ev, piece, row, cell)}
                   onTouchStart={ev => onLeftClick(ev, piece, row, cell)}
                   onMouseOver={() =>onDrag(piece, row, cell)}

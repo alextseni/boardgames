@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { useEffect } from 'react';
-import './Dropdown.scss'
+import styles from './Dropdown.module.scss'
 
 type Option = {
     value: string, label: string,
@@ -33,16 +33,16 @@ export const Dropdown = ({label, id, options, onChange, selectedOption, classNam
 
     return (
     <>
-          <div className={`dropdown-container ${isOpen ? 'dropdown-open' : ''} ${className}`} id={dropdownId}>
-            <div className='dropdown-toggle' onClick={() => setOpen(!isOpen)}>
+          <div className={`${styles.dropdownContainer} ${isOpen ? styles.dropdownOpen : ''} ${className}`} id={dropdownId}>
+            <div className={styles.dropdownToggle} onClick={() => setOpen(!isOpen)}>
               <div>{label}</div><div>{selectedOption.label}</div>
             </div>
-            <div className={'dropdown-menu'} onBlur={() => setOpen(false)}>
-              <ul className={'dropdown-menu-content'}>
+            <div className={styles.dropdownMenu} onBlur={() => setOpen(false)}>
+              <ul className={styles.dropdownMenuContent}>
               {options.map((option: Option) => <li key={option.value} onClick={() => {
                   onChange(option.value)
                   setOpen(false);
-                  }} className={'dropdown-menu-item'} value={option.value}>{option.label}</li>)}
+                  }} className={styles.dropdownMenuItem} value={option.value}>{option.label}</li>)}
               </ul>
             </div>
           </div>

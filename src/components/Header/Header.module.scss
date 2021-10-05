@@ -41,12 +41,8 @@
   align-items: center;
   border: 1px solid grey;
   border-left: 0;
-  color: rgb(14, 14, 14);
   text-align: center;
   text-decoration: none;
-}
-
-.tab.disabled {
   color: #6d6d6d;
   background-color: #eaeaea;
   opacity: 0.6;
@@ -54,6 +50,9 @@
 
 .tab.active {
   border-bottom: 1px solid transparent;
+  color: rgb(14, 14, 14);
+  background-color: transparent;
+  opacity: 1;
 }
 
 .tab:last-child {

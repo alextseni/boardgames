@@ -1,5 +1,5 @@
 import React from 'react'
-import  './Button.scss';
+import styles from "./Button.module.scss"
 
 interface ButtonProps {
     label: string;
@@ -7,9 +7,8 @@ interface ButtonProps {
     onClick: () => void;
     className?: string;
 }
-
-export const Button = ({label, id, onClick, className}: ButtonProps) => (
-    <div className={`button ${className}`} onClick={onClick}>
+export const Button = ({label, id, onClick, className = ''}: ButtonProps) => (
+    <div className={`${styles.button} ${className}`} onClick={onClick}>
           <span />
           <span />
           <span />

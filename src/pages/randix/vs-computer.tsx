@@ -4,15 +4,16 @@ import { Buttons } from '../../components/Buttons/Buttons';
 import { GameInfo } from '../../components/GameInfo/GameInfo';
 import {Layout} from '../../components/Layout/Layout';
 import { Settings } from '../../components/Settings/Settings';
-import './index.scss'
+import { Games } from '../../model/enum';
+import styles from '../page.module.scss'
 
 const Computer = () => (
-  <Layout>
-    <div className={'wrapper'}>
+  <Layout game={Games.randix}>
+    <div className={styles.wrapper}>
   <Settings  hasDifficultySetting hasSizeSetting />
   <Buttons />
   </div>
-  <GameInfo vsComp/>
+  <GameInfo vsComp  />
   <Board />
   </Layout>
 );

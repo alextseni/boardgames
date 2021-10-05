@@ -7,7 +7,7 @@ export const botTurn = (store: any) => {
   if (game) {
     if (
       game.phase === GamePhase.player2Turn &&
-      window.location.pathname.includes('vs-computer')
+      window.location.pathname.includes('vs-computer') // TODO: remove this check
     ) {
       const aiMove = playAI(
         game.pieces,

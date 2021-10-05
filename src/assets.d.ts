@@ -12,3 +12,8 @@ declare module '*.mp3' {
   const value: any
   export = value
 }
+
+declare module '*.scss' {
+  const value: any
+  export = value
+}

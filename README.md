@@ -1,13 +1,25 @@
-# Randix - Board Game
+# Board games
 
-This is an experimental site used for game development and training purposes.
+This is an experimental site hosting board games developed using web technologies.
 
-The game created for this site is Randix, a variation of the computational game TacTix played in a NxN board.
+> <b>Built with</b>: Gatsby, Typescript, React, Redux, Sass, Jest, RTL
 
-Built with: Typescript, React, Redux
+&nbsp;
 
-AI built for VS Computer mode makes use of the minimax algorithm (enchanced with Alpha-Beta pruning).
+## Board games implemented
 
-You can read more about the original game (now in the public domain) [**here.**](https://en.wikipedia.org/wiki/TacTix)
+Game | Players | AI mode | online | play_at  | info
+:--- |   :---:       |     :---     |    :---: | :-----: |  :--- |
+Randix  | 2   | minimax algo with alpha-beta pruning  | N/A  |  [**link**](https://atseniklidou.github.io/boardgames/randix)  | [**wiki**](https://en.wikipedia.org/wiki/TacTix), variation of TacTix played in a randomized NxN board
 
-Try out Randix [**here.**](https://atseniklidou.github.io/Randix-Game/)
+&nbsp;
+
+## For development
+
+1. Clone repo and install dependencies: `yarn install`
+
+2. Run with `yarn start`
+
+3. View at `localhost:8000`
+
+4. Build production version `yarn build`

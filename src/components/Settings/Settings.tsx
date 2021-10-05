@@ -4,7 +4,7 @@ import { Dropdown } from '../../library/Dropdown'
 import { BoardSize, Difficulty, GamePhase } from '../../model/enum'
 import { changeBoard, changeDifficulty, initializeBoard } from '../../state/actions/game'
 import { State } from '../../state/createStore'
-import './Settings.scss'
+import styles from './Settings.module.scss'
 
 interface SettingsProps {
   hasDifficultySetting?: boolean;
@@ -23,10 +23,10 @@ export const Settings = ({
   const sizeOptions = [{value: BoardSize.small, label: '4x4'}, {value: BoardSize.medium, label: '5x5'}, {value: BoardSize.big, label: '6x6'}]
 
   return (
-    <div className={'settings'}>
+    <div className={styles.settings}>
       {Boolean(hasSizeSetting) && <Dropdown
       label={'Board size'}
-      className={'customDropdown'}
+      className={styles.customDropdown}
       id={'board-size'}
         options={sizeOptions}
         selectedOption={sizeOptions.find(o => o.value === boardSize)!}

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { GamePhase } from '../../model/enum';
 import { State } from '../../state/createStore';
-import  './GameInfo.scss';
+import styles from './GameInfo.module.scss';
 
 interface GameInfoProps {
   vsComp?: boolean;
@@ -20,9 +20,9 @@ export const GameInfo = ({vsComp}: GameInfoProps) => {
 
   const player1Active =  gamePhase === GamePhase.player1Turn || gamePhase === GamePhase.player1Wins
   return (
-    <div className={'gameInfo'}>
+    <div className={styles.gameInfo}>
       {gamePhase !== GamePhase.gameEnd &&
-      <div className={`playerInfo ${player1Active ? 'p1' : 'p2'}`} id={'game-info'}>
+      <div className={`${styles.playerInfo} ${player1Active ? styles.p1 : styles.p2}`} id={'game-info'}>
         {statusText}
       </div>}
     </div>

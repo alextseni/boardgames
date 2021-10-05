@@ -1,12 +1,16 @@
 // Minimax (+Alpha-Beta) Implementation
 
 import { BoardSize, Difficulty, PieceType } from './enum'
-import { Piece } from './types'
 
 let _ = require('lodash')
 
+type MovesState = {
+  movesPattern: string
+  depth: number
+  score: number | null
+}
 const maxScore = 100000
-let previousStatesMoves = []
+let previousStatesMoves: MovesState[] = []
 let firstMove = true
 
 export const playAI = (brd, boardSize: BoardSize, difficulty: Difficulty) => {
@@ -76,7 +80,7 @@ function maximizePlay(
   let max = [null, -99999]
 
   let alreadyCalculated = previousStatesMoves.find(
-    (p) =>
+    p =>
       _.isEqual(p.movesPattern, _.countBy(possibleMoves, 'length')) &&
       p.depth === depth
   )
@@ -126,7 +130,7 @@ function minimizePlay(
   //  console.log(possibleMoves);
   //console.log(depth);
   let alreadyCalculated = previousStatesMoves.find(
-    (p) =>
+    p =>
       _.isEqual(p.movesPattern, _.countBy(possibleMoves, 'length')) &&
       p.depth === depth
   )
@@ -232,7 +236,7 @@ function calcScore(board: PieceType[][]) {
 }
 
 // create board after move
-function copyBoard(board: Piece[], move) {
+function copyBoard(board: PieceType[][], move) {
   let newBoard = JSON.parse(JSON.stringify(board))
   for (let i = 0; i < move.length; i++) {
     newBoard[move[i][0]][move[i][1]] = PieceType.empty

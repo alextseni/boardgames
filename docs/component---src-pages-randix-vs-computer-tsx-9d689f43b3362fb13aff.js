@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{CmWU:function(e,a,t){"use strict";t.r(a);var n=t("q1tI"),l=t.n(n),c=t("jj42"),r=t("XdKK"),i=t("dWbV"),m=t("4XLq"),s=t("+dU1");t("m0Bk");a.default=function(){return l.a.createElement(m.a,null,l.a.createElement("div",{className:"wrapper"},l.a.createElement(s.a,{hasDifficultySetting:!0,hasSizeSetting:!0}),l.a.createElement(r.a,null)),l.a.createElement(i.a,{vsComp:!0}),l.a.createElement(c.a,null))}}}]);
-//# sourceMappingURL=component---src-pages-randix-vs-computer-tsx-9d689f43b3362fb13aff.js.map

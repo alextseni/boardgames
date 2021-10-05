@@ -1,11 +1,19 @@
+import { Link } from 'gatsby';
 import React from 'react';
-import {Layout} from '../components/Layout/Layout';
+import { config } from '../model/configs';
+import { Games } from '../model/enum';
+import styles from './page.module.scss'
 
 const NotFoundPage = () => (
-  <Layout>
-    <h1>NOT FOUND</h1>
+  <div className={styles.container}>
+    <h1>404 - NOT FOUND</h1>
     <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </Layout>
+    <h2>Pick one of these</h2>
+    <Link
+      className={styles.card}
+      to={config[Games.randix].routes[0].route}>{`Play ${config[Games.randix].title}`}
+    </Link>
+</div>
 );
 
 export default NotFoundPage;
