@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npm run lint && gatsby build --prefix-paths",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,scss}\"",
     "tslint": "tslint \"src/**/*.ts[x]\" --fix",
     "lint": "npm run format && npm run tslint",
     "start": "npm run develop",

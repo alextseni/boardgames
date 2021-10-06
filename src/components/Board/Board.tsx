@@ -67,6 +67,8 @@ export const Board = ({ handleBothPlayers }: BoardProps) => {
 
   return (
     <div className={styles.stage}>
+      <div className={styles.preloadImage1} />
+      <div className={styles.preloadImage2} />
       <audio id='clickSound' src={Click} />
       <audio id='winSound' src={Victory} />
       {gamePhase === GamePhase.gameEnd ? (

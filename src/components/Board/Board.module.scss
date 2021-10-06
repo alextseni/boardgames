@@ -1,36 +1,40 @@
-.stage{
+.preloadImage1 {
+  // trick to load images to avoid flickering on selection
+  background-image: url('../../assets/marble_p2.png');
+}
+.preloadImage2 {
+  background-image: url('../../assets/marble_p1.png');
+}
+
+.stage {
   margin: auto;
 }
 
 .board {
- margin: inherit;
- background-repeat: no-repeat;
- border-spacing: 0
+  margin: inherit;
+  background-repeat: no-repeat;
+  border-spacing: 0;
 }
 
 .block {
-    height: 96px;
-    width: 96px;
-    background-repeat: no-repeat;
-    background-position: center;
+  height: 96px;
+  width: 96px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .piece {
-  background-image: url('../../assets/marble_p1.png'); // trick to load these images to avoid flickering on selection
-  background-image: url('../../assets/marble_p2.png');
   background-image: url('../../assets/marble.png');
   cursor: pointer;
 }
-
 
 .obstacle {
   background-image: url('../../assets/stone.png');
 }
 
- .selectedPlayer1 {
+.selectedPlayer1 {
   background-image: url('../../assets/marble_p1.png');
   cursor: pointer;
-
 }
 
 .selectedPlayer2 {
@@ -39,7 +43,7 @@
 }
 
 .empty {
- background-image: url('../../assets/tile.png');
+  background-image: url('../../assets/tile.png');
 }
 
 .tutorial {
@@ -48,5 +52,5 @@
   margin: auto;
   display: block;
   padding: 10px;
-  background-color: #EDE275;
+  background-color: #ede275;
 }

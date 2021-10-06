@@ -1,15 +1,15 @@
 .button {
-    position: relative;
-    display: inline-block;
-    padding: 12px;
-    border-radius: 4px;
-    color: #001b1c;
-    overflow: hidden;
-    font-family: "Roboto", sans-serif;
-    filter: hue-rotate(0deg);
-    border: 2px solid #0e69d3;
-    transition: all 0.1s linear;
-    cursor: pointer;
+  position: relative;
+  display: inline-block;
+  padding: 12px;
+  border-radius: 4px;
+  color: #001b1c;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+  filter: hue-rotate(0deg);
+  border: 2px solid #0e69d3;
+  transition: all 0.1s linear;
+  cursor: pointer;
 
   &:hover {
     border: 1px solid transparent;
