@@ -1,16 +1,21 @@
+import _ from 'lodash';
 import { GameState } from '../state/reducers/game';
+import { PositionPair } from './ai';
 import { GamePhase, PieceType } from './enum';
 import { Piece } from './types';
 
-var _ = require('lodash');
-
-export const createBoard = (randomValues: number[], size: number) => {
-  let pieces = [];
+export const createBoard = (
+  randomValues: number[],
+  size: number
+): { pieces: Piece[]; initialMarbles: number } => {
+  const pieces = [];
+  const percentageOfPieces = 0.75;
+  const percentageOfObstacles = 0.9;
   for (let i = 0, z = 0; i < size; i++) {
     for (let j = 0; j < size; j++) {
-      randomValues[z] <= 0.75
+      randomValues[z] <= percentageOfPieces
         ? (pieces[z] = { x: i, y: j, type: PieceType.piece })
-        : randomValues[z] <= 0.9
+        : randomValues[z] <= percentageOfObstacles
         ? (pieces[z] = { x: i, y: j, type: PieceType.obstacle })
         : (pieces[z] = { x: i, y: j, type: PieceType.empty });
       z++;
@@ -18,63 +23,52 @@ export const createBoard = (randomValues: number[], size: number) => {
   }
 
   const initialMarbles = pieces.filter(p => p.type === PieceType.piece).length;
-  return { pieces: pieces, initialMarbles: initialMarbles };
+  return { pieces, initialMarbles };
 };
 
 export const updateSelectionState = (
   pieces: Piece[],
-  payload: { cell?: number; aiMove?: any }
+  payload: { cell?: number; aiMove?: [PositionPair] }
 ) => {
-  let p = pieces.slice();
-
-  if (payload.cell !== undefined) {
-    p = p.map((p, key: number) =>
-      key == payload.cell ? { ...p, type: PieceType.selected } : p
+  if (payload.aiMove) {
+    return pieces.map((piece: Piece) =>
+      payload.aiMove!.find(
+        (pair: PositionPair) =>
+          pair[0] === piece.x &&
+          pair[1] === piece.y &&
+          piece.type === PieceType.piece
+      )
+        ? { ...piece, type: PieceType.selected }
+        : piece
     );
   }
 
-  if (payload.aiMove) {
-    for (let i = 0; i < payload.aiMove.length; i++) {
-      p = p.map((p: Piece) =>
-        p.x == payload.aiMove![i][0] &&
-        p.y == payload.aiMove![i][1] &&
-        p.type == PieceType.piece
-          ? { ...p, type: PieceType.selected }
-          : p
-      );
-    }
-  }
-
-  return p;
-};
-
-const isHorizontal = (pieces: Piece[], groupH: string[], groupV: string[]) => {
-  return (
-    groupH.length === 1 &&
-    !pieces
-      .filter(
-        p =>
-          p.x.toString() === groupH[0] &&
-          groupV[0] <= p.y.toString() &&
-          p.y.toString() < groupV[groupV.length - 1]
-      )
-      .find(p => p.type === PieceType.obstacle || p.type === PieceType.piece)
+  return pieces.map((piece: Piece, key: number) =>
+    key === payload.cell ? { ...piece, type: PieceType.selected } : piece
   );
 };
 
-const isVertical = (pieces: Piece[], groupH: string[], groupV: string[]) => {
-  return (
-    groupV.length === 1 &&
-    !pieces
-      .filter(
-        p =>
-          p.y.toString() === groupV[0] &&
-          groupH[0] <= p.x.toString() &&
-          p.x.toString() < groupH[groupH.length - 1]
-      )
-      .find(p => p.type === PieceType.obstacle || p.type === PieceType.piece)
-  );
-};
+const isHorizontal = (pieces: Piece[], groupH: string[], groupV: string[]) =>
+  groupH.length === 1 &&
+  !pieces
+    .filter(
+      p =>
+        p.x.toString() === groupH[0] &&
+        groupV[0] <= p.y.toString() &&
+        p.y.toString() < groupV[groupV.length - 1]
+    )
+    .find(p => p.type === PieceType.obstacle || p.type === PieceType.piece);
+
+const isVertical = (pieces: Piece[], groupH: string[], groupV: string[]) =>
+  groupV.length === 1 &&
+  !pieces
+    .filter(
+      p =>
+        p.y.toString() === groupV[0] &&
+        groupH[0] <= p.x.toString() &&
+        p.x.toString() < groupH[groupH.length - 1]
+    )
+    .find(p => p.type === PieceType.obstacle || p.type === PieceType.piece);
 
 export const evaluateSelection = (state: GameState) => {
   const groupHorizontal = Object.keys(
@@ -128,7 +122,7 @@ export const evaluateSelection = (state: GameState) => {
     {
       st: {
         ...state,
-        pieces: pieces,
+        pieces,
         phase: GamePhase.player2Turn,
       },
       is: state.phase === GamePhase.player1Turn,
@@ -136,7 +130,7 @@ export const evaluateSelection = (state: GameState) => {
     {
       st: {
         ...state,
-        pieces: pieces,
+        pieces,
         phase: GamePhase.player1Turn,
       },
       is: player2Plays,

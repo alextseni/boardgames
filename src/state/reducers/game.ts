@@ -1,3 +1,6 @@
+import { BoardSize, Difficulty, GamePhase } from '../../model/enum';
+import { evaluateSelection, updateSelectionState } from '../../model/gameLogic';
+import { Piece } from '../../model/types';
 import {
   BOARD_STATE,
   COMP_STATE,
@@ -6,9 +9,6 @@ import {
   PLAYER_STATE,
   START_STATE,
 } from '../types/game';
-import { evaluateSelection, updateSelectionState } from '../../model/gameLogic';
-import { BoardSize, Difficulty, GamePhase } from '../../model/enum';
-import { Piece } from '../../model/types';
 
 export interface GameState {
   pieces: Piece[];

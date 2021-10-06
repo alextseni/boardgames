@@ -2,6 +2,7 @@ import { BOARD_STATE, COMP_STATE } from '../state/types/game';
 import { playAI } from './ai';
 import { GamePhase } from './enum';
 
+const delayToShowSelection = 1200;
 export const botTurn = (store: any) => {
   const game = store.getState().game;
   if (game) {
@@ -14,12 +15,16 @@ export const botTurn = (store: any) => {
         game.options.size,
         game.options.difficulty
       );
-      console.log('score: ' + aiMove?.[1]);
+      /* tslint:disable-next-line */
+      console.log('score: ' + aiMove.score);
       store.dispatch({
         type: COMP_STATE,
-        payload: { aiMove: aiMove?.[0] },
+        payload: { aiMove: aiMove.move },
       });
-      setTimeout(() => store.dispatch({ type: BOARD_STATE }), 1000);
+      setTimeout(
+        () => store.dispatch({ type: BOARD_STATE }),
+        delayToShowSelection
+      );
     }
   }
 };

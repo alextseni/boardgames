@@ -8,8 +8,8 @@ import {
   START_STATE,
 } from '../types/game';
 
-export function initializeBoard(boardSize: string) {
-  const size = parseInt(boardSize);
+export const initializeBoard = (boardSize: string) => {
+  const size = parseInt(boardSize, 10);
   const randomBoard = new Array(size * size)
     .fill(0, 0, size * size)
     .map(n => Math.random());
@@ -26,40 +26,30 @@ export function initializeBoard(boardSize: string) {
       allMarbles: boardContent.initialMarbles,
     },
   };
-}
+};
 
-export function clearBoard() {
-  return {
-    type: END_STATE,
-  };
-}
+export const clearBoard = () => ({
+  type: END_STATE,
+});
 
-export function markPiece(cell: number) {
-  return {
-    type: PLAYER_STATE,
-    payload: { cell },
-  };
-}
+export const markPiece = (cell: number) => ({
+  type: PLAYER_STATE,
+  payload: { cell },
+});
 
-export function changeBoard(choice: BoardSize) {
-  return {
-    type: OPTIONS_STATE,
-    payload: { size: choice },
-  };
-}
+export const changeBoard = (choice: BoardSize) => ({
+  type: OPTIONS_STATE,
+  payload: { size: choice },
+});
 
-export function changeDifficulty(choice: Difficulty) {
-  return {
-    type: OPTIONS_STATE,
-    payload: { difficulty: choice },
-  };
-}
+export const changeDifficulty = (choice: Difficulty) => ({
+  type: OPTIONS_STATE,
+  payload: { difficulty: choice },
+});
 
-export function removePieces() {
-  return {
-    type: BOARD_STATE,
-  };
-}
+export const removePieces = () => ({
+  type: BOARD_STATE,
+});
 
 export const actions = {
   initializeBoard,

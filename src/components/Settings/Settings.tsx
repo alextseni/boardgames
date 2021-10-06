@@ -62,7 +62,7 @@ export const Settings = ({
           onChange={(value: string) => {
             dispatch(changeDifficulty(value as Difficulty));
             if (gamePhase !== GamePhase.gameEnd) {
-              dispatch(initializeBoard(value));
+              dispatch(initializeBoard(boardSize));
             }
           }}
         />

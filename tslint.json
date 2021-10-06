@@ -8,6 +8,7 @@
   "include": ["./jest-setup.ts"],
   "nodePath": "./node_modules",
   "rules": {
+    "radix": true,
     "align": [true, "parameters", "statements"],
     "arrow-parens": [true, "ban-single-arg-parens"],
     "eofline": true,
@@ -19,7 +20,7 @@
     ],
     "no-any": false,
     "no-consecutive-blank-lines": true,
-    "no-var-requires": false,
+    "no-var-requires": true,
     "object-literal-sort-keys": false,
     "one-variable-per-declaration": false,
     "ordered-imports": true,
@@ -45,6 +46,7 @@
     "no-var-keyword": true,
     "triple-equals": true,
     "prefer-const": true,
+    "prefer-for-of": false,
     "typedef": [
       true,
       "call-signature",

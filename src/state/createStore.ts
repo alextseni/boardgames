@@ -1,11 +1,11 @@
+import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import combinedReducers from './reducers/root-reducer';
 import { load, save } from 'redux-localstorage-simple';
-import { createStore, applyMiddleware } from 'redux';
+import combinedReducers from './reducers/root-reducer';
 
-import { GameState } from './reducers/game';
 import { botTurn } from '../model/engine';
 import '../styles/core.scss';
+import { GameState } from './reducers/game';
 
 export interface State {
   game: GameState;
