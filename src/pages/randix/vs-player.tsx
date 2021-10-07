@@ -5,7 +5,7 @@ import { GameInfo } from '../../components/GameInfo/GameInfo';
 import { Layout } from '../../components/Layout/Layout';
 import { Settings } from '../../components/Settings/Settings';
 import { Games } from '../../model/enum';
-import styles from '../page.module.scss';
+import styles from '../Page.module.scss';
 
 const TwoPlayer = () => (
   <Layout game={Games.randix}>

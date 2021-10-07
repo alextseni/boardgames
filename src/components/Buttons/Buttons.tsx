@@ -32,13 +32,13 @@ export const Buttons = () => {
     <div>
       <audio id='buttonSound' src={ButtonSound} />
       {gamePhase !== GamePhase.gameEnd && (
-        <Button
-          className={styles.buttonQuit}
-          label={'Quit'}
-          onClick={guitGame}
-        />
+        <Button label={'Quit'} onClick={guitGame} />
       )}
-      <Button label={'New game'} onClick={newGame} />
+      <Button
+        label={'New game'}
+        className={styles.buttonNew}
+        onClick={newGame}
+      />
     </div>
   );
 };

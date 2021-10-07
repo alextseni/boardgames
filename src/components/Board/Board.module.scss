@@ -17,10 +17,12 @@
 }
 
 .block {
-  height: 96px;
+  height: auto;
   width: 96px;
+  padding-top: 20%;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
 }
 
 .piece {
@@ -48,9 +50,8 @@
 
 .tutorial {
   width: 500px;
-  height: 500px;
   margin: auto;
   display: block;
-  padding: 10px;
-  background-color: #ede275;
+  box-shadow: 0px 0px 0px 6px #ede275;
+  max-width: 100%;
 }

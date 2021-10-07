@@ -1,9 +1,10 @@
 .settings {
   display: block;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 36px;
   text-align: center;
   display: flex;
+  min-width: 60%;
 }
 
 .label {
@@ -14,5 +15,24 @@
 }
 
 .customDropdown {
+  margin: 0;
   margin-right: 16px;
+}
+
+@media (max-width: 720px) {
+  .settings {
+    width: 100%;
+  }
+  .customDropdown {
+    margin: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .settings {
+    flex-wrap: wrap;
+  }
+  .customDropdown {
+    margin-bottom: 20px;
+  }
 }

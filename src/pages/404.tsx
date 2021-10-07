@@ -2,7 +2,7 @@ import { Link } from 'gatsby';
 import React from 'react';
 import { config } from '../model/configs';
 import { Games } from '../model/enum';
-import styles from './page.module.scss';
+import styles from './Page.module.scss';
 
 const NotFoundPage = () => (
   <div className={styles.container}>

@@ -1,7 +1,8 @@
 .dropdown-container {
   margin: 0 auto;
   position: relative;
-  min-width: 220px;
+  max-width: 220px;
+  width: 100%;
 }
 
 .dropdown-toggle {
@@ -48,6 +49,11 @@
   overflow: hidden;
   border-radius: 10px;
   z-index: 10;
+}
+
+.dropdown-menu-label {
+  white-space: nowrap;
+  margin-right: 10px;
 }
 
 .dropdown-menu-item {

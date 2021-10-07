@@ -46,7 +46,7 @@ export const Dropdown = ({
         } ${className}`}
         id={dropdownId}>
         <div className={styles.dropdownToggle} onClick={() => setOpen(!isOpen)}>
-          <div>{label}</div>
+          <div className={styles.dropdownMenuLabel}>{label}</div>
           <div>{selectedOption.label}</div>
         </div>
         <div className={styles.dropdownMenu} onBlur={() => setOpen(false)}>

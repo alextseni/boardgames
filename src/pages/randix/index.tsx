@@ -3,7 +3,7 @@ import MarbleImage from '../../assets/marble_trans.png';
 import StoneImage from '../../assets/stone_trans.png';
 import { Layout } from '../../components/Layout/Layout';
 import { Games } from '../../model/enum';
-import styles from '../page.module.scss';
+import styles from '../Page.module.scss';
 
 const HomePage = () => (
   <Layout game={Games.randix}>

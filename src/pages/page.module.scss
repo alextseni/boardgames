@@ -49,3 +49,9 @@
   padding: 48px 24px;
   text-align: center;
 }
+
+@media (max-width: 720px) {
+  .wrapper {
+    justify-content: center;
+  }
+}

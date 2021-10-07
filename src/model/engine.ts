@@ -2,7 +2,7 @@ import { BOARD_STATE, COMP_STATE } from '../state/types/game';
 import { playAI } from './ai';
 import { GamePhase } from './enum';
 
-const delayToShowSelection = 1200;
+const delayToShowSelection = 1000;
 export const botTurn = (store: any) => {
   const game = store.getState().game;
   if (game) {

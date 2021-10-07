@@ -147,7 +147,7 @@ const calculateScore = (board: PieceType[][]): number => {
 };
 
 const calculateMoves = (board: PieceType[][]): [PositionPair[]] => {
-  const horizontalMoves: [PositionPair[]] = [] as any;
+  const horizontalMoves: PositionPair[][] = [];
   let hMove: PositionPair[] = [];
 
   for (let i = 0; i < board.length; i++) {
@@ -166,7 +166,7 @@ const calculateMoves = (board: PieceType[][]): [PositionPair[]] => {
   }
   if (hMove.length !== 0) horizontalMoves.push(hMove);
 
-  const verticalMoves: [PositionPair[]] = [] as any;
+  const verticalMoves: PositionPair[][] = [];
   let vMove: PositionPair[] = [];
 
   for (let j = 0; j < board.length; j++) {
@@ -186,7 +186,7 @@ const calculateMoves = (board: PieceType[][]): [PositionPair[]] => {
   if (vMove.length !== 0) verticalMoves.push(vMove);
 
   // moves with maximum pieces that can be removed with one drag horizontally or vertically
-  const allMoves: [PositionPair[]] = _.concat(horizontalMoves, verticalMoves);
+  const allMoves: PositionPair[][] = _.concat(horizontalMoves, verticalMoves);
 
   // all smaller combinations existing on each full move above (ex. 2 in a row = 1 left piece, 1 right piece, both)
   const allSubsetOfMoves = [] as any;
