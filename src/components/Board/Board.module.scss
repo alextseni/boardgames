@@ -19,10 +19,21 @@
 .block {
   height: auto;
   width: 96px;
-  padding-top: 20%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.blockSmall {
+  padding-top: 25%;
+}
+
+.blockNormal {
+  padding-top: 20%;
+}
+
+.blockBig {
+  padding-top: 16%;
 }
 
 .piece {

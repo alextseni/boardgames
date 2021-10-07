@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Click from '../../assets/click.mp3';
 import GameVideo from '../../assets/playthrough.gif';
 import Victory from '../../assets/win.mp3';
-import { GamePhase, PieceType } from '../../model/enum';
+import { BoardSize, GamePhase, PieceType } from '../../model/enum';
 import { Piece } from '../../model/types';
 import { markPiece, removePieces } from '../../state/actions/game';
 import { State } from '../../state/createStore';
@@ -65,6 +65,13 @@ export const Board = ({ handleBothPlayers }: BoardProps) => {
           : styles.selectedPlayer2,
     }[type]);
 
+  const cssSize = (size: number): string =>
+    ({
+      [BoardSize.small]: styles.blockSmall,
+      [BoardSize.medium]: styles.blockNormal,
+      [BoardSize.big]: styles.blockBig,
+    }[size]);
+
   return (
     <div className={styles.stage}>
       <div className={styles.preloadImage1} />
@@ -85,7 +92,9 @@ export const Board = ({ handleBothPlayers }: BoardProps) => {
                   .slice(row * boardSize, row * boardSize + boardSize)
                   .map((piece, cell) => (
                     <td
-                      className={`${styles.block} ${css(piece.type)}`}
+                      className={`${styles.block} ${css(piece.type)} ${cssSize(
+                        boardSize
+                      )}`}
                       key={cell}
                       id={piece.type + cell}
                       onMouseDown={ev => onLeftClick(ev, piece, row, cell)}
