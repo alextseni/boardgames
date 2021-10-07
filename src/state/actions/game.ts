@@ -1,5 +1,5 @@
 import { BoardSize, Difficulty, GamePhase } from '../../model/enum';
-import { createBoard } from '../../model/gameLogic';
+import { createBoard } from '../helpers';
 import {
   BOARD_STATE,
   END_STATE,

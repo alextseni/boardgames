@@ -9,12 +9,14 @@ import styles from '../Page.module.scss';
 
 const TwoPlayer = () => (
   <Layout game={Games.randix}>
-    <div className={styles.wrapper}>
+    <div className={styles.optionsWrapper}>
       <Settings hasSizeSetting />
       <Buttons />
     </div>
+    <div className={styles.boardWrapper}>
     <GameInfo />
     <Board handleBothPlayers />
+    </div>
   </Layout>
 );
 

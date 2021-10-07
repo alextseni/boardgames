@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Click from '../../assets/click.mp3';
 import GameVideo from '../../assets/playthrough.gif';
@@ -34,22 +34,34 @@ export const Board = ({ handleBothPlayers }: BoardProps) => {
     dispatch(removePieces());
   };
 
-  const onLeftClick = (ev: any, p: Piece, k: number, key: number) => {
+  const onPress = (ev: any, piece: Piece, row: number, cell: number) => {
     if (handleBothPlayers || gamePhase === GamePhase.player1Turn) {
-      if (p.type === PieceType.piece) {
+      if (piece.type === PieceType.piece) {
         setMouseDown(true);
         ev.preventDefault();
         play(document.getElementById('clickSound'));
-        dispatch(markPiece(k * boardSize + key));
+        dispatch(markPiece(row * boardSize + cell));
       }
     }
   };
 
-  const onDrag = (p: Piece, k: number, key: number) => {
+  const onMouseDrag = (piece: Piece, row: number, cell: number) => {
     if (handleBothPlayers || gamePhase === GamePhase.player1Turn) {
-      if (isMouseDown && p.type === PieceType.piece) {
+      if (isMouseDown && piece.type === PieceType.piece) {
         play(document.getElementById('clickSound'));
-        dispatch(markPiece(k * boardSize + key));
+        dispatch(markPiece(row * boardSize + cell));
+      }
+    }
+  };
+
+  const onTouchDrag = (ev: TouchEvent) => {
+    const touch = ev.touches[0];
+    const targetId = document.elementFromPoint(touch.clientX, touch.clientY)?.id;
+    const [type, row, cell] = targetId?.split('-') || [];
+    if (handleBothPlayers || gamePhase === GamePhase.player1Turn) {
+      if (isMouseDown && type === PieceType.piece) {
+        play(document.getElementById('clickSound'));
+        dispatch(markPiece(parseInt(row, 10) * boardSize + parseInt(cell, 10)));
       }
     }
   };
@@ -96,11 +108,11 @@ export const Board = ({ handleBothPlayers }: BoardProps) => {
                         boardSize
                       )}`}
                       key={cell}
-                      id={piece.type + cell}
-                      onMouseDown={ev => onLeftClick(ev, piece, row, cell)}
-                      onTouchStart={ev => onLeftClick(ev, piece, row, cell)}
-                      onMouseOver={() => onDrag(piece, row, cell)}
-                      onTouchMove={() => onDrag(piece, row, cell)}></td>
+                      id={`${piece.type}-${row}-${cell}`}
+                      onMouseDown={ev => onPress(ev, piece, row, cell)}
+                      onTouchStart={ev => onPress(ev, piece, row, cell)}
+                      onMouseOver={() => onMouseDrag(piece, row, cell)}
+                      onTouchMove={(ev: any) => onTouchDrag(ev)}></td>
                   ))}
               </tr>
             ))}

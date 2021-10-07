@@ -1,5 +1,6 @@
 import { BoardSize, Difficulty, GamePhase } from '../../model/enum';
-import { evaluateSelection, updateSelectionState } from '../../model/gameLogic';
+import { evaluateSelection, updateSelectionState } from '../helpers';
+
 import { Piece } from '../../model/types';
 import {
   BOARD_STATE,
