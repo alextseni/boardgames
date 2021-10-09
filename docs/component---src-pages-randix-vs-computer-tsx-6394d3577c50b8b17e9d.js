@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{CmWU:function(e,a,t){"use strict";t.r(a);var n=t("q1tI"),r=t.n(n),c=t("jj42"),i=t("XdKK"),l=t("4XLq"),m=t("+dU1"),s=t("j/Ep"),u=t("wm3r"),d=t.n(u);a.default=function(){return r.a.createElement(l.a,{game:s.d.randix},r.a.createElement("div",{className:d.a.wrapper},r.a.createElement(m.a,{hasDifficultySetting:!0,hasSizeSetting:!0}),r.a.createElement(i.a,null)),r.a.createElement(c.a,null))}}}]);
+//# sourceMappingURL=component---src-pages-randix-vs-computer-tsx-6394d3577c50b8b17e9d.js.map

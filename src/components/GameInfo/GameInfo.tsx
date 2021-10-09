@@ -21,7 +21,7 @@ export const GameInfo = ({ vsComp }: GameInfoProps) => {
   const player1Active =
     gamePhase === GamePhase.player1Turn || gamePhase === GamePhase.player1Wins;
   return (
-    <div className={styles.gameInfo}>
+    <div className={`${styles.gameInfo}`}>
       {gamePhase !== GamePhase.gameEnd && (
         <div
           className={`${styles.playerInfo} ${

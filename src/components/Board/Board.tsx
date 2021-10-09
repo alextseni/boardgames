@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Click from '../../assets/click.mp3';
 import GameVideo from '../../assets/playthrough.gif';
@@ -7,6 +7,7 @@ import { BoardSize, GamePhase, PieceType } from '../../model/enum';
 import { Piece } from '../../model/types';
 import { markPiece, removePieces } from '../../state/actions/game';
 import { State } from '../../state/createStore';
+import { GameInfo } from '../GameInfo/GameInfo';
 import styles from './Board.module.scss';
 
 interface BoardProps {
@@ -56,7 +57,10 @@ export const Board = ({ handleBothPlayers }: BoardProps) => {
 
   const onTouchDrag = (ev: TouchEvent) => {
     const touch = ev.touches[0];
-    const targetId = document.elementFromPoint(touch.clientX, touch.clientY)?.id;
+    const targetId = document.elementFromPoint(
+      touch.clientX,
+      touch.clientY
+    )?.id;
     const [type, row, cell] = targetId?.split('-') || [];
     if (handleBothPlayers || gamePhase === GamePhase.player1Turn) {
       if (isMouseDown && type === PieceType.piece) {
@@ -93,31 +97,41 @@ export const Board = ({ handleBothPlayers }: BoardProps) => {
       {gamePhase === GamePhase.gameEnd ? (
         <img className={styles.tutorial} alt='Game Tutorial' src={GameVideo} />
       ) : (
-        <table
-          className={styles.board}
-          onMouseUp={() => clearSelection()}
-          onTouchEnd={() => clearSelection()}>
-          <tbody>
-            {boardPieces.slice(0, boardSize).map((p, row) => (
-              <tr>
-                {boardPieces
-                  .slice(row * boardSize, row * boardSize + boardSize)
-                  .map((piece, cell) => (
-                    <td
-                      className={`${styles.block} ${css(piece.type)} ${cssSize(
-                        boardSize
-                      )}`}
-                      key={cell}
-                      id={`${piece.type}-${row}-${cell}`}
-                      onMouseDown={ev => onPress(ev, piece, row, cell)}
-                      onTouchStart={ev => onPress(ev, piece, row, cell)}
-                      onMouseOver={() => onMouseDrag(piece, row, cell)}
-                      onTouchMove={(ev: any) => onTouchDrag(ev)}></td>
-                  ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div
+          className={`${styles.gameArea} ${
+            boardSize.toString() === BoardSize.small
+              ? styles.gameAreaSmall
+              : styles.gameAreaRest
+          }`}>
+          <GameInfo vsComp={!handleBothPlayers} />
+          <table
+            className={`${styles.board} ${
+              GamePhase.player1Turn === gamePhase ? styles.p1 : styles.p2
+            }`}
+            onMouseUp={() => clearSelection()}
+            onTouchEnd={() => clearSelection()}>
+            <tbody>
+              {boardPieces.slice(0, boardSize).map((p, row) => (
+                <tr>
+                  {boardPieces
+                    .slice(row * boardSize, row * boardSize + boardSize)
+                    .map((piece, cell) => (
+                      <td
+                        className={`${styles.block} ${css(
+                          piece.type
+                        )} ${cssSize(boardSize)}`}
+                        key={cell}
+                        id={`${piece.type}-${row}-${cell}`}
+                        onMouseDown={ev => onPress(ev, piece, row, cell)}
+                        onTouchStart={ev => onPress(ev, piece, row, cell)}
+                        onMouseOver={() => onMouseDrag(piece, row, cell)}
+                        onTouchMove={(ev: any) => onTouchDrag(ev)}></td>
+                    ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

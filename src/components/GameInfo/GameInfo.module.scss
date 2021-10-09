@@ -1,14 +1,13 @@
 .gameInfo {
-  position: absolute;
-  right: 0;
+  display: flex;
 }
 
 .playerInfo {
+  min-width: 35%;
   font-family: cursive;
-  text-align: center;
+  padding: 6px 6px 6px 8px;
+  border-top-right-radius: 4px;
   border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  padding: 8px;
 }
 .p1 {
   background-color: #e55b3c;
@@ -16,4 +15,16 @@
 
 .p2 {
   background-color: #6495ed;
+}
+
+@media (max-width: 720px) {
+  .playerInfo {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .playerInfo {
+    font-size: 0.7rem;
+  }
 }
