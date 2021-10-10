@@ -1,7 +1,6 @@
 import _ from 'lodash';
-import { PositionPair } from '../model/ai';
 import { GamePhase, PieceType } from '../model/enum';
-import { Piece } from '../model/types';
+import { Piece, PositionPair } from '../model/types';
 import { GameState } from './reducers/game';
 
 export const createBoard = (

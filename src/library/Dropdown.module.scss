@@ -1,3 +1,5 @@
+@import 'src/styles/_base.scss';
+
 .dropdown-container {
   margin: 0 auto;
   position: relative;
@@ -6,13 +8,13 @@
 }
 
 .dropdown-toggle {
-  color: #000000;
+  color: $text-default;
 
   position: relative;
-  background-color: #ffffff;
+  background-color: $white;
   font-size: 17px;
   padding: 16px 40px 16px 16px;
-  box-shadow: 0px 0px 4px -2px rgba(0, 0, 0, 0.5);
+  border: 1px solid $main-ui;
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
@@ -24,8 +26,8 @@
   &:hover,
   &:active,
   &:focus {
-    background-color: #0979ce;
-    color: #ffffff;
+    background-color: $main-ui;
+    color: $text-default;
   }
 }
 
@@ -38,7 +40,7 @@
   left: 0;
   top: 100%;
   display: none;
-  background-color: #ffffff;
+  background-color: $white;
   z-index: 10;
 }
 
@@ -58,7 +60,7 @@
 
 .dropdown-menu-item {
   display: block;
-  color: #000000;
+  color: $text-default;
   font-size: 15px;
   padding: 16px 20px;
   font-weight: 600;
@@ -69,8 +71,8 @@
   &:active,
   &:focus {
     cursor: pointer;
-    background-color: #0979ce;
-    color: #ffffff;
+    background-color: $main-ui;
+    color: $text-default;
   }
 }
 
@@ -102,14 +104,14 @@
     z-index: -1;
     transform: rotate(-135deg);
     top: -4px;
-    border-color: #ffffff;
+    border-color: $white;
     box-shadow: 1px 1px 4px -2px rgba(0, 0, 0, 0.4);
   }
 }
 
 .dropdown-open .dropdown-toggle {
-  background-color: #0979ce;
-  color: #ffffff;
+  background-color: $main-ui;
+  color: $text-default;
 
   &:before {
     transform: rotate(-135deg);

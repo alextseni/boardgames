@@ -1,3 +1,5 @@
+@import 'src/styles/_base.scss';
+
 .gameInfo {
   display: flex;
 }
@@ -10,11 +12,11 @@
   border-top-left-radius: 4px;
 }
 .p1 {
-  background-color: #e55b3c;
+  background-color: $player1;
 }
 
 .p2 {
-  background-color: #6495ed;
+  background-color: $player2;
 }
 
 @media (max-width: 720px) {

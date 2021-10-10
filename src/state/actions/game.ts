@@ -1,4 +1,4 @@
-import { BoardSize, Difficulty, GamePhase } from '../../model/enum';
+import { Difficulty, GamePhase } from '../../model/enum';
 import { createBoard } from '../helpers';
 import {
   BOARD_STATE,
@@ -8,8 +8,7 @@ import {
   START_STATE,
 } from '../types/game';
 
-export const initializeBoard = (boardSize: string) => {
-  const size = parseInt(boardSize, 10);
+export const initializeBoard = (size: number) => {
   const randomBoard = new Array(size * size)
     .fill(0, 0, size * size)
     .map(n => Math.random());
@@ -37,7 +36,7 @@ export const markPiece = (cell: number) => ({
   payload: { cell },
 });
 
-export const changeBoard = (choice: BoardSize) => ({
+export const changeBoard = (choice: number) => ({
   type: OPTIONS_STATE,
   payload: { size: choice },
 });

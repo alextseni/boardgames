@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import styles from './Dropdown.module.scss';
 
@@ -41,9 +42,11 @@ export const Dropdown = ({
   return (
     <>
       <div
-        className={`${styles.dropdownContainer} ${
-          isOpen ? styles.dropdownOpen : ''
-        } ${className}`}
+        className={classnames(
+          styles.dropdownContainer,
+          { [styles.dropdownOpen]: isOpen },
+          className
+        )}
         id={dropdownId}>
         <div className={styles.dropdownToggle} onClick={() => setOpen(!isOpen)}>
           <div className={styles.dropdownMenuLabel}>{label}</div>

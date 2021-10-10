@@ -30,7 +30,7 @@ export enum Difficulty {
 }
 
 export enum BoardSize {
-  small = '4',
-  medium = '5',
-  big = '6',
+  small = 4,
+  medium = 5,
+  big = 6,
 }

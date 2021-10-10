@@ -1,3 +1,5 @@
+@import 'src/styles/_base.scss';
+
 .top {
   text-align: center;
 }
@@ -43,15 +45,14 @@
   border-left: 0;
   text-align: center;
   text-decoration: none;
-  color: #6d6d6d;
-  background-color: #eaeaea;
-  opacity: 0.6;
+  color: $text-inactive;
+  background-color: $grey-dark;
 }
 
 .tab.active {
   border-bottom: 1px solid transparent;
   color: rgb(14, 14, 14);
-  background-color: transparent;
+  background-color: $grey-light;
   opacity: 1;
 }
 

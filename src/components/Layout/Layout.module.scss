@@ -1,10 +1,12 @@
+@import 'src/styles/_base.scss';
+
 .container {
   max-width: 900px;
   margin: auto;
-  background-color: #fbfbfb;
-  box-shadow: 0px 0px 4px -2px #787878;
+  box-shadow: $shadow-small;
 }
 
 .content {
   padding: 48px 24px;
+  background-color: $grey-light;
 }

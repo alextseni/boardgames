@@ -1,3 +1,5 @@
+@import 'src/styles/_base.scss';
+
 .preloadImage1 {
   // trick to load images to avoid flickering on selection
   background-image: url('../../assets/marble_p2.png');
@@ -35,11 +37,11 @@
 }
 
 .p1 {
-  background-color: #e55b3c;
+  background-color: $player1;
 }
 
 .p2 {
-  background-color: #6495ed;
+  background-color: $player2;
 }
 
 .block {
@@ -90,7 +92,7 @@
   width: 500px;
   margin: auto;
   display: block;
-  box-shadow: 0px 0px 0px 6px #ede275;
+  box-shadow: 0px 0px 0px 6px $main-ui;
   max-width: 100%;
 }
 

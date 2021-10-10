@@ -1,3 +1,5 @@
+@import 'src/styles/_base.scss';
+
 .content {
   h2 {
     font-size: 26px;
@@ -28,9 +30,9 @@
 
 .card {
   height: 80px;
-  box-shadow: 0px 0px 2px 1px #cfcfcf;
+  box-shadow: $shadow-small;
   border-radius: 4px;
-  background-color: #f3f3f3;
+  background-color: $grey-light;
   max-width: 120px;
   display: block;
   text-decoration: none;
@@ -41,7 +43,7 @@
   margin: auto;
   justify-content: center;
   &:hover {
-    box-shadow: 0px 0px 4px 2px #cfcfcf;
+    box-shadow: $shadow-small-hover;
   }
 }
 

@@ -5,3 +5,5 @@ export type Piece = {
   y: number;
   type: PieceType;
 };
+
+export type PositionPair = [number, number];

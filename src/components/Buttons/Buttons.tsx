@@ -1,10 +1,9 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import ButtonSound from '../../assets/button.mp3';
 import { Button } from '../../library/Button';
 import { GamePhase } from '../../model/enum';
-import { clearBoard, initializeBoard } from '../../state/actions/game';
-import { State } from '../../state/createStore';
+import { useGameState } from '../../state/hooks/useGameState';
+import { useOptions } from '../../state/hooks/useOptions';
 import styles from './Buttons.module.scss';
 
 const play = (sound: any) => {
@@ -14,24 +13,23 @@ const play = (sound: any) => {
 };
 
 export const Buttons = () => {
-  const boardSize = useSelector((state: State) => state.game.options.size);
-  const gamePhase = useSelector((state: State) => state.game.phase);
-  const dispatch = useDispatch();
+  const { size } = useOptions();
+  const { phase, initializeBoard, clearBoard } = useGameState();
 
   const newGame = () => {
     play(document.getElementById('buttonSound'));
-    dispatch(initializeBoard(boardSize));
+    initializeBoard(size);
   };
 
   const guitGame = () => {
     play(document.getElementById('buttonSound'));
-    dispatch(clearBoard());
+    clearBoard();
   };
 
   return (
     <div>
       <audio id='buttonSound' src={ButtonSound} />
-      {gamePhase !== GamePhase.gameEnd && (
+      {phase !== GamePhase.gameEnd && (
         <Button label={'Quit'} onClick={guitGame} />
       )}
       <Button

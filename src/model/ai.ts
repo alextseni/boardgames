@@ -1,8 +1,8 @@
 // Minimax (+Alpha-Beta) Implementation
 
 import _ from 'lodash';
-import { BoardSize, Difficulty, PieceType } from './enum';
-import { Piece } from './types';
+import { Difficulty, PieceType } from './enum';
+import { Piece, PositionPair } from './types';
 
 const DEPTH_FOR_EASY = 2;
 const DEPTH_FOR_NORMAL = 4;
@@ -15,16 +15,13 @@ type ComputerState = {
   score: number;
 };
 
-export type PositionPair = [number, number];
-
 const maxScore = 100000;
 
 export const playAI = (
   board: Piece[],
-  boardSize: BoardSize,
+  size: number,
   difficulty: Difficulty
 ): ComputerState => {
-  const size = parseInt(boardSize, 10);
   let k = 0;
   const dummyBoard = Array.apply(null, Array(size)).map(() => new Array(size));
   for (let i = 0; i < size; i++) {

@@ -1,13 +1,8 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Dropdown } from '../../library/Dropdown';
 import { BoardSize, Difficulty, GamePhase } from '../../model/enum';
-import {
-  changeBoard,
-  changeDifficulty,
-  initializeBoard,
-} from '../../state/actions/game';
-import { State } from '../../state/createStore';
+import { useGameState } from '../../state/hooks/useGameState';
+import { useOptions } from '../../state/hooks/useOptions';
 import styles from './Settings.module.scss';
 
 interface SettingsProps {
@@ -18,12 +13,8 @@ export const Settings = ({
   hasDifficultySetting,
   hasSizeSetting,
 }: SettingsProps) => {
-  const boardSize = useSelector((state: State) => state.game.options.size);
-  const boardMode = useSelector(
-    (state: State) => state.game.options.difficulty
-  );
-  const gamePhase = useSelector((state: State) => state.game.phase);
-  const dispatch = useDispatch();
+  const { size, difficulty, changeBoard, changeDifficulty } = useOptions();
+  const { phase, initializeBoard } = useGameState();
 
   const difficultyOptions = [
     { value: Difficulty.easy, label: 'Easy' },
@@ -31,9 +22,9 @@ export const Settings = ({
     { value: Difficulty.hard, label: 'Hard' },
   ];
   const sizeOptions = [
-    { value: BoardSize.small, label: '4x4' },
-    { value: BoardSize.medium, label: '5x5' },
-    { value: BoardSize.big, label: '6x6' },
+    { value: `${BoardSize.small}`, label: '4x4' },
+    { value: `${BoardSize.medium}`, label: '5x5' },
+    { value: `${BoardSize.big}`, label: '6x6' },
   ];
 
   return (
@@ -44,11 +35,12 @@ export const Settings = ({
           className={styles.customDropdown}
           id={'board-size'}
           options={sizeOptions}
-          selectedOption={sizeOptions.find(o => o.value === boardSize)!}
+          selectedOption={sizeOptions.find(o => o.value === size.toString())!}
           onChange={(value: string) => {
-            dispatch(changeBoard(value as BoardSize));
-            if (gamePhase !== GamePhase.gameEnd) {
-              dispatch(initializeBoard(value));
+            const boardSize = parseInt(value, 10);
+            changeBoard(boardSize);
+            if (phase !== GamePhase.gameEnd) {
+              initializeBoard(boardSize);
             }
           }}
         />
@@ -57,12 +49,12 @@ export const Settings = ({
         <Dropdown
           label={'Difficulty'}
           id={'difficulty'}
-          selectedOption={difficultyOptions.find(o => o.value === boardMode)!}
+          selectedOption={difficultyOptions.find(o => o.value === difficulty)!}
           options={difficultyOptions}
           onChange={(value: string) => {
-            dispatch(changeDifficulty(value as Difficulty));
-            if (gamePhase !== GamePhase.gameEnd) {
-              dispatch(initializeBoard(boardSize));
+            changeDifficulty(value as Difficulty);
+            if (phase !== GamePhase.gameEnd) {
+              initializeBoard(size);
             }
           }}
         />
