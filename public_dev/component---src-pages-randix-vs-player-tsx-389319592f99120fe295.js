@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{DReS:function(e,a,n){"use strict";n.r(a);var t=n("q1tI"),r=n.n(t),l=n("jj42"),c=n("XdKK"),d=n("dWbV"),i=n("4XLq"),s=n("+dU1"),m=n("j/Ep"),p=n("O1PD"),u=n.n(p);a.default=function(){return r.a.createElement(i.a,{game:m.d.randix},r.a.createElement("div",{className:u.a.wrapper},r.a.createElement(s.a,{hasSizeSetting:!0}),r.a.createElement(c.a,null)),r.a.createElement(d.a,null),r.a.createElement(l.a,{handleBothPlayers:!0}))}}}]);
-//# sourceMappingURL=component---src-pages-randix-vs-player-tsx-389319592f99120fe295.js.map
