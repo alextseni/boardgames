@@ -21,11 +21,23 @@
   }
 }
 
+.gitLink {
+  margin-left: 8px;
+  img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
 .wrapper {
   display: flex;
   justify-content: space-between;
   margin-bottom: 40px;
   flex-wrap: wrap;
+}
+
+.vscomp > div:last-child {
+  left: 50%;
 }
 
 .card {

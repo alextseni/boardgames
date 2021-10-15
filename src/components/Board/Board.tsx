@@ -99,15 +99,19 @@ export const Board = ({ handleBothPlayers }: BoardProps) => {
           })}>
           <GameInfo vsComp={!handleBothPlayers} />
           <table
-            className={classnames(styles.board, {
-              [styles.p1]: GamePhase.player1Turn === phase,
-              [styles.p2]: GamePhase.player1Turn !== phase,
+            className={classnames(styles.board, styles.p1, {
+              [styles.p1]:
+                GamePhase.player1Turn === phase ||
+                GamePhase.player1Wins === phase,
+              [styles.p2]:
+                GamePhase.player1Turn !== phase &&
+                GamePhase.player1Wins !== phase,
             })}
             onMouseUp={() => clearSelection()}
             onTouchEnd={() => clearSelection()}>
             <tbody>
-              {pieces.slice(0, size).map((p, row) => (
-                <tr>
+              {pieces.slice(0, size).map((_, row) => (
+                <tr key={row}>
                   {pieces
                     .slice(row * size, row * size + size)
                     .map((piece, cell) => (
@@ -117,8 +121,8 @@ export const Board = ({ handleBothPlayers }: BoardProps) => {
                           cssForTileType(piece.type),
                           cssForSize()
                         )}
-                        key={cell}
                         id={`${piece.type}-${row}-${cell}`}
+                        key={`${row}-${cell}`}
                         onMouseDown={ev => onPress(ev, piece, row, cell)}
                         onTouchStart={ev => onPress(ev, piece, row, cell)}
                         onMouseOver={() => onMouseDrag(piece, row, cell)}

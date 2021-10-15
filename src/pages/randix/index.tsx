@@ -1,4 +1,5 @@
 import React from 'react';
+import Github from '../../assets/github.png';
 import MarbleImage from '../../assets/marble_trans.png';
 import StoneImage from '../../assets/stone_trans.png';
 import { Layout } from '../../components/Layout/Layout';
@@ -39,10 +40,17 @@ const HomePage = () => (
         </a>
         .
       </p>
-      <div className={styles.divider} />
       <h2>About</h2>
-      <p>Created by Alexandra Tseniklidou | 2016, rewritten on 2021</p>
-      <p>Built with: Gatsby, Typescript, React, Redux</p>
+      <p>Created by Alexandra Tseniklidou | 2016, rewritten in 2021</p>
+      <p>
+        Source code on
+        <a
+          className={styles.gitLink}
+          href='https://github.com/aTseniklidou/boardgames'
+          target='_blank'>
+          <img alt='Github' src={Github} />
+        </a>
+      </p>
       <p>Sountrack: "Wallpaper" by Kevin MacLeod</p>
     </div>
   </Layout>
