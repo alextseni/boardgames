@@ -96,7 +96,17 @@
   max-width: 100%;
 }
 
+.threeDArea {
+  width: 600px;
+  height: 600px;
+  margin: auto;
+}
+
 @media (max-width: 720px) {
+  .threeDArea {
+    width: 400px;
+    height: 400px;
+  }
   .gameAreaRest {
     width: 70%;
   }
@@ -106,6 +116,10 @@
 }
 
 @media (max-width: 520px) {
+  .threeDArea {
+    width: 200px;
+    height: 200px;
+  }
   .gameAreaRest {
     width: 100%;
   }
