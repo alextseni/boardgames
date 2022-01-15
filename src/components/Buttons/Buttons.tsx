@@ -3,7 +3,7 @@ import { Button } from '../../library/Button';
 import { GamePhase } from '../../model/enum';
 import { useGameState } from '../../state/hooks/useGameState';
 import { useOptions } from '../../state/hooks/useOptions';
-import styles from './Buttons.module.scss';
+import * as styles from './Buttons.module.scss';
 
 export const Buttons = () => {
   const { size } = useOptions();

@@ -7,7 +7,7 @@ import { Layout } from '../../components/Layout/Layout';
 import { Settings } from '../../components/Settings/Settings';
 import { GamePhase, Games } from '../../model/enum';
 import { useGameState } from '../../state/hooks/useGameState';
-import styles from '../Page.module.scss';
+import * as styles from '../Page.module.scss';
 
 const confettiConfig = {
   angle: 90,

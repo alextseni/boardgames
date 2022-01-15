@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import React, { useEffect, useState } from 'react';
-import styles from './Dropdown.module.scss';
+import * as styles from './Dropdown.module.scss';
 
 type Option = {
   value: string;

@@ -3,7 +3,7 @@ import { Dropdown } from '../../library/Dropdown';
 import { BoardSize, Difficulty, GamePhase } from '../../model/enum';
 import { useGameState } from '../../state/hooks/useGameState';
 import { useOptions } from '../../state/hooks/useOptions';
-import styles from './Settings.module.scss';
+import * as styles from './Settings.module.scss';
 
 interface SettingsProps {
   hasDifficultySetting?: boolean;

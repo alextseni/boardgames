@@ -1,7 +1,7 @@
 import React from 'react';
 import { Games } from '../../model/enum';
 import { Header } from '../Header/Header';
-import styles from './Layout.module.scss';
+import * as styles from './Layout.module.scss';
 
 interface LayoutProps {
   children: React.ReactNode;

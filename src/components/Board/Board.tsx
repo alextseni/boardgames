@@ -8,7 +8,7 @@ import { Piece } from '../../model/types';
 import { useGameState } from '../../state/hooks/useGameState';
 import { useOptions } from '../../state/hooks/useOptions';
 import { GameInfo } from '../GameInfo/GameInfo';
-import styles from './Board.module.scss';
+import * as styles from './Board.module.scss';
 
 interface BoardProps {
   handleBothPlayers?: boolean;

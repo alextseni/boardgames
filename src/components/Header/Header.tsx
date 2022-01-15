@@ -4,7 +4,7 @@ import { TiVolumeMute, TiVolumeUp } from 'react-icons/ti';
 import Soundtrack from '../../assets/Wallpaper.mp3';
 import { config } from '../../model/configs';
 import { Games } from '../../model/enum';
-import styles from './Header.module.scss';
+import * as styles from './Header.module.scss';
 
 interface HeaderProps {
   game: Games;

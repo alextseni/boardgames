@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import React from 'react';
 import { GamePhase } from '../../model/enum';
 import { useGameState } from '../../state/hooks/useGameState';
-import styles from './GameInfo.module.scss';
+import * as styles from './GameInfo.module.scss';
 
 interface GameInfoProps {
   vsComp?: boolean;

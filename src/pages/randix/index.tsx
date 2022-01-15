@@ -4,7 +4,7 @@ import MarbleImage from '../../assets/marble_trans.png';
 import StoneImage from '../../assets/stone_trans.png';
 import { Layout } from '../../components/Layout/Layout';
 import { Games } from '../../model/enum';
-import styles from '../Page.module.scss';
+import * as styles from '../Page.module.scss';
 
 const HomePage = () => (
   <Layout game={Games.randix}>
@@ -27,7 +27,6 @@ const HomePage = () => (
         </span>{' '}
         that block your selection.
       </p>
-      <div className={styles.divider} />
       <h2>History</h2>
       <p>
         Randix is a variation of the popular computational game TacTix played in

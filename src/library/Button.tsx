@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import React from 'react';
-import styles from './Button.module.scss';
+import * as styles from './Button.module.scss';
 
 interface ButtonProps {
   label: string;
